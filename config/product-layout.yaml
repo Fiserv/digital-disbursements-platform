@@ -26,76 +26,53 @@
 # No warranties, either express or implied, 
 # are granted or extended by this work or 
 # the delivery of this work
-# Test change
 ################################################################################
 header:
   productName: DigitalDisbursements
-  productionDescription: REPLACEME
-  whoIsItFor: REPLACEME
+  productionDescription: The Digital Disbursements Platform (DDP) is a cloud-based solution that digitizes the payouts process for both businesses and consumers alike. Through simple API integration, DDP allows merchants to issue single or bulk payouts to consumers and/or businesses in a secure, timely and cost-effective manner. For the recipient, the platform provides access to a variety of payout methods that allows choice of accepting their money when and how they prefer
+  whoIsItFor: Who is it for?
   image: 
     link: "/assets/images/Fiserv_Logo.jpg"
     altText: DigitalDisbursements™
 featuredFeatures:
-  - title: Credit Issuance
-    description:  DigitalDisbursements solution allows financial Institution to issue and manage the Credit Card products to their end customers.
-    tags: ["APAC", "FirstVision", "Credit"]
-    bullets: ["Activate Card", "Block Card", "Lost Stolen Card Transfer", "CVV2 Validation" ]
+  - title: Operational Efficiency 
+    description:  Digital Disbursements simplifies operations and reduces resource demand, streamlining your payouts process. Our client portal provides settlement, reconciliation, and reporting for all payout capabilities.
     relatedDocs:
       - relatedDoc: 
-        title: Account Management
-        description: Allows management of an accounts that holds financial information of Credit available/ used.
-        link: ./docs/Account-Management.md
+        title: Portal Flow
+        description: Learn how to integrate with our recipient portal for a great user Experience and Low integration cost.
+        link: /docs/interactive-guide/portalflow.md
       - relatedDoc: 
-        title: Customer Management
-        description: Allows management of a cardholder's demographic information like Name, Address, phone numbers.  
-        link: ./docs/Customer-Management.md
-      - relatedDoc: 
-        title: Card Management
-        description: Allows management of payment instrument that is used to perform financial transaction.  Example physical Card, Virtual Card, Wallet Token. 
-        link: ./docs/Card-Management.md
+        title: FAQs
+        description: Take a look at our FAQa. 
+        link: docs/faq/faq.md
     relatedAPIs:
       - relatedAPI: 
-        title: Block-Unblock Account
-        description: This service is used to update the Account Block Code.
-        type: "patch"        
-        path: "/v1/accounts/blockUnblock"
+        title: Create and Pay
+        description: create and send a payment with this single API endpoint.
+        type: post        
+        path: /ddp/v1/payments&version=1.0.0
+  - title: Built-in Security
+    description:  Digital Disbursements reduces risk and ensures high approval rates with built-in fraud prevention, tokenization, and optimization. You can also leverage functionality that eliminates PCI Burden.
+    relatedDocs:
+      - relatedDoc: 
+        title: FAQs
+        description: Take a look at our FAQa. 
+        link: docs/faq/faq.md
+  - title: Recipient benefits
+    description:  Digital Disbursements offers recipients access to a variety of payout methods and the ability to select payment preferences in a variety of languages. Recipients can receive funds instantly day or night.
+    relatedDocs:
+      - relatedDoc: 
+        title: Create a Payment
+        description: Here you will find a list of each available payment method.
+        link: docs/interactive-guide/apiflow.md#step-3-create-a-payment
+      - relatedDoc: 
+        title: FAQs
+        description: Take a look at our FAQa. 
+        link: docs/faq/faq.md
+    relatedAPIs:
       - relatedAPI: 
-        title: Block-Unblock Card
-        description: This service is used to update the block codes and the reason codes for the block codes for cards and accounts
-        type: "patch"        
-        path: "/v1/cards/blockUnblock"
-      - relatedAPI: 
-        title: Spend Limit Updates
-        description: This service is used to update the spending limits to control the card usage.  These limits are set at individual card level.
-        type: "patch"        
-        path: "/v1/cardS/spendLimits"
-      - relatedAPI: 
-        title: Fetch Clear PAN from Token
-        description: This service is used to fetch the clear pan for the requested First Vision's Token PAN.
-        type: "get"        
-        path: "/v1/cards/clearPan"
-      - relatedAPI: 
-        title: CVV2 Validation
-        description: The Card Secure Code Validation service is used to validate the CVV2  and optionally the expiry date of a given card. 
-        type: "post"        
-        path: "/v1/cards/secureCode"
-      - relatedAPI: 
-        title: Lost Stolen Card Transfer
-        description: This Lost or Stolen service is used to block the lost card and request for the replacement card. 
-        type: "put"        
-        path: "/v1/cards/transfer"
-      - relatedAPI: 
-        title: Activate Card
-        description: This service is used to activate the card after successful verification of the cardholder.  
-        type: "put"        
-        path: "/v1/cards/activate"
-      - relatedAPI: 
-        title: Inquire Customer Demographic Information
-        description: This service will be used to enquire the customer demographic details such as Name / Address / Phone Number / Email ID/ Date of Birth of the given customer.  
-        type: "get"        
-        path: "/v1/customers/nameAddress"
-      - relatedAPI: 
-        title: Update Customer Demographic Information
-        description: This service will be used to update the customer demographic details such as Name / Address / Phone Number / Email ID/ Date of Birth of the given customer.  
-        type: "patch"        
-        path: "/v1/customers/nameAddress"
+        title: Disburse a Payment
+        description: Use this API to send payments in as little as 5 seconds!
+        type: patch       
+        path: /ddp/v1/payments/{id}/disburse&version=1.0.0

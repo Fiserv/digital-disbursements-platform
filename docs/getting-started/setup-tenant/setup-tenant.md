@@ -14,7 +14,7 @@ Tenant can build their own tenant server code by following our guidelines. Pleas
 
 Your repository name should match with your product name.
 
-You've not got a tenant repoistory.
+You've not got a tenant repository.
 
 ## Configure your tenant
 
@@ -28,7 +28,7 @@ Your edits will be made in the `develop` branch.
 
 The `tenant.json` contains metadata information about your product.
 
-The file is located, from the repoistiory root, `/config/tenant.json`.
+The file is located, from the repository root, `/config/tenant.json`.
 
 ### Edit the product-layout.yaml
 
@@ -40,12 +40,12 @@ The file has several sections for each card that shows on the product overview p
 
 The `document-explorer-definition.yaml` controls what you want to display on left-side navigation bar for document explorer on tenant page. 
 
-The file is located, from the repoistiory root, `/config/document-explorer-definition.yaml`.
+The file is located, from the repository root, `/config/document-explorer-definition.yaml`.
 
 
 ## Connect Stoplight
 
-To make creating or editing your content easier we're going to connet your Github repository to Stoplight.io.
+To make creating or editing your content easier we're going to connect your Github repository to Stoplight.io.
 
 Head to the [Fiserv Stoplight] and signup.
 
@@ -68,10 +68,10 @@ For now you can edit the existing sample `getting-started.md` file.
 ## Recap
 
 You've now got
-* Your Github repoistory cloned
+* Your Github repository cloned
 * Your tenant config files have been edited
-* Stoplight is connected to the repoistory
-* You have an API specification file and markdown files edited
+* Stoplight is connected to the repository
+* You have an API specification file and markdown files edited. Test
 
 
 ___

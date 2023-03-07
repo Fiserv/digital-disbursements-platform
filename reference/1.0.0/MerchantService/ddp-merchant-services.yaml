@@ -1,0 +1,411 @@
+#-------------------------------------
+# Initial Version
+#-------------------------------------
+openapi: 3.0.0
+info:
+  version: 0.0.3
+  title: Digital Disbursement Platform Token APIs.
+  description: 
+    API to Retrieve Token & Encryption Key.
+   
+servers:
+  - url:  https://qa.api.firstdata.com
+    description: This url is for QA testing.
+  - url:  https://int.api.firstdata.com
+    description: This url is for customer testing.
+  - url: https://prod.api.firstdata.com
+    description: This is production url.
+
+paths:
+  /ddp/v1/merchantInfo:
+   get:
+      x-group-name: Merchant Services
+      x-proxy-name: Get Merchant Details
+      tags:
+        - Digital Disbursement Platform Merchant Info APIs
+      summary: Retrieve Merchant details via Merchant Info API
+      description: This API retrieves merchant details.
+      parameters:
+        - { $ref: '#/components/parameters/ApiKeyHeader' }
+        - { $ref: '#/components/parameters/TimestampHeader' }
+        - { $ref: '#/components/parameters/AuthorizationHeader' }
+        - { $ref: '#/components/parameters/ClientRequestIdHeader' }
+        - { $ref: '#/components/parameters/ContentTypeHeader' }
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                minItems: 0
+                items:
+                  $ref: '#/components/schemas/MerchantInfoResponse'
+                uniqueItems: true
+        '400':
+          description: The request cannot be validated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+        '401':
+          description: The request was unauthorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+        '404':
+          description: The requested resource does not exist.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+        '500':
+          description: An unexpected internal server error occurred.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerError'
+components:
+ schemas:
+#------------------------------------------
+# Request/ Reponse Model
+#------------------------------------------
+
+  MerchantInfoResponse:
+     description: This Response model is for Merchant details via Merchant Info API
+     type: object
+     required:
+        - ledgerbalance
+        - merchant
+        - account
+        - availablebalance
+     properties:
+      ledgerbalance:
+        $ref: '#/components/schemas/Balance'
+      merchant:
+        $ref: '#/components/schemas/Merchant'
+      account:
+        $ref: '#/components/schemas/Account'
+      availablebalance:
+        $ref: '#/components/schemas/Balance'
+  
+  Merchant:
+     description: This model is for merchant details like name, address, email and phone number. 
+     type: object
+     required:
+      - name
+      - address
+      - email
+      - phone
+     properties:
+       name:
+        description: name of the Merchant
+        type: string 
+        example: "MMIS Instant Financial"
+       address:
+        $ref: '#/components/schemas/Address'
+       email:
+        $ref: '#/components/schemas/Email'
+       phone:
+        $ref: '#/components/schemas/Phone'
+       
+  Balance:
+      description: This model is for ledger/available balance information
+      type: object
+      required:
+       - total
+       - currency
+      properties:
+        total:
+         description: Indicates total amount
+         type: number
+         example: 568530.36
+        currency:
+         description: Indicates currency code for total amount
+         type: string
+         example: "USD"
+          
+  Address:
+       description: A physical mailing address for this card holder.
+       type: object
+       required:
+        - type
+        - street
+        - city
+        - stateOrProvince
+        - postalCode
+        - country
+       properties:
+        type:
+          description: Canonical type values of "work", "home", "billing" and "other".
+          type: string
+          example: business
+        street:
+          description: The full street address component, which may include house number, street name, P.O. box, and multi-line extended street address information.
+          type: string
+          example: 1340 Creek Ridge Cross
+        city:
+          description: The city or locality component.
+          type: string
+          example: Atlanta
+        stateOrProvince:
+          minLength: 2
+          maxLength: 2
+          description: The sender's province, state or territory. Conditional, required if sender's country is USA. Must be an ISO 3166-2 uppercase alpha 2 character country subdivision code. For example, Missouri is MO.
+          type: string
+          example: GA
+        postalCode:
+          minLength: 1
+          maxLength: 10
+          description: Required. The sender's postal code. For USA, this must be a valid value of 5 digits or 5 digits hyphen 4 digits, for example '63368', '63368-5555'. For other regions, this can be alphanumeric, length 1-10.
+          type: string
+          example: 91608
+        country:
+          description: The sender's country as an ISO 3166-1 uppercase alpha-3 country code; For example, the United States of America is USA.
+          type: string
+        formatted:
+          description: The full mailing address, formatted for display or use with a mailing label.
+          type: string
+          example: "1340 Creek Ridge Cross \nAtlanta GA 91608 USA"
+        primary:
+          description: Indicates if this is the default address for the associated resource. It only has meaning when used in a set or array of addresses.
+          type: boolean
+          default: false
+          example:
+           type: "business"
+           street: "1340 Creek Ridge Cross"
+           city: "Atlanta"
+           stateOrProvince: "GA"
+           postalCode: "91608"
+           country: "USA"
+           formatted: "1340 Creek Ridge Cross Atlanta GA 91608 USA"
+           primary: true
+        
+  Email:
+        description: Email address for the user.
+        type: object
+        required:
+         - value
+        properties:
+         type:
+           description: The "type" sub-attribute is used to provide a classification meaningful to the (human) user.  The user interface should encourage the use of basic values of "work", "home", and "other" and MAY allow additional type values to be used at the discretion of the service client.
+           type: string
+           writeOnly: true
+         value:
+          description: The value SHOULD be specified according to RFC5321.
+          type: string
+          writeOnly: true
+         primary:
+          description:
+            Defines if this entry is to be used as the primary or default for the
+            user.
+          type: boolean
+          default: false
+          writeOnly: true
+        example:
+         value: bjensen@example.com
+         type: work
+         primary: true
+     
+  Phone:
+        description: Phone number for the user.
+        type: object
+        properties:
+         countryCode:
+          description: Country code for the phone number.
+          type: string
+         value:
+          description: The value SHOULD be specified according to the format defined in RFC3966, e.g., 'tel:+1-201-555-0123'.
+          type: string
+         type:
+          description: Often has typical values of "work","billing", "home", "mobile", "fax", "pager", and "other" and MAY allow more types to be defined by the service client.
+          type: string
+         extension:
+          description: Defines the extension of the phone number.
+          type: string
+        example:
+         code: +91
+         value: 704-884-2754
+         type: billing
+         extension: "2145"
+        
+  Account:
+       description: Account information
+       type: object
+       required:
+       - dfaAccountNumber
+       properties:
+        dfaAccountNumber:
+          description: Account Number. Response will have only last four of this account number.
+          type: string
+          example: "XXXXXXXXXXXXX0028"
+  NVP:
+      title: Name and Value pair.
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+        valueAsList:
+          type: array
+          minItems: 0
+          items:
+            type: string
+   
+#-------------------------------------
+# response Models
+#-------------------------------------
+  NoContent:
+      description: The request succeeded but there�s really nothing to show.
+      example: {}
+
+  BadRequest:
+      description: Bad request
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/Error'
+
+  Unauthorized:
+      description: Unauthorized
+
+  NotFound:
+      description: Not Found - The requested resource doesn't exist.
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/Error'
+
+  Conflict:
+      description: Conflict - The requested operation conflicts with the current state of the identified resource.
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/Error'
+
+  ServerError:
+      description: An unexpected server error occured.
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/Error'
+#-------------------------------------
+# Error Models
+#-------------------------------------
+  Error:
+      description: (Response Only) Model for error messaging
+      type: object
+      properties:
+        code:
+          type: string
+          description: Uniquely identifies an error condition. Client applications need to read and handle errors based on this.
+        message:
+          type: string
+          description: A generic description of the error condition.
+        category:
+          type: string
+          description: The resource associated with the error condition.
+        developerInfo:
+          type: object
+          description: Information that needs to be understood by the client developers and should not be interpreted for application processing.
+          properties:
+            developerMessage:
+              type: string
+              description: An elaborative description of the error description.
+            moreInfo:
+              type: string
+              description: Link to the error in Developer page.
+            fieldError:
+              description: Detailed information about message format errors.
+              type: array
+              items:
+                properties:
+                  field:
+                    description: The property or attribute associated with the error
+                    type: string
+                  message:
+                    description: Information specific to a property or attribute.
+                    type: string
+        hostExtraInfo:
+          type: array
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/NVP'
+          uniqueItems: true
+      example:
+        code: "40000"
+        message: "Example Error"
+        category: "example"
+        developerInfo:
+          developerMessage: "Invalid Message format in request payload"
+          moreInfo: "https://www.example.com/errors/40000"
+          fieldError:
+            - field: "example id"
+              message: "exampleId is mandatory"
+
+#------------------------------------------
+# Header Params
+#------------------------------------------
+ parameters:
+    ApiKeyHeader:
+      in: header
+      name: Api-Key
+      description: >-
+        An API key is a string value passed by a client app to the API
+        proxies. The key uniquely identifies the client app.
+      required: true
+      schema: {
+        type: string,
+        default: "Api-Key"
+      }
+      example: Value supplied by Dev Studio
+    TimestampHeader:
+      in: header
+      name: Timestamp
+      description: >-
+        Epoch timestamp in the request initiating system
+      required: true
+      schema:
+        type: string
+      example: Value supplied by Dev Studio
+    AuthorizationHeader:
+      in: header
+      name: Authorization
+      description: >-
+        Authorization information for the request. Format- `HMAC
+        {signature}`
+      required: true
+      schema: {
+        type: string,
+        default: "Authorization"
+      }
+      example: Value supplied by Dev Studio
+    ClientRequestIdHeader:
+      in: header
+      name: Client-Request-Id
+      description: >-
+        Contains a unique ID generated by the client that can be used for
+        enforcing idempotency on POST actions. POSTs are inherently
+        non-idempotent and submitting the exact same request multiple times
+        would create duplicate resources.
+
+        Note:- Omitting this header
+        increases the risk of duplicate transactions.
+      required: true
+      schema: {
+        type: string,
+        default: "Client-Request-Id"
+      }
+      example: Value supplied by Dev Studio
+    ContentTypeHeader:
+     in: header
+     name: Content-Type
+     description: used to indicate the media type of the resource.
+     required: true
+     schema: {
+        type: string,
+        default: "application/json"
+      }
+     example: application/json

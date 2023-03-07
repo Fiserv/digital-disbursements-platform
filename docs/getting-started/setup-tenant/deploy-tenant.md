@@ -11,7 +11,7 @@ This quick start guide will provide you the necessary steps to get your Applicat
     * Tenant Setup
     * Tenant Repository Setup
 
-Now, developer is ready to deploy your tenant application. Developer can delpoy application in any open cloud server. Here we are providing example for new application deployment within IBM cloud with OpenShift Cluster. 
+Now, developer is ready to deploy your tenant application. Developer can deploy application in any open cloud server. Here we are providing example for new application deployment within IBM cloud with OpenShift Cluster. 
 
 ## Deployment checklist
 
@@ -65,7 +65,7 @@ Select your project from the 'Project dropdown' and add your private SSH key und
 
     * **Secret Name** :  `<your-name>-SSH-Private-Key`
     * **Authentication type** : SSH
-    * **SSH Private Key** : Develpor can browse the SSH private key from local machine or developer can paste it directly into Text Box.
+    * **SSH Private Key** : Developer can browse the SSH private key from local machine or developer can paste it directly into Text Box.
 
 ## Step 7: Select +Add option
 
@@ -85,7 +85,7 @@ Developer needs to provide repository URL to add into application. For example w
 
 ![Bitbucket Repo setup]
 
-Now add the Git URL in **Git Repo URL** option on Import from Dockerfile page. Click **Show Advance Git Options**. 
+Now add the Git URL in **Git Repo URL** option on Import from Docker file page. Click **Show Advance Git Options**. 
 
 > Note: Developer can configure with custom settings, as these configuration are setup for sample project. 
 
@@ -95,7 +95,7 @@ Now add the Git URL in **Git Repo URL** option on Import from Dockerfile page. C
 
 *   **Git Reference** : 'develop'
 
-*   **Context Directory** : If 'Dockerfile' is at root level you can leave this option blank, Otherwise developer needs provide path of the Docker Files.
+*   **Context Directory** : If 'Docker file' is at root level you can leave this option blank, Otherwise developer needs provide path of the Docker Files.
 
 Example: `/<sub-directory>`
 
@@ -147,7 +147,7 @@ Need Help ?
 
 [//]: # (These are reference links used in markdown file)
 
-[OpenShift webconsole]: <https://gist.githubusercontent.com/f2zdirk/0d6e1e22180086f6169a2686a3ae1ec9/raw/22c36a3fbd595844296c2d25dc0e14b27d51e1ab/OpenShit_web_console.png>
+[OpenShift web console]: <https://gist.githubusercontent.com/f2zdirk/0d6e1e22180086f6169a2686a3ae1ec9/raw/22c36a3fbd595844296c2d25dc0e14b27d51e1ab/OpenShit_web_console.png>
 
 [OpenShift Developer Role]: <https://gist.githubusercontent.com/f2zdirk/0d6e1e22180086f6169a2686a3ae1ec9/raw/22c36a3fbd595844296c2d25dc0e14b27d51e1ab/OpenShift_topology.png>
 

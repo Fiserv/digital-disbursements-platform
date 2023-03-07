@@ -1,0 +1,1659 @@
+#-------------------------------------
+# Initial Version
+## Added nickname
+# Added Paypal source seperated from Venmo
+#-------------------------------------
+openapi: 3.0.0
+info:
+  version: 0.0.3
+  title: Digital Disbursement Platform Vaulting APIs
+  description: This Specification document lists the APIs required for vaulting recipient account.
+
+servers:
+  - url:  https://qa.api.firstdata.com
+    description: This url is for QA testing.
+  - url:  https://int.api.firstdata.com
+    description: This url is for customer testing.
+  - url: https://prod.api.firstdata.com
+    description: This is production url.
+
+paths:
+  /ddp/v1/recipients/{recipientId}/accounts:
+    post:
+      x-group-name: Recipient Accounts
+      x-proxy-name: Create Account
+      x-child-product-name: Account Vaulting Service
+      x-default-example: DebitOrCreditCard
+      tags:
+        - Digital Disbursement Platform Accounts Vault Payment method APIs
+      summary: Vault payment method.
+      description: Recipient on Digital Disbursement can save their Payment Method(ACH, Debit, Prepaid, Paypal, Venmo, E check) which they can use to receive Payments later. DDP generates a unique token id for each Payment Method Vaulted.
+      parameters:
+        - {$ref: '#/components/parameters/ApiKeyHeader'}
+        - {$ref: '#/components/parameters/TimestampHeader'}
+        - {$ref: '#/components/parameters/AuthorizationHeader'}
+        - {$ref: '#/components/parameters/ClientRequestIdHeader'}
+        - {$ref: '#/components/parameters/AccessTokenHeader'}
+        - {$ref: '#/components/parameters/ContentTypeHeader' }
+        - {$ref: '#/components/parameters/RecipientIdPathVariable'}
+
+      requestBody:
+        description: Details required for add account for a recipeint.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountRequest'
+            examples:
+              DebitOrCreditCard: {summary: Vault Debit or credit card information, $ref: '#/components/examples/PaymentCardVaultRequest'}
+              PrepaidCardNumber:  {summary: Vault Prepaid card information, $ref: '#/components/examples/PrepaidCardVaultRequest'}
+              PrepaidCardAccountNumber:  {summary: Vault Prepaid card information, $ref: '#/components/examples/PrepaidCardAccountVaultRequest'}
+              AchAccount:  {summary: Vault ACH account information, $ref: '#/components/examples/AchAccountVaultRequest'}
+
+      responses:
+        '201':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountRequest'
+        '400':
+          description: The request cannot be validated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+        '401':
+          description: The request was unauthorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+        '404':
+          description: The requested resource does not exist.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+        '500':
+          description: An unexpected internal server error occurred.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerError'
+
+  /ddp/v1/recipients/{merchantCustomerId}/accounts:
+    get:
+      x-group-name: Recipient Accounts
+      x-proxy-name: Get Accounts
+      x-child-product-name: Account Vaulting Service
+      tags:
+        - Digital Disbursement Platform Accounts APIs
+      summary: Retrieve vaulted payment methods
+      description: This API retrieve the list of vaulted payment methods associated with recipient profile.
+      parameters:
+        - { $ref: '#/components/parameters/ApiKeyHeader' }
+        - { $ref: '#/components/parameters/TimestampHeader' }
+        - { $ref: '#/components/parameters/AuthorizationHeader' }
+        - { $ref: '#/components/parameters/ClientRequestIdHeader' }
+        - { $ref: '#/components/parameters/ContentTypeHeader' }
+        - { $ref: '#/components/parameters/MerchantCustomerIdPathVariable' }
+
+
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                minItems: 0
+                items:
+                  $ref: '#/components/schemas/AccountResponse'
+                uniqueItems: true
+        '400':
+          description: The request cannot be validated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+        '401':
+          description: The request was unauthorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+        '404':
+          description: The requested resource does not exist.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+        '500':
+          description: An unexpected internal server error occurred.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerError'
+    post:
+      x-group-name: Account Services
+      x-proxy-name: Nonce enrollment
+      x-child-product-name: Account Vaulting Service
+      x-default-example: DebitOrCreditCard
+      tags:
+        - Digital Disbursement Platform Accounts Vault Account service APIs
+      summary: Vault account method.
+      description: Recipient on Digital Disbursement can enroll using one time enrollment.
+      parameters:
+        - {$ref: '#/components/parameters/ApiKeyHeader'}
+        - {$ref: '#/components/parameters/TimestampHeader'}
+        - {$ref: '#/components/parameters/AuthorizationHeader'}
+        - {$ref: '#/components/parameters/ClientRequestIdHeader'}
+        - {$ref: '#/components/parameters/AccessTokenHeader'}
+        - {$ref: '#/components/parameters/ContentTypeHeader' }
+        - {$ref: '#/components/parameters/MerchantCustomerIdPathVariable' }
+
+      requestBody:
+        description: Details required for Nonce enrollment.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NonceRequest'
+
+      responses:
+        '201':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NonceRequest'
+        '400':
+          description: The request cannot be validated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+        '401':
+          description: The request was unauthorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+        '404':
+          description: The requested resource does not exist.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+        '500':
+          description: An unexpected internal server error occurred.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerError'
+
+  /ddp/v1/recipients/{recipientId}/accounts/{id}:
+    get:
+      x-group-name: Recipient Accounts
+      x-proxy-name: Get Account
+      x-child-product-name: Account Vaulting Service
+      tags:
+        - Digital Disbursement Platform Accounts APIs
+      summary: Retrieve vaulted payment method using vault id.
+      description: This API retrieve payment method for which vault id is provided in request url path.
+      parameters:
+        - { $ref: '#/components/parameters/ApiKeyHeader' }
+        - { $ref: '#/components/parameters/TimestampHeader' }
+        - { $ref: '#/components/parameters/AuthorizationHeader' }
+        - { $ref: '#/components/parameters/ClientRequestIdHeader' }
+        - { $ref: '#/components/parameters/AccessTokenHeader' }
+        - { $ref: '#/components/parameters/ContentTypeHeader' }
+        - { $ref: '#/components/parameters/RecipientIdPathVariable' }
+        - { $ref: '#/components/parameters/EVTokenIdPathVariable' }
+
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                minItems: 0
+                items:
+                  $ref: '#/components/schemas/AccountResponse'
+                uniqueItems: true
+        '400':
+          description: The request cannot be validated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+        '401':
+          description: The request was unauthorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+        '404':
+          description: The requested resource does not exist.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+        '500':
+          description: An unexpected internal server error occurred.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerError'
+
+    patch:
+      x-group-name: Recipient Accounts
+      x-proxy-name: Update Account
+      x-child-product-name: Account Vaulting Service
+      x-default-example: CompleteUpdateAccount
+      tags:
+        - Digital Disbursement Platform Accounts APIs
+      summary: Update vaulted payment method
+      description: This API updates the vaulted Debit card, update default payment method, Activate or Deactivate vaulted account.
+      parameters:
+        - { $ref: '#/components/parameters/ApiKeyHeader' }
+        - { $ref: '#/components/parameters/TimestampHeader' }
+        - { $ref: '#/components/parameters/AuthorizationHeader' }
+        - { $ref: '#/components/parameters/ClientRequestIdHeader' }
+        - { $ref: '#/components/parameters/AccessTokenHeader'}
+        - { $ref: '#/components/parameters/ContentTypeHeader' }
+        - { $ref: '#/components/parameters/RecipientIdPathVariable'}
+        - { $ref: '#/components/parameters/EVTokenIdPathVariable'}
+
+      requestBody:
+        description: Details required to update account for a recipient.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAccountRequest'
+            examples:
+              UpdateCardExpiry: { summary: Update Vaulted card expiry date, $ref: '#/components/examples/UpdateCardExpiryRequest' }
+              DeactivateVaultedAccount: { summary: Deactivate vaulted account, $ref: '#/components/examples/DeactivateVaultedAccountRequest' }
+              ActivateInactiveAccount: { summary: Reactivate vaulted account, $ref: '#/components/examples/ActivateInactiveAccountRequest' }
+              UpdateDefaultPaymentMethod: { summary: Change default payment method, $ref: '#/components/examples/UpdateDefaultPaymentMethodRequest'}
+              UpdateAccountFull: { summary: Default includes all fields, $ref: '#/components/examples/UpdateAccountFullRequest' }
+              CompanyRequest : {summary: Update Company Details, $ref: '#/components/examples/CompanyRequest' }
+      responses:
+        '204':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NoContent'
+        '400':
+          description: The request cannot be validated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+        '401':
+          description: The request was unauthorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+        '404':
+          description: The requested resource does not exist.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+        '500':
+          description: An unexpected internal server error occurred.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerError'
+  
+  /ddp/v1/recipients/{recipientId}/cards/session:
+    post:
+      x-group-name: Money Network Card
+      x-proxy-name: Initialize Session
+      x-child-product-name: Account Vaulting Service
+      tags:
+        - Digital Disbursement Platform - Add Money Network Card
+      summary: Initiate Session for new Money Network Card
+      description: Initiate a session in order to apply for a new Money Network card.
+      parameters:
+        - { $ref: '#/components/parameters/ApiKeyHeader' }
+        - { $ref: '#/components/parameters/TimestampHeader' }
+        - { $ref: '#/components/parameters/AuthorizationHeader' }
+        - { $ref: '#/components/parameters/ClientRequestIdHeader' }
+        - { $ref: '#/components/parameters/ContentTypeHeader' }
+        - { $ref: '#/components/parameters/RecipientIdPathVariable'}
+
+      requestBody:
+       description: Details required to create New Money Network session for recipient.
+       required: true
+       content:
+         application/json:
+           schema:
+             $ref: '#/components/schemas/SessionRequest'
+
+
+      responses:
+        '201':
+          description: New Money Network session Creation Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionResponse'
+        '400':
+          description: New MN Card response - Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+        '401':
+          description: New MN Card response - Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+        '409':
+          description: New MN Card response - conflict response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+        '500':
+          description: New MN Card response - Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerError'
+
+  /ddp/v1/recipients/{recipientId}/cards:
+    post:
+      x-group-name: Money Network Card
+      x-proxy-name: Create Card
+      x-child-product-name: Account Vaulting Service
+      tags:
+        - Digital Disbursement Platform - Add Money Network Card
+      description: This API is to create the New Money Network Card for Recipients on Disbursement portal.
+      parameters:
+        - in: header
+          name: Api-Key
+          description: >-
+            An API key is a string value passed by a client app to the API
+            proxies. The key uniquely identifies the client app.
+          required: true
+          schema:
+            type: string
+        - in: header
+          name: Timestamp
+          description: Epoch timestamp in the request initiating system
+          required: true
+          schema:
+            type: string
+        - in: header
+          name: Authorization
+          description: >-
+            Authorization information for the request. Format- `HMAC
+            {hmacToken}`
+          required: true
+          schema:
+            type: string
+        - in: header
+          name: Client-Request-Id
+          description: >-
+            Contains a unique ID generated by the client that can be used for
+            enforcing idempotency on POST actions. POSTs are inherently
+            non-idempotent and submitting the exact same request multiple times
+            would create duplicate resources. Note:- Omitting this header
+            increases the risk of duplicate transactions.
+          required: true
+          schema:
+            type: string
+        - in: header
+          name: sessionId
+          description: >-
+            System generated unique session ID from Money Network platform.
+          required: true
+          schema:
+            type: string
+
+        - in: path
+          name: recipientId
+          description: Unique Id associated with Recipient Profile while set up. The value can be MerchantCustomerId or RecipientId. Merchant provision through Apigee should always pass MerchantCustomerId.
+          required: true
+          schema:
+            type: string
+
+      requestBody:
+        description: Details required to create New Money Network Card for recipient.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewMNCardRequest'
+      responses:
+        '201':
+          description: New Money Network Card Creation Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NewMNCardResponse'
+        '400':
+          description: New MN Card response - Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+        '401':
+          description: New MN Card response - Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+        '409':
+          description: New MN Card response - conflict response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+        '500':
+          description: New MN Card response - Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerError'
+                
+components:
+  parameters:
+    AuthorizationHeader:
+      name: Authorization
+      schema: {
+        type: string,
+        default: "Authorization"
+      }
+      in: header
+      required: true
+      description: Authorization header used to ensure the request has not been tampered
+        with during transmission. Valid encryption; HMAC. For
+        more information, refer to the supporting documentation on the Developer Portal.
+        Format- `HMAC {hmacToken}`
+    ApiKeyHeader:
+      name: Api-Key
+      schema: {
+        type: string,
+        default: "Api-Key"
+      }
+      in: header
+      required: true
+      description: API key provided to the merchant associating the requests with
+        the appropriate app in the Developer Portal.
+    ClientRequestIdHeader:
+      name: Client-Request-Id
+      schema: {
+        type: string,
+        default: "Client-Request-Id"
+      }
+      in: header
+      required: true
+      description: A client-generated ID for request tracking and signature creation,
+        unique per request. This is also used for idempotency control. Recommended
+        128-bit UUID format.
+    TimestampHeader:
+      name: Timestamp
+      schema: { type: integer, format: int64 }
+      in: header
+      required: true
+      description: Epoch timestamp in milliseconds in the request from a client system.
+        Used for authorization header generation and time limit (5 minutes).
+    AccessTokenHeader:
+      in: header
+      name: Access_token
+      description: Token provided by hosted payment page public key/tokens API when PCI data is encrypted on hosted payment page. This is to identify public key associated with access token to decrypt the PCI data.
+      required: false
+      schema: {
+        type: string,
+        default: "Access-Token"
+     }
+      example: Qg5cNPVKdFaT7nUuDz1zcCTWNsXw
+    ContentTypeHeader:
+     in: header
+     name: Content-Type
+     description: used to indicate the media type of the resource.
+     required: true
+     schema: {
+        type: string,
+        default: "application/json"
+     }
+     example: application/json
+    RecipientIdPathVariable:
+      in: path
+      name: recipientId
+      description: Unique id generated by DDP When Client creates a recipient proile. Merchant can also send unique merchant customer id which is used to create a recipient profile.
+      required: true
+      schema:
+        type: string
+      example: 8a7fd4777fd419f801800278aa74686f
+    EVTokenIdPathVariable:
+      in: path
+      name: id
+      description: Unique DDP vault Id associated with funding Payment method information. Returned in response when payment method information is vaulted and can be retrieved using get accounts call after creation.
+      required: true
+      schema:
+        type: string
+      example: 021d39be-078e-4e70-8271-7dbc63d3fb8c
+    MerchantCustomerIdPathVariable:
+      in: path
+      name: merchantCustomerId
+      description: This is provided by merchant at the time of payment initialization. This must be associated with recipient.
+      required: true
+      schema:
+        type: string
+      example: vendorId-0987613457398475
+     
+  schemas:
+##-------------------------------------
+## Response Model
+##-------------------------------------
+
+    SessionRequest:
+      description: This Response model is for initialize session New Money Network Card
+      type: object
+      properties:
+        transactionId:
+          $ref: '#/components/schemas/TransactionId'
+        source:
+          $ref: '#/components/schemas/Source'
+
+    SessionResponse:
+      description: This Response model is for initialize session New Money Network Card
+      type: object
+      required:
+        - traceId
+        - sessionContext
+        - links
+      properties:
+        traceId:
+          $ref: '#/components/schemas/TraceId'
+        sessionContext:
+          $ref: '#/components/schemas/SessionContext'
+        links:
+          type: array
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/Links'
+
+    NewMNCardRequest:
+      description: This Request model is for New MN Card information.
+      type: object
+      required:
+      - UserProfile
+      - PersonProfile
+      - SecurityQuestionAnswers
+      - ConsentGroups
+      - IdCheckRequired
+      properties:
+        userProfile:
+          $ref: '#/components/schemas/UserProfile'
+        personProfile:
+          $ref: '#/components/schemas/PersonProfile'
+        securityQuestionAnswers:
+          type: array
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/SQA'
+          uniqueItems: true
+        consentGroups:
+          type: array
+          minItems : 0
+          items:
+            $ref: '#/components/schemas/ConsentGroups'
+        idCheckRequired:
+         $ref: '#/components/schemas/IdCheckRequired'
+        idCheckRequest:
+         $ref: '#/components/schemas/IdCheckRequest'
+
+    NewMNCardResponse:
+      description: This Response model is for New Money Network Card
+      type: object
+      required:
+        - traceId
+        - sessionId
+        - requestDateTime
+        - accountProfile
+        - idCheckQuestions
+      properties:
+        accountProfile:
+          $ref: '#/components/schemas/AccounfProfile'
+        idCheckQuestions:
+         $ref: '#/components/schemas/IdCheckQuestionResponce'
+        idCheckStatus:
+         $ref: '#/components/schemas/IdCheckStatus'
+
+    AccountRequest:
+      title: Contains information about Payment Method to vault.
+      type: object
+      required:
+        - accounts
+      properties:
+        accounts:
+          $ref: '#/components/schemas/Account'
+
+
+    AccountResponse:
+      title: Account response contains information of all vaulted payment method for recipient
+      type: object
+      required:
+       - accounts
+      properties:
+        accounts:
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/Account'
+
+
+    UpdateAccountRequest:
+      title: Update Account request object model. This is to update the card expire date and to update the card Status in vaulting system.
+      type: object
+      properties:
+        expiryDate:
+          $ref: '#/components/schemas/ExpiryDate'
+        status:
+          $ref: '#/components/schemas/Status'
+          
+    NonceRequest:
+      title: Contains information about enrollment to vault.
+      type: object
+      required:
+        - accounts
+      properties:
+        accounts:
+          $ref: '#/components/schemas/NonceAccount'
+          
+##-------------------------------------
+## Object Model
+##------------------------------------
+
+    ConsentGroups:
+      description: Consent Groups.
+      type: object
+      properties:
+        consentGroupID:
+          $ref: '#/components/schemas/ConsentGroupID'
+        consentGroupName:
+          $ref: '#/components/schemas/ConsentGroupName'
+        displayText:
+          $ref: '#/components/schemas/DisplayText'
+        consents:
+          type: array
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/Consent'
+          uniqueItems: true
+
+
+    IdCheckRequest:
+      description: IdCheckRequest for Idology check
+      type: object
+      properties:
+        idCheckRequest:
+          $ref: '#/components/schemas/IdCheckNumber'
+        idCheckQuestions:
+          type: array
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/IdCheckQuestions'
+          uniqueItems: true
+
+    IdCheckQuestions:
+      description: IdCheckQuestions Name and Value pair.
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+
+    IdCheckQuestionResponce:
+      description: Idology check response
+      type: object
+      properties:
+        questions:
+          type: array
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/Questions'
+          uniqueItems: true
+        idCheckNumber:
+          $ref: '#/components/schemas/IdCheckNumber'
+
+
+    Questions:
+      description: Questions.
+      type: object
+      properties:
+        prompt:
+          type: string
+          example: In which city is ANY STREET?
+        type:
+          type: string
+          example: city.of.residence
+        answer:
+          type: array
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/Answer'
+          uniqueItems: true
+
+    Consent:
+      description: Consents.
+      type: object
+      properties:
+        consentId:
+          $ref: '#/components/schemas/ConsentId'
+        consentName:
+          $ref: '#/components/schemas/ConsentName'
+        displayText:
+          $ref: '#/components/schemas/DisplayText'
+        accepted:
+          $ref: '#/components/schemas/Accepted'
+        acceptedDate:
+          $ref: '#/components/schemas/CaptureTime'
+
+    SQA:
+      description: Secqurity Question/Answers.
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+
+    Links:
+      description: Links as Key and Value pair
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+
+    KVM:
+      description: Key and Value pair.
+      type: object
+      properties:
+        Id:
+          type: string
+        value:
+          type: string
+
+    UserProfile:
+      description: User profile for New MN Card.
+      type: object
+      required:
+       - userName
+       - password
+       - emailAddress
+      properties:
+        userName:
+          $ref: '#/components/schemas/UserName'
+        password:
+           $ref: '#/components/schemas/Password'
+        emailAddress:
+          $ref: '#/components/schemas/Email'
+
+    PersonProfile:
+      description: Person information for the recipient for new MN card
+      type: object
+      required:
+        - firstName
+        - lastName
+        - middleName
+        - dob
+        - ssn
+        - homePhone
+        - workPhone
+        - primaryAddress
+        - shippingAddress
+      properties:
+        firstName:
+          $ref: '#/components/schemas/FirstName'
+        lastName:
+          $ref: '#/components/schemas/LastName'
+        middleName:
+          $ref: '#/components/schemas/MiddleName'
+        dob:
+          $ref: '#/components/schemas/DateOfBirth'
+        ssn:
+          $ref: '#/components/schemas/SSN'
+        homePhone:
+          $ref: '#/components/schemas/HomePhone'
+        workPhone:
+          $ref: '#/components/schemas/WorkPhone'
+        primaryAddress:
+          $ref: '#/components/schemas/Address'
+        shippingAddress:
+          $ref: '#/components/schemas/Address'
+
+    AccounfProfile:
+      description: Account information for New Money Network Card/Account information
+      type: object
+      required:
+        - accountNumber
+        - cardNumber
+        - expirationDate
+        - rountingNumber
+      properties:
+        accountNumber:
+          $ref: '#/components/schemas/AccountNumber'
+        cardNumber:
+          $ref: '#/components/schemas/CardNumber'
+        exprationDate:
+          $ref: '#/components/schemas/ExpDate'
+        rountingNumber:
+          $ref: '#/components/schemas/RountingNumber'
+
+    SessionContext:
+      description: Session context for New Money Network Card/Account information
+      type: object
+      required:
+        - sessionId
+        - securityQuestionAnswers
+        - consentGroups
+      properties:
+        sessionId:
+          $ref: '#/components/schemas/SessionId'
+        securityQuestionAnswers:
+          type: array
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/SQA'
+          uniqueItems: true
+        consentGroups:
+          type: array
+          minItems : 0
+          items:
+            $ref: '#/components/schemas/ConsentGroups'
+
+
+    Account:
+      description: Account information - must be only ONE of the account types.
+      type: object
+      required:
+      - FundingSourceType
+      properties:
+        source:
+          $ref: '#/components/schemas/FundingSourceType'
+        card:
+          $ref: '#/components/schemas/Card'
+        ach:
+          $ref: '#/components/schemas/ACH'
+        prepaid:
+          $ref: '#/components/schemas/Prepaid'
+        venmo:
+            $ref: '#/components/schemas/Venmo'
+        paypal:
+            $ref: '#/components/schemas/Paypal'
+        status:
+          $ref: '#/components/schemas/Status'
+        token:
+            $ref: '#/components/schemas/ReferenceToken'
+            
+    NonceAccount:
+     description: Account information to be passed for nonce enrollment.
+     type: object
+     required:
+      - token
+     properties:
+      token:
+            $ref: '#/components/schemas/AccountToken'
+    
+    
+    Check:
+      description: Information about the Check
+      type: object
+      required:
+        - recipient
+        - name
+      properties:
+        email:
+          $ref: '#/components/schemas/Email'
+        name:
+          type: string
+          description: Name of the recipient
+          example: "State Farm"
+
+    ACH:
+      description: Information about an ACH account
+      type: object
+      required:
+      - accountNumber
+      - routingNumber
+      - type
+      properties:
+        accountNumber:
+          type: string
+          description: Unique number identifying the ACH account provided by Financial institution.
+          example: '92658250156'
+        routingNumber:
+          type: string
+          description: 9 digit Number to identify the transaction source of financial institution
+          example: '999999999'
+        type:
+          $ref: '#/components/schemas/AccountType'
+        token:
+            $ref: '#/components/schemas/ReferenceToken'
+        nickName:
+          type: string
+          description: Nick name provided by the recipient for the Card.
+          example: 'John'
+        default:
+          type: boolean
+          description: This is to identify if the payment methods should be set as default payment method for recipient.
+          example: false
+
+    Address:
+      description: A physical mailing address for this card holder.
+      type: object
+      required:
+      - type
+      - street
+      - houseNumberOrName
+      - city
+      - stateOrProvince
+      - postalCode
+      - country
+      properties:
+        type:
+          description: Canonical type values of "work", "home", "billing" and "other".
+          type: string
+          example: Work
+        houseNumberOrName:
+          description: House number or name of the address
+          type: string
+          example: 2205 Apt 298
+        street:
+          description: The full street address component, which may include house number, street name, P.O. box, and multi-line extended street address information.
+          type: string
+          example: 100 Universal City Plaza
+        city:
+          description: The city or locality component.
+          type: string
+          example: Hollywood
+        stateOrProvince:
+          minLength: 2
+          maxLength: 2
+          description: The sender's province, state or territory. Conditional, required if sender's country is USA. Must be an ISO 3166-2 uppercase alpha 2 character country subdivision code. For example, Missouri is MO.
+          type: string
+          example: CA
+        postalCode:
+          minLength: 1
+          maxLength: 10
+          description: Required. The sender's postal code. For USA, this must be a valid value of 5 digits or 5 digits hyphen 4 digits, for example '63368', '63368-5555'. For other regions, this can be alphanumeric, length 1-10.
+          type: string
+          example: 91608
+        country:
+          description: The sender's country as an ISO 3166-1 uppercase alpha-3 country code; For example, the United States of America is USA.
+          type: string
+        formatted:
+          description: The full mailing address, formatted for display or use with a mailing label.
+          type: string
+          example: "2205 Apt 298, 100 Universal City Plaza\nHollywood, CA 91608 USA"
+        primary:
+          description: Indicates if this is the default address for the associated resource. It only has meaning when used in a set or array of addresses.
+          type: boolean
+          default: false
+      example:
+        type: "work"
+        street: "100 Universal City Plaza"
+        city: "Hollywood"
+        stateOrProvince: "CA"
+        postalCode: "91608"
+        country: "US"
+        formatted: "100 Universal City Plaza\nHollywood, CA 91608 US"
+        primary: true
+
+    Card:
+      description: Information on a credit account
+      type: object
+      required:
+      - cardNumber
+      - expiryDate
+      properties:
+        cardNumber:
+          description: Credit or Debit card number capable of accepting payments. Response will have only last four of this card number.
+          type: string
+          example: "4111111111111111"
+        nameOnCard:
+          description: Name as printed on physical card or on virtual card
+          type: string
+          example: "John Smith"
+        alias:
+          description: Last four values of the cardNumber
+          type: string
+          readOnly: true
+          example: "1111"
+          default: "1111"
+        billingAddress:
+          $ref: '#/components/schemas/Address'
+        billingPhone:
+          $ref: '#/components/schemas/Phone'
+        expiryDate:
+          $ref: '#/components/schemas/ExpiryDate'
+        token:
+            $ref: '#/components/schemas/ReferenceToken'
+        nickName:
+          type: string
+          description: Nick name provided by the recipient for the Card.
+          example: 'John'
+        default:
+          type: boolean
+          description: This is to identify if the payment methods should be set as default payment method for recipient.
+
+    Email:
+      description: (Request Only) Email address for the user.
+      type: object
+      required:
+      - value
+      properties:
+        type:
+          description: The "type" sub-attribute is used to provide a classification meaningful to the (human) user.  The user interface should encourage the use of basic values of "work", "home", and "other" and MAY allow additional type values to be used at the discretion of the service client.
+          type: string
+          writeOnly: true
+        value:
+          description: The value SHOULD be specified according to RFC5321.
+          type: string
+          writeOnly: true
+        primary:
+          description:
+            Defines if this entry is to be used as the primary or default for the
+            user.
+          type: boolean
+          default: false
+          writeOnly: true
+      example:
+        value: bjensen@example.com
+        type: work
+        primary: true
+
+    ExpiryDate:
+      description: Payment card expiry date that is month(MM) and year(YY). Response will have these values for the card
+      type: object
+      required:
+      - month
+      - year
+      properties:
+        month:
+          type: string
+          description: Month format 'MM'
+          pattern: "[0-9]{2,2}"
+          minLength: 2
+          maxLength: 2
+          example: '09'
+        year:
+          type: string
+          description: Year format 'YY'
+          pattern: "[0-9]{2,2}"
+          minLength: 2
+          maxLength: 2
+          example: '20'
+        singleValue:
+          type: string
+          description: Month and year together, 'MMYY' or 'MMYYYY'.  If the latter format, the string will be parsed and validated per the given format.  Any other format will be rejected.
+          minLength: 4
+          maxLength: 6
+          readOnly: true
+          default: '0920'
+
+    NVP:
+      title: Name and Value pair.
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+        valueAsList:
+          type: array
+          minItems: 0
+          items:
+            type: string
+
+    Prepaid:
+      description: Prepaid Money Network account information.
+      type: object
+      properties:
+        cardNumber:
+          description: Prepaid card number.
+          type: string
+          example: "6759-6498-2643-0010"
+        accountNumber:
+          description: Prepaid card number.
+          type: string
+          example: "4226-4982-6438-0010"
+        token:
+            $ref: '#/components/schemas/ReferenceToken'
+        nickName:
+          type: string
+          description: Nick name provided by the recipient for the Card.
+          example: 'John'
+        default:
+          type: boolean
+          description: This is to identify if the payment methods should be set as default payment method for recipient.
+
+    Phone:
+      description: Phone number for the user.
+      type: object
+      properties:
+        countryCode:
+          description: Country code for the phone number.
+          type: string
+        value:
+          description: The value SHOULD be specified according to the format defined in RFC3966, e.g., 'tel:+1-201-555-0123'.
+          type: string
+        type:
+          description: Often has typical values of "work","billing", "home", "mobile", "fax", "pager", and "other" and MAY allow more types to be defined by the service client.
+          type: string
+        extension:
+          description: Defines the extension of the phone number.
+          type: string
+      example:
+        code: +91
+        value: 704-884-2754
+        type: billing
+        extension: "2145"
+
+    ReferenceToken:
+      description: Surrogate value used to represent a handle to an account without sharing PCI/PII data to look it up.
+      type: object
+      required:
+      - tokenId
+      - tokenProvider
+      properties:
+        tokenId:
+          description: Actual token value
+          type: string
+          example: "292bb6b886fc4446894f878b7e32bd5e"
+        tokenProvider:
+          $ref: '#/components/schemas/TokenProvider'
+        tspId:
+          $ref: '#/components/schemas/TSPID'
+        expiryDate:
+          $ref: '#/components/schemas/ExpiryDate'
+    
+    AccountToken:
+      description: Surrogate value used to represent a handle to an account without sharing PCI/PII data to look it up.
+      type: object
+      required:
+      - tokenId
+      - tokenProvider
+      properties:
+        tokenId:
+          description: Actual token value
+          type: string
+          example: "292bb6b886fc4446894f878b7e32bd5e"
+        tokenProvider:
+          $ref: '#/components/schemas/TokenProvider'
+        
+
+    Venmo:
+      description: Information about a Venmo account.
+      type: object
+      properties:
+        phone:
+          $ref: '#/components/schemas/Phone'
+        subject:
+          type: string
+          description: The subject line for the email that Venmo sends when payment for a payout item completes. The subject line is the same for all recipients. Value is an alphanumeric string with a maximum length of 255 single-byte characters.
+          maximum: 250
+        message:
+          type: string
+          description: The email message that Venmo sends when the payout item completes. The message is the same for all recipients.
+          maximum: 1000
+
+    Paypal:
+      description: Information about a Paypal account.
+      type: object
+      properties:
+        email:
+          $ref: '#/components/schemas/Email'
+        subject:
+          type: string
+          description: The subject line for the email that PayPal sends when payment for a payout item completes. The subject line is the same for all recipients. Value is an alphanumeric string with a maximum length of 255 single-byte characters.
+          maximum: 250
+        message:
+          type: string
+          description: The email message that PayPal sends when the payout item completes. The message is the same for all recipients.
+          maximum: 1000
+        phone:
+          $ref: '#/components/schemas/Phone'
+        paypalPayerId:
+          type: string
+          description: The encrypted PayPal account number.
+        
+#-------------------------------------
+# Common Models
+#-------------------------------------
+
+    FirstName:
+      description: First Name of the Recipient.
+      type: string
+      maxLength: 20
+      example: First Name
+
+    LastName:
+      description: Last Name of the Recipient.
+      type: string
+      maxLength: 20
+      example: Last Name
+
+    MiddleName:
+      description: Middle Name of the Recipient.
+      type: string
+      maxLength: 20
+      example: Last Name
+
+    ConsentGroupID:
+      description: ConsentGroupID provided by Money Network team.
+      type: string
+      example: 1
+
+    ConsentId:
+      description: ConsentId provided by Money Network team.
+      type: string
+      example: 1
+
+    Accepted:
+      description: Accepted.
+      type: boolean
+      example: true
+
+    CaptureTime:
+      description: Device data capture time in Internet Date/Time format - yyyy-MM-dd'T'HH:mm:ss'Z'
+      type: string
+      format: date-time
+      example: "2016-04-16T16:06:05Z"
+
+    IdCheckNumber:
+      description: IdCheckNumber provided by Idology.
+      type: string
+      example: 3010374159
+
+    IdCheckStatus:
+      description: Status of the Id check Number.
+      type: string
+      example: PARTIAL
+
+    RequestDateTime:
+      description: Device data capture time in Internet Date/Time format - yyyy-MM-dd'T'HH:mm:ss'Z'
+      type: string
+      format: date-time
+      example: "2016-04-16T16:06:05Z"
+
+    TraceId:
+      description: Trace Id for request'
+      type: string
+      example: "12345212323"
+
+    SessionId:
+       description: Session Id generated by the Money Network Team'
+       type: string
+       example: "2798f857-aa78-40c8-906f-35d88c41feb6"
+
+    ConsentName:
+      description: eConsent provided by Money Network.
+      type: string
+      example: eConsent
+
+    ConsentGroupName:
+      description: ConsentGroupName provided by Money Network.
+      type: string
+      example: Acquisition Consents
+
+    DisplayText:
+      description: DisplayText provided by Money Network..
+      type: string
+      example: Acquisition Consents
+
+    DateOfBirth:
+      description: Date of Birth of the recipient. This is mandatory for non-business recipient.
+      type: string
+      maxLength: 10
+      example: 11/11/2011
+
+    SSN:
+      description: SSN of the recipient. This is mandatory for Money Network card.
+      type: string
+      maxLength: 11
+      example: 633-55-2345
+
+    UserName:
+      description: user id for money netwrok card and user registration. For user registration this should be recipeint registered email address.
+      type: string
+      maxLength: 12
+      example: passw0rd!
+
+    Password:
+      description: user password for money netwrok card and user registration.
+      type: string
+      maxLength: 12
+      example: passw0rd!
+
+    AccountNumber:
+      description: Account Number of the New Money Network Card
+      type: string
+      maxLength: 20
+      example : 1101040400000404
+
+    CardNumber:
+      description: Account Number of the New Money Network Card
+      type: string
+      maxLength: 20
+      example : xxxxxxxxxxxx0388
+
+    ExpDate:
+      description: Exp Date of the New Money Network Card
+      type: string
+      maxLength: 20
+      example : 01/31/2024
+
+    RountingNumber:
+      description: Rounting  Number of the New Money Network Card
+      type: string
+      maxLength: 9
+      example : 123456789
+
+    HomePhone:
+      description: Phone number for the user.
+      type: string
+      example:
+        value: 704-884-2754
+
+    WorkPhone:
+      description: Phone number for the user.
+      type: string
+      example:
+        value: 704-884-2754
+
+    IdCheckRequired:
+      description: Idology Check flag
+      type: boolean
+      default: true
+
+    Answer:
+      description: Name and Value pair.
+      type: string
+      example: ALMO
+
+    Source:
+      description: Source type
+      type: string
+      example: PREPAID
+
+    TransactionId:
+      description: Transaction Identifier for request
+      type: string
+      example: "TID-ef28cab9-9b43-40ce-bd1a-0b1ea3027f4e"
+    
+#-------------------------------------
+# Error Models
+#-------------------------------------
+
+    Error:
+      description: (Response Only) Model for error messaging
+      type: object
+      properties:
+        code:
+          type: string
+          description: Uniquely identifies an error condition. Client applications need to read and handle errors based on this.
+        message:
+          type: string
+          description: A generic description of the error condition.
+        category:
+          type: string
+          description: The resource associated with the error condition.
+        developerInfo:
+          type: object
+          description: Information that needs to be understood by the client developers and should not be interpreted for application processing.
+          properties:
+            developerMessage:
+              type: string
+              description: An elaborative description of the error description.
+            moreInfo:
+              type: string
+              description: Link to the error in Developer page.
+            fieldError:
+              description: Detailed information about message format errors.
+              type: array
+              items:
+                properties:
+                  field:
+                    description: The property or attribute associated with the error
+                    type: string
+                  message:
+                    description: Information specific to a property or attribute.
+                    type: string
+        hostExtraInfo:
+          type: array
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/NVP'
+          uniqueItems: true
+      example:
+        code: "40000"
+        message: "Example Error"
+        category: "example"
+        developerInfo:
+          developerMessage: "Invalid Message format in request payload"
+          moreInfo: "https://www.example.com/errors/40000"
+          fieldError:
+            - field: "example id"
+              message: "exampleId is mandatory"
+
+#-------------------------------------
+# ENUM Models
+#-------------------------------------
+
+    AccountType:
+      title: AccountType
+      description: Indicates the Type of Account.
+      type: string
+      enum:
+        - CHECKING
+        - SAVINGS
+      example: SAVINGS
+
+    Status:
+      title: Token Status
+      description: Indicates the status of the token retured for PCI data.
+      type: string
+      readOnly: true
+      enum:
+        - APPROVED
+        - DECLINED
+        - PENDING
+        - CANCELLED
+        - ACTIVE
+        - INACTIVE
+     
+    Algorithm:
+      title: Algorithm
+      description: Algorithm used for encryption.
+      type: string
+      readOnly: true
+      enum:
+        - RSA
+        - NONE
+        - PKCS1PADDING
+      
+
+    Requestor:
+      description: This is to identify request requestor.
+      type: string
+      readOnly: false
+      enum:
+        - MERCHANT
+        - RECIPIENT
+
+    FundingSourceType:
+      description: Describes the type of Funding source
+      type: string
+      readOnly: true
+      enum:
+        - CREDIT
+        - DEBIT
+        - ACH
+        - PREPAID
+        - TOKEN
+        - VENMO
+        - PAYPAL
+      example: PREPAID
+
+    TSPID:
+      description: A reference id provided to merchant in the response. This is to identtify source of tokenReferenceId. probabile values are define as enum.
+      type: number
+      enum:
+        - 400
+        - 501
+        - 600
+        - 300
+        - 111
+
+    TokenProvider:
+      title: Specify the list of token providers
+      description: Specify the list of token providers.
+      type: string
+      enum:
+        - TRANS_ARMOR
+        - NETWORKS
+        - SINGLE_USE_TOKEN
+        - ENROLMENT_VAULT
+#-------------------------------------
+# response Models
+#-------------------------------------
+    NoContent:
+      description: The request succeeded but there’s really nothing to show.
+      example: {}
+
+    BadRequest:
+      description: Bad request
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/Error'
+
+    Unauthorized:
+      description: Unauthorized
+
+    NotFound:
+      description: Not Found - The requested resource doesn't exist.
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/Error'
+
+    Conflict:
+      description: Conflict - The requested operation conflicts with the current state of the identified resource.
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/Error'
+
+    ServerError:
+      description: An unexpected server error occured.
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/Error'
+  examples:
+    PaymentCardVaultRequest:
+      value:
+        accounts:
+          card:
+            cardNumber: '4005550000000019'
+            nameOnCard: 'John Smith'
+            expiryDate:
+              month: '09'
+              year: '20'
+            default: false
+            nickName: 'John'
+    PrepaidCardVaultRequest:
+      value:
+        accounts:
+          prepaid:
+            cardNumber: '4005550000000019'
+            default: false
+    PrepaidCardAccountVaultRequest:
+      value:
+        accounts:
+          prepaid:
+            accountNumber: '4005550000000019'
+            default: true
+    UpdateCardExpiryRequest:
+      value:
+        accounts:
+          card:
+            expiryDate:
+              month: '09'
+              year: '22'
+              default: true
+    DeactivateVaultedAccountRequest:
+      value:
+        accounts:
+          status: 'INACTIVE'
+    ActivateInactiveAccountRequest:
+      value:
+        accounts:
+          status: 'ACTIVE'
+    UpdateDefaultPaymentMethodRequest:
+      value:
+        accounts:
+          ach:
+            default: true
+    AchAccountVaultRequest:
+      value:
+        accounts:
+          ach:
+            accountNumber: '92658250156'
+            routingNumber: '999999999'
+    UpdateAccountFullRequest:
+      value:
+        accounts:
+          card:
+            expiryDate:
+              month: '09'
+              year: '22'
+              default: true
+    CompanyRequest:
+      value:
+       merchant:
+        merchantCustomerId: 'Company1234'
+       recipient: 
+        recipientType: 'Company'
+        tin: '123456789'
+        doingBusinessAs: 'Company Name'
+        emailAddress: 
+          type: 'work'
+          value: 'company@email.com'
+          primary: true
+        phoneNumber: 
+          code: 1,
+          value: '123-456-7890'
+          type: 'home'
+          extension: '0000'
+        guest: true,
+        address: 
+          type: 'work'
+          street: '100 Universal City Plaza'
+          city: 'Hollywood'
+          stateOrProvince: 'CA'
+          postalCode: '91608'
+          country: 'USA'
+        formatted: '100 Universal City Plaza, Hollywood, CA 91608 US'
+        primary: true
+       recipientIdentifier: 'SPECIAL_CODE'
+       recipientIdentifierValue: '1234567890'              

@@ -31,15 +31,15 @@
 - sections:
   - title: Getting Started
     link: docs/introduction/introduction.md
-    sections: 
-      - title: Features
-        sections:
-        - title: Fraud
-          link: docs/documentation/features/fraud.md
-        - title: Payment Options
-          link: docs/documentation/features/payment-options.md
-        - title: Tokenization
-          link: docs/documentation/features/tokenization.md
+#    sections: 
+#      - title: Features
+#        sections:
+#        - title: Fraud
+#          link: docs/documentation/features/fraud.md
+#        - title: Payment Options
+#          link: docs/documentation/features/payment-options.md
+#        - title: Tokenization
+#          link: docs/documentation/features/tokenization.md
   - title: Interactive guide
     sections:
     - title: API Flow
@@ -58,10 +58,8 @@
       link: docs/troubleshooting/error-codes.md
     - title: Transaction/Payments Status
       link: docs/troubleshooting/Transaction-payment-status.md
-    - title: Webhook Notification Messages
+    - title: Notification Messages
       link: docs/troubleshooting/notification-messages.md
-    - title: Email Notification Messages
-      link: docs/troubleshooting/email-templates.md
 #  - title: Contact us
 #    link: https://www.carat.fiserv.com/en-us/contact/?utm_campaign=payouts_content
     

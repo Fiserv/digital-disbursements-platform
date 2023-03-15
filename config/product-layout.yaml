@@ -44,12 +44,12 @@ featuredFeatures:
         link: /docs/interactive-guide/portalflow.md
       - relatedDoc: 
         title: FAQs
-        description: Take a look at our FAQa. 
+        description: Take a look at our FAQs. 
         link: docs/faq/faq.md
     relatedAPIs:
       - relatedAPI: 
         title: Create and Pay
-        description: create and send a payment with this single API endpoint.
+        description: Create and send a payment with this single API endpoint.
         type: post        
         path: /ddp/v1/payments&version=1.0.0
   - title: Built-in Security
@@ -57,7 +57,7 @@ featuredFeatures:
     relatedDocs:
       - relatedDoc: 
         title: FAQs
-        description: Take a look at our FAQa. 
+        description: Take a look at our FAQs. 
         link: docs/faq/faq.md
   - title: Recipient benefits
     description:  Digital Disbursements offers recipients access to a variety of payout methods and the ability to select payment preferences in a variety of languages. Recipients can receive funds instantly day or night.
@@ -68,7 +68,7 @@ featuredFeatures:
         link: docs/interactive-guide/apiflow.md#step-3-create-a-payment
       - relatedDoc: 
         title: FAQs
-        description: Take a look at our FAQa. 
+        description: Take a look at our FAQs. 
         link: docs/faq/faq.md
     relatedAPIs:
       - relatedAPI: 

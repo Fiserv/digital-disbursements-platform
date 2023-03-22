@@ -1,7 +1,7 @@
 #-------------------------------------
 # Initial Version
 ## Added nickname
-# Added Paypal source seperated from Venmo
+# Added Paypal source separated from Venmo
 #-------------------------------------
 openapi: 3.0.0
 info:
@@ -38,7 +38,7 @@ paths:
         - {$ref: '#/components/parameters/RecipientIdPathVariable'}
 
       requestBody:
-        description: Details required for add account for a recipeint.
+        description: Details required for add account for a recipient.
         required: true
         content:
           application/json:
@@ -1332,7 +1332,7 @@ components:
       example: 633-55-2345
 
     UserName:
-      description: user id for money netwrok card and user registration. For user registration this should be recipeint registered email address.
+      description: user id for money netwrok card and user registration. For user registration this should be recipient registered email address.
       type: string
       maxLength: 12
       example: passw0rd!
@@ -1536,7 +1536,7 @@ components:
 # response Models
 #-------------------------------------
     NoContent:
-      description: The request succeeded but there’s really nothing to show.
+      description: The request succeeded but thereï¿½s really nothing to show.
       example: {}
 
     BadRequest:

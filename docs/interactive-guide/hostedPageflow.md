@@ -163,7 +163,7 @@ uComClient.init({
 Step3:
 
 Set local redirection listener
-A redirection listener should be set on the webview to catch the event that HP has finished its work. HP will call this redirection in case of permanent failures and final success(nonce). A permanent failure is if js fails to load or Ajax call fails or tokenId has expired or encryptionKey invalid.
+A redirection listener should be set on the Webview to catch the event that HP has finished its work. HP will call this redirection in case of permanent failures and final success(nonce). A permanent failure is if javascript fails to load or Ajax call fails or tokenId has expired or encryptionKey invalid.
 Once HP get response from uCom then it will do URL redirect with encoded URI.
 
 **Redirection Listener URL:**
@@ -484,7 +484,7 @@ This is the success response payload from uCom API
 ```
 
 **3.3.1.1.3 Success Response with SDK Error**
-This is the success response with sdk errors payload. Sometimes card will be enrolled successfully but SDK will fail to post the response into redirect URL due to some reason. In this case SDK will send back with success response with SDK errors.
+This is the success response with SDK errors payload. Sometimes card will be enrolled successfully but SDK will fail to post the response into redirect URL due to some reason. In this case SDK will send back with success response with SDK errors.
 
 ```json
 {   

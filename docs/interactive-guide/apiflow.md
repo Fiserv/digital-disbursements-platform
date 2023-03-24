@@ -186,7 +186,7 @@ HPP is a web SDK and iFrame solution. DDP is intended to provide merchants with 
 
 ### Step 2c: Vault a Payment Method
 
-This request will take our generated nonce token from previous step in the payload as well as the `tokenId` from Step 1 in the headers. Once this step is completed the payment method will be vaulted and an EV (Enrolment Vault) token will be generated. These tokens are specific to payment methods vaulted with Fiserv and are not to be confused with TA (TransArmor) tokens which are generated through other flows. This EV token can be non-expired tokens and can be used multiple times for that recipient.
+This request will take our generated nonce token from previous step in the payload as well as the `tokenId` from Step 1 in the headers. Once this step is completed the payment method will be vaulted and an EV (Enrollment Vault) token will be generated. These tokens are specific to payment methods vaulted with Fiserv and are not to be confused with TA (TransArmor) tokens which are generated through other flows. This EV token can be non-expired tokens and can be used multiple times for that recipient.
 
 <!-- theme: failure -->
 >**<ins> Header Change
@@ -211,7 +211,7 @@ There are following different payment methods for the disbursements, there are d
 <details>
 <summary><b>1. Debit</b></summary>
 
-This request is the payment call where we will take our `enrolment_vault` token and use it to create a disbursement payment for a recipient. The key variables here are `merchantTransactionId`, this must be unique for every transaction call , as well as paymentType which should correspond to the payment type associated with your environment for eg. Gaming, Claims, Wages etc. The EV token will never expire for the same `merchantCustomerId` and we can perform many number of transactions using same EV token.
+This request is the payment call where we will take our `enrollment_vault` token and use it to create a disbursement payment for a recipient. The key variables here are `merchantTransactionId`, this must be unique for every transaction call , as well as paymentType which should correspond to the payment type associated with your environment for eg. Gaming, Claims, Wages etc. The EV token will never expire for the same `merchantCustomerId` and we can perform many number of transactions using same EV token.
 
 [![Try it out](../../../../assets/images/button.png)](../api/?type=post&path=/ddp/v1/payments)
 </details>
@@ -219,7 +219,7 @@ This request is the payment call where we will take our `enrolment_vault` token 
 <details>
 <summary><b>2. ACH</b></summary>
 
-An ACH is an electronic fund transfer made between banks and credit unions across what is called the Automated Clearing House network. This is an ACH payment request  where we will take our `enrolment_vault`token and use it to create a disbursement payment for a recipient. The key variables here are `merchantTransactionId`, this must be unique for every transaction call , as well as paymentType which should correspond to the payment type associated with your environment.
+An ACH is an electronic fund transfer made between banks and credit unions across what is called the Automated Clearing House network. This is an ACH payment request  where we will take our `enrollment_vault`token and use it to create a disbursement payment for a recipient. The key variables here are `merchantTransactionId`, this must be unique for every transaction call , as well as paymentType which should correspond to the payment type associated with your environment.
 
 [![Try it out](../../../../assets/images/button.png)](../api/?type=post&path=/ddp/v1/payments)
 </details>
@@ -235,7 +235,7 @@ This request is the payment call using the Coinbase payment method to create a d
 <details>
 <summary><b>4. Money Network</b></summary>
 
-This request is the payment call using the Money Network payment method, where we will take our `enrolment_vault` token and use it to create a disbursement payment for a recipient. The key variables here are `merchantTransactionId`, this must be unique for every transaction call , as well as paymentType which should correspond to the payment type associated with your environment for eg. Gaming, Claims, Wages etc. The EV token will never expire for the same `merchantCustomerId` and we can perform many number of transactions using same EV token.
+This request is the payment call using the Money Network payment method, where we will take our `enrollment_vault` token and use it to create a disbursement payment for a recipient. The key variables here are `merchantTransactionId`, this must be unique for every transaction call , as well as paymentType which should correspond to the payment type associated with your environment for eg. Gaming, Claims, Wages etc. The EV token will never expire for the same `merchantCustomerId` and we can perform many number of transactions using same EV token.
 
 [![Try it out](../../../../assets/images/button.png)](../api/?type=post&path=/ddp/v1/payments)
 </details>

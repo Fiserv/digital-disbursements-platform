@@ -1,4 +1,4 @@
-# Dev Studio - Sample Template repo
+# Dev Studio - Sample Template repository
 
 This repo contains the content for tenants of Developer Studio.
 

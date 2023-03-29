@@ -23,7 +23,13 @@
         "version": "1.0.0",
         "versionType": "major",
         "releaseNotesPath": "/release-notes/release-notes-1.0.0.md",
-        "apiSpecFileNames": ["api-1.0.0"]
+        "apiSpecFileNames": [
+	  "AccountVaultingService/ddp-account-services",
+	  "PayoutService/ddp-payment-services",
+	  "RecipientServices/ddp-recipient-services",	
+	  "TransactionService/ddp-transaction-services",
+	  "MerchantService/ddp-merchant-services"
+	]
       }
   ],
   "product": {
@@ -36,10 +42,11 @@
     "documentation": "/v1/docs/DigitalDisbursements",
     "documenttree": "/v1/docs/DigitalDisbursements",
     "documenttreeV2": "/v2/docs/DigitalDisbursements",
+    "sandbox": "/v1/sandboxrun/DigitalDisbursements",
     "feature":[
       {
         "name": "sandBox",
-        "value": false
+        "value": true
       },
       {
         "name": "plugins",
@@ -51,7 +58,7 @@
       },
       {
         "name": "editParameterAPIExplorer",
-        "value": false
+        "value": true
       }
   ]
   },
@@ -59,17 +66,17 @@
 		"bug": {
 			"label": "bug,DigitalDisbursements",
 			"template": "bug.md",
-			"assignees": "paul.mohl@fiserv.com,mandeep.yadav@fiserv.com"
+			"assignees": "srjoshi4,vmaridu-fiserv"
 		},
 		"feedback": {
 			"label": "feedback,DigitalDisbursements",
 			"template": "feedback.md",
-			"assignees": "paul.mohl@fiserv.com"
+			"assignees": "srjoshi4,vmaridu-fiserv"
 		},
 		"enhancement": {
 			"label": "enhancement,DigitalDisbursements",
 			"template": "feature.md",
-			"assignees": "paul.mohl@fiserv.com"
+			"assignees": "sreedhar4"
 		}
 	}]
 }

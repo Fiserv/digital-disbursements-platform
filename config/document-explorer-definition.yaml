@@ -40,8 +40,8 @@
           link: docs/documentation/features/mfa.md
         - title: Payment Options
           link: docs/documentation/features/payment-options.md
-        - title: Tokenization
-          link: docs/documentation/features/tokenization.md
+#        - title: Tokenization
+#          link: docs/documentation/features/tokenization.md
   - title: Interactive guide
     sections:
     - title: API Flow

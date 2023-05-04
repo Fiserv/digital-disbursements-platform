@@ -1,6 +1,12 @@
 # Email Templates
 
-DDP Offers the ability to send email notifications to recipients and to the merchant. This is done through HTML merging to generate emails based on templates. You can customize each notification or use one of out pre-made templates. Below you will find a list of each email notification that is available with a brief description and a link to the default template.
+DDP Offers the ability to send email notifications to recipients and to the merchant. This is done through HTML merging to generate emails based on templates. You can customize each notification or use one of our pre-made templates. Below you will find a list of events that will trigger email notifications and who (recipient or Client) they are intended for.
+
+## Sample Email Template
+
+This is an example of what the file email template will look like. You can customize the wording and some of the data fields. For more information on available customizations reach out to your account manager. If you do not have an account manger reach out to our [sales team](https://www.carat.fiserv.com/en-us/contact/?utm_campaign=payouts_content) to get started.
+
+![Email Template Example](../../assets/images/email_template.png)
 
 ## Email Notification Table
 

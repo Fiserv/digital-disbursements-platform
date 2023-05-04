@@ -107,13 +107,13 @@ Create recipient is always the first step that needs to be taken to for any tran
 This request will update the previously created recipient with the necessary information. This recipient is identified by the passed in `merchantCustomerId` in the url. Updates the specified recipient by setting the values of the parameters passed. Any parameters not provided will be left unchanged.
 The minimal request can be any single entity that requires updating, any of the objects or entities in the parameters of the create recipient schema will work here.
 
-[![Try it out](../../../../assets/images/button.png)](../api/?type=patch&path=/ddp/v1/recipients/{id})
+[![Try it out](../../../../assets/images/button.png)](../api/?type=patch&path=/ddp/v1/recipients/{merchantCustomerId})
 
 ### Optional/Info: Get Recipient Info
 
 This request will retrieve the information for a recipient based upon its valid `merchantCustomerId` passed in the URL. With this retrieve call you can get the detailed information of the previously created recipient.
 
-[![Try it out](../../../../assets/images/button.png)](../api/?type=get&path=/ddp/v1/recipients/{id})
+[![Try it out](../../../../assets/images/button.png)](../api/?type=get&path=/ddp/v1/recipients/{merchantCustomerId})
 
 ## Step 2: Save a Payment Method
 
@@ -148,6 +148,9 @@ This request will generate a public key to be used in encrypting PCI data as wel
 >| **fdCustomerId**       | How the customer is identified in the uCom app. Best practice would
 be to use the same value as `merchantCustomerId`.                                                                 |
 
+<!-- theme: danger -->
+>This is a Connected Commerce API. Used only to generate a public encryption Key. To continue after reviewing the API, please use the browser's "back" button to return to this page.
+
 [![Try it out](../../../../assets/images/button.png)](../../ConnectedCommerce/api/?type=post&path=/v1/tokens)
 
 ### Step 2b: Create the Account Nonce Token
@@ -170,7 +173,10 @@ In this request you are going to encrypt your PCI (Payment Card Industry) data w
 ><!-- theme: success-->
 >> *Example `Authorization: Bearer AGG596cV67WF8DjYLE3kS6nSu36x`*
 
-[![Try it out](../../../../assets/images/button.png)](../../ConnectedCommerce/api/?type=post&path=/v1/account-tokens/{nonceTokenId}/tokenization)
+<!-- theme: danger -->
+>This is a Connected Commerce API. Used only to generate a public encryption Key. To continue after reviewing the API, please use the browser's "back" button to return to this page.
+
+[![Try it out](../../../../assets/images/button.png)](../../ConnectedCommerce/api/?type=post&path=/v1/account-tokens&version=1.0.0)
 
 <!--
 type: tab
@@ -198,11 +204,13 @@ This request will take our generated nonce token from previous step in the paylo
 
 [![Try it out](../../../../assets/images/button.png)](../api/?type=post&path=/ddp/v1/recipients/{merchantCustomerId}/accounts)
 
+<!-- This is a Special API I don't Think we should call this out in the Interactive guide. -Jay
 ### Get Recipient Accounts
 
 This request will retrieve the account information based on the recipientId. This will return ALL associated payment methods with this `recipientId`. Remember the `recipientId` changes based upon email so if multiple merchantCustomerIds share the same email this will pull all the accounts from every merchantCustomerId associated with that email.
 
 [![Try it out](../../../../assets/images/button.png)](../api/?type=get&path=/ddp/v1/recipients/{recipientId}/accounts)
+-->
 
 ## Step 3: Create a Payment
 
@@ -294,7 +302,7 @@ Using `merchantCustomerId`: This request can be used when you want to view all t
 
 Using `merchantTransactionId`: This request to be used when you want to view the details of a particular transactions
 
-[![Try it out](../../../../assets/images/button.png)](../api/?type=get&path=/ddp/v1/transactions/{merchantTransactionId})
+[![Try it out](../../../../assets/images/button.png)](../api/?type=get&path=/ddp/v1/transactions/{transactionId})
 
 ## Step 4: Optional/Info: Get Merchant Info
 

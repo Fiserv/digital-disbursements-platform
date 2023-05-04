@@ -2,5 +2,5 @@
 
 Built-in tools to help protect data, mitigate risk and reduce regulatory and compliance burdens
 
-<<ADD MORE DETAILS>>
-<<LNIK TO UCOM TOKEN SERVICES>>
+<!-- ADD MORE DETAILS -->
+<!-- LINK TO UCOM TOKEN SERVICES -->

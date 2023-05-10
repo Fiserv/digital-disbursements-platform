@@ -60,8 +60,10 @@
       link: docs/troubleshooting/error-codes.md
     - title: Transaction/Payments Status
       link: docs/troubleshooting/Transaction-payment-status.md
-    - title: Notification Messages
+    - title: Webhook Notification Messages
       link: docs/troubleshooting/notification-messages.md
+    - title: Email Notification Messages
+      link: docs/troubleshooting/email-templates.md
 #  - title: Contact us
 #    link: https://www.carat.fiserv.com/en-us/contact/?utm_campaign=payouts_content
     

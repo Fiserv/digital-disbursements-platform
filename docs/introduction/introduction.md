@@ -22,9 +22,11 @@ Digital disbursements allows several flexible integration options to make onboar
 <!-- type: row -->
 
 <!-- type: card
-title: <div style="text-align:center;width:100%;height:25%"><img src="https://raw.githubusercontent.com/Fiserv/digital-disbursements/develop/assets/images/icons/Person-and-computer.png" alt="Portal Icon" title="Portal Icon" style="width: auto;height: 25%;max-height: 100px;"></div><div style="text-align:center;width:100%"> Payments Portal </div>
-Description: Disburse payouts through the most popular channels in a Client-Branded Portal that minimizes cost and maximizes speed to market.
-link: ?path=docs/interactive-guide/portalflow.md
+    title: <div style="text-align:center;width:100%;height:25%"><img src="https://raw.githubusercontent.com/Fiserv/digital-disbursements/develop/assets/images/icons/Person-and-computer.png" alt="Portal Icon" title="Portal Icon" style="width: auto;height: 25%;max-height: 100px;"></div><div style="text-align:center;width:100%"> Payments Portal </div>
+    
+    Description: Disburse payouts through the most popular channels in a Client-Branded Portal that minimizes cost and maximizes speed to market.
+
+    link: ?path=docs/interactive-guide/portalflow.md
 -->
 
 <!-- type: card
@@ -36,7 +38,7 @@ link: ?path=docs/interactive-guide/apiflow.md
 <!-- type: card
 title: <div style="text-align:center;width:100%;height:25%"><img src="https://raw.githubusercontent.com/Fiserv/digital-disbursements/develop/assets/images/icons/api-connection.png" alt="API icon" title="API icon" style="width: auto;height: 25%;max-height: 100px;"></div><div style="text-align:center;width:100%"> API Only </div>
 description: With Fiserv's simple, modern APIs you can direct flow to users with the confidence of a secure and fast Payments backend.
-link: ?path=docs/interactive-guide/api-flow/apiflow.md
+link: ?path=docs/interactive-guide/apiflow.md
 -->
 
 <!-- type: row-end -->
@@ -46,7 +48,7 @@ link: ?path=docs/interactive-guide/api-flow/apiflow.md
 <!-- type: card
 title: <div style="text-align:center;width:100%;height:25%"><img src="https://raw.githubusercontent.com/Fiserv/digital-disbursements/develop/assets/images/icons/api-connection.png" alt="API icon" title="API icon" style="width: auto;height: 25%;max-height: 100px;"></div><div style="text-align:center;width:100%"> Batch Processing </div>
 description: Process a payment file using Fiserv's fast-secure payments solutions to deliver customers fast payments with little upfront development cost.
-link: ?path=docs/interactive-guide/api-flow/batchflow.md
+link: ?path=docs/interactive-guide/batchflow.md
 -->
 
 <!-- type: card
@@ -89,7 +91,7 @@ link: ?path=docs/documentation/features/payment-options.md
 
 ## Services
 
-Below are some of the core services offered in the Digital Disbursements platform. If you are looking for a more guided approach be sure to visit the [Integration Options](Integration Options) above.
+Below are some of the core services offered in the Digital Disbursements platform. If you are looking for a more guided approach be sure to visit the [Integration Options](?path=docs/introduction/introduction.md&branch=develop#integration-options) above.
 
 <!-- type: row -->
 

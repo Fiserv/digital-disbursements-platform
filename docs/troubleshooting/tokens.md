@@ -1,0 +1,127 @@
+# Tokens FAQ
+
+## What is a Token?
+
+- Tokenization is a form of data substitution
+- TransArmor tokenization uses randomly generated numbers in place of PAN
+- Tokenization differs from encryption: Tokens have no direct relationship with the data they replace
+- TransArmor tokens are either universal or merchant-specific
+- Tokens are card-based, meaning a merchant will always get the same token back for a specific PAN
+
+## As a Merchant, What are the benefits of using Tokens?
+
+- Reduces the costs associated with PCI compliance in three ways:
+  - Shrinks the vendors card-data environment (CDE)
+  - Simplifies the questionnaire that the vendors customers must answer
+  - Changes the answers of some questions to N/A
+- Removes the risk of storing card data, transferring it to the processor
+- Allows the vendor to focus on projects that contribute to revenue rather than securing cardholder data
+
+## What Type of Token does DDP use?
+
+DDP allows two types of tokens to be used with our platform: Enrollment Vault and TransArmor. They are both great solutions and will depend on they merchant's use case for which one is the best fit.
+
+### Enrollment Vault (EV) Token
+
+Enrollment Vault is Fiserv's internal secure storage solutions to Card and Account security. It is a reusable proprietary token that secures the primary account number but replacing it with a token to be stored in the clients system. The client can then use this token in place of the account number to initiate multiple payment request without requesting a new token.
+
+#### How Does EnrollmentVault work?
+
+1. Consumer presents card to merchant.
+2. Card Data is encrypted and transmitted to Connected Commerce (uCom) token service.
+3. Connect Commerce (uCom) returns a one time use nonce token.
+4. Merchant passes nonce token and consumer's information to DDP.
+5. Nonce token token and consumer information is sent to EnrollmentVault.
+6. Enrollment Vault stores consumer information with account and tokenize the account.
+7. Token returned to DDP.
+8. DDP Returns Token to the merchant
+9. Merchant stores token instead of card data in their environment and uses token for all subsequent business processes.
+
+![EV Token Flow](../../assets/images/EV2_flow.png)
+
+#### What is the process/Algorithm used in encrypting data in the Enrollment Vault?
+
+Vault stores two main types of information, customer and instrument. Customer information is information relating to an actual person who is a user of the application. Instruments refer to payment and loyalty instruments and accounts, such as credit cards, ACH accounts, paypal tokens etc.
+
+In both cases records are stored in two parts, secure and meta. Meta data is data that does not contain PCI or PII data and does not require encryption before storage. This can include non identifying PII such as country etc that does not need to be stored securely. Secure data is data that does contain PII or PCI data and does require encryption.
+
+To access or store data in the vault a calling application (DDP) first needs to acquire a JWT for authentication. When the JWT is generated it contains client id information which contains both the calling application identifier and the actual client that the data is stored for.This JWT is valid for 5 minutes and allows access to any records associated with the application and client that the JWT is generated for.
+
+To store data in the vault the data is first converted into a Vault record which contains a secure and meta section. The secure data is encrypted using Voltage encryption which encrypts the entire secure section. Then the entire record is stored in the data store.
+
+On data retrieval the JWT is decoded and the calling application and client is identified. Data can only be retrieved by the same calling application with a valid JWT and the client information must also match.
+
+### TransArmor (TA) Token
+
+TransArmor is a dual-layered payment card security solution that combines strong encryption and tokenization technology. TransArmor secures the transaction from the moment of swipe – prior to transmission and throughout the payment process with encryption, and it prevents card data from entering the merchant’s card data environment (CDE) by replacing the primary account number (PAN) with a random-number token that can be safely stored.
+
+#### How does TransArmor Work?
+
+1. Consumer presents card to merchant.
+2. Card Data is encrypted and transmitted to First Data front-end.
+3. First Data front-end decrypts the data payload.
+4. Card data is sent to issuing bank for authorization and in parallel, tokenized.
+5. Token is paired with authorization response and sent back to the merchant.
+6. Merchant stores token instead of card data in their environment and uses token for all subsequent business processes.
+
+![TA Token Flow](../../assets/images/ta-flow.png)
+
+#### What Encryption Methods are Used in TransArmor
+
+There are four available encryption methods used in TransArmor: Three are Symmetric (shared key),
+and one is Asymmetric (public key).
+
+TransArmor Verifone Edition (TAVE): Symmetric Key – Format Preserving Encryption (FPE)
+
+- PAN and Discretionary data is encrypted at read in tamper-resistant hardware.
+- Supports mag-stripe, RFID, smart-card and manual entry.
+- Based on AES 128-bit algorithm.
+- FPE data resembles original target data.
+
+![TAVE Example](../../assets/images/TAVE_example.png)
+
+3DES: Symmetric Key – Non-Format Preserving Encryption (Non-FPE)
+
+- 3DES is the common name for the Triple Data Encryption  Standard algorithm (symmetric-key block cipher.)
+- 3DES applies the Data Encryption Standard (DES) cipher algorithm three times to each data block.
+- Supports mag-stripe, RFID, smart-card and manual entry.
+- 3DES keys must be loaded securely into the device either by First Data Hardware Services (fka TASQ), an approved ESO or through an approved Remote Key Injection method.
+- Non-FPE data does not resemble original target data.
+
+```no-highlight
+Track 2 Data –
+5411110081111111=9912201012340XXXX000
+
+TDES Encryption Block –
+F90209087AC4113D58B1AFB8C7248BCBE
+010AF3B5B3CA10DDECAFF9EFBB6563598
+60000A0ABB6F7B08534C06B5AXXXXX
+```
+
+Ingenico On-Guard: Symmetric Key – Format Preserving Encryption (FPE)
+
+- Ingenico’s proprietary Format Preserving Encryption is based on the 3DES algorithm.
+- PAN, Track 1 and Track 2 data is encrypted at swipe in an Ingenico device.
+- On-Guard 3DES keys must be loaded securely into the device either by First Data Hardware Services (fka TASQ) or Ingenico.
+- Supports mag-stripe, RFID, smart-card and manual entry.
+- FPE data resembles original target data.
+
+```no-highlight
+Unencrypted PAN – 5482650000007157
+Sample Encrypted Track 2 data:
+    548265111117157 = 34024860771111119749
+Sample Encrypted PAN data (PAN = ExpDate and CVV)
+    M5482651111117157 = 3402511
+```
+
+RSA/PKI: Asymmetric Key – Non-Format Preserving Encryption (Non-FPE)
+
+- Uses the RSA 2048-bit algorithm.
+- Public Key resides on merchant device.
+- Private Key resides within First Data data center.
+- Supports mag-stripe, RFID, smart-card and manual entry.
+- Non-FPE data does not resemble original target data.
+
+```no-highlight
+PAN 4356887600331588 = qdjOJd1&22jlaowiAiwdj(*882sSkw9lkwxMj2@j2jjPxw8*nHg1#2134nnuwNxdwKLwO
+```

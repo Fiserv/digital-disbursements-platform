@@ -64,8 +64,8 @@
       link: docs/troubleshooting/notification-messages.md
     - title: Email Notification Messages
       link: docs/troubleshooting/email-templates.md
-    - title: Email Notification Messages
-    link: docs/troubleshooting/tokens.md
+    - title: Tokens Overview
+      link: docs/troubleshooting/tokens.md
 #  - title: Contact us
 #    link: https://www.carat.fiserv.com/en-us/contact/?utm_campaign=payouts_content
     

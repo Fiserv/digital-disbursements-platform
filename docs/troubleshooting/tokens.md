@@ -23,7 +23,7 @@ DDP allows two types of tokens to be used with our platform: Enrollment Vault an
 
 ### Enrollment Vault (EV) Token
 
-Enrollment Vault is Fiserv's internal secure storage solutions to Card and Account security. It is a reusable proprietary token that secures the primary account number but replacing it with a token to be stored in the clients system. The client can then use this token in place of the account number to initiate multiple payment request without requesting a new token.
+Enrollment Vault is Fiserv's internal secure storage solution to Card and Account security. It is a reusable proprietary token that secures the primary account number but replacing it with a token to be stored in the clients system. The client can then use this token in place of the account number to initiate multiple payment request without requesting a new token.
 
 #### How Does EnrollmentVault work?
 

@@ -35,7 +35,7 @@ Enrollment Vault is Fiserv's internal secure storage solution to card and accoun
 
 ![EV Token Flow](../../assets/images/EV2_flow.png)
 
-> ##### *This flow gives a high-level overview of how to retrieve an EV token through DDP's API flow. For a more in-depth explanation you can click [here](../interactive-guide/apiflow.md) to review our API implementation guide.*
+> ##### *This flow gives a high-level overview of how to retrieve an EV token through DDP's API flow. For a more in-depth explanation you can click [here](../../interactive-guide/apiflow.md) to review our API implementation guide.*
 
 ___
 

@@ -34,6 +34,7 @@ header:
   image: 
     link: "/assets/images/Fiserv_Logo.jpg"
     altText: DigitalDisbursements™
+getStarted: /docs/introduction/introduction.md
 featuredFeatures:
   - title: Operational Efficiency 
     description:  Digital Disbursements simplifies operations and reduces resource demand, streamlining your payouts process. Our client portal provides settlement, reconciliation, and reporting for all payout capabilities.

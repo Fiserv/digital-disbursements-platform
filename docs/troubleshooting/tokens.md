@@ -39,10 +39,6 @@ Enrollment Vault is Fiserv's internal secure storage solution to card and accoun
 
 ___
 
-> ##### *This flow gives a high-level overview of how to retrieve an EV token through DDP's API flow. For a more in-depth explanation you can click [here](../../interactive-guide/apiflow.md) to review our API implementation guide.*
-
-___
-
 #### What is the process/Algorithm used in encrypting data in the Enrollment Vault?
 
 Vault stores two main types of information, customer, and instrument. Customer information is information relating to an actual person who is a user of the application. Instruments refer to payment and loyalty instruments and accounts, such as credit cards, ACH accounts, PayPal tokens etc.

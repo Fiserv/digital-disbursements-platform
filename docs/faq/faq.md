@@ -260,7 +260,7 @@ ISO response + DDP internal response code.
 
 </details>
 
-### TPSP FAQs
+## TPSP FAQs
 
 <details>
 <summary><b>What is TPSP client?</b></summary>

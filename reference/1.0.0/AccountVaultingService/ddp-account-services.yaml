@@ -193,7 +193,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ServerError'
 
-  /ddp/v1/recipients/{recipientId}/accounts/{id}:
+  /ddp/v1/recipients/{merchantCustomerID}/accounts/{id}:
     get:
       x-group-name: Recipient Accounts
       x-proxy-name: Get Account
@@ -1536,7 +1536,7 @@ components:
 # response Models
 #-------------------------------------
     NoContent:
-      description: The request succeeded but there’s really nothing to show.
+      description: The request succeeded but thereï¿½s really nothing to show.
       example: {}
 
     BadRequest:

@@ -555,6 +555,8 @@ paths:
 
   /ddp/v1/fxrate:
     get:
+      x-group-name: Payment Service
+      x-proxy-name: Get Foreign Exchange Rate
       tags:
         - Digital Disbursement Platform Payment APIs
       description: This API returns currency conversion details which will be made available to Merchant as value added service.

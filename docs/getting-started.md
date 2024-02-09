@@ -98,7 +98,7 @@ Below are some of the core services offered in the Digital Disbursements platfor
 <!-- type: card 
 title: Account Vaulting Services
 description: Securely store recipient account data to their profile for later use. 
-link: 
+link: ../api/?type=post&path=/ddp/v1/recipients/{merchantCustomerId}/accounts
 -->
 
 <!-- type: card 
@@ -114,13 +114,13 @@ link: ../api/?type=post&path=/ddp/v1/recipients
 <!-- type: card 
 title: Payment Services
 description: Disburse funds in 5 seconds through multiple payment channels
-link:
+link: ../api/?type=post&path=/ddp/v1/payments
 -->
 
 <!-- type: card 
 title: Transaction Services
 description: View and cancel transactions.
-link:
+link: ../api/?type=post&path=/ddp/v1/transactions/{transactionId}
 -->
 
 <!-- type: row-end -->

@@ -6,7 +6,7 @@ Extensive and exclusive payout options, including prepaid, debit, ACH, Money Net
 
 <!-- type: card
 title: <div style="text-align:center;width:100%;height:25%"><img src="https://raw.githubusercontent.com/Fiserv/digital-disbursements/develop/assets/images/icons/debit.png" alt="Debit Icon" title="Debit Icon" style="width: auto;height: 25%;max-height: 100px;"></div><div style="text-align:center;width:100%"> Debit Payments </div>
-Description:Send funds to recipient’s debit card globally.Card associated with recipient’s bank account.Funds available to spend in seconds.
+Description:Send funds to recipient’s debit card globally. Card associated with recipient’s bank account. Funds available to spend in seconds.
 -->
 
 <!-- type: card

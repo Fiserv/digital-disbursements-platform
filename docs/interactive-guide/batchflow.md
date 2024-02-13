@@ -4,7 +4,7 @@ This guide documents the Batch as used by the Digital Payout product. The Batch 
 
 • Merchant should upload files to SFTP location with below file name pattern. Each segment is separated by dot (.)
 
-• FLXPI{FLEX_MID}.{TYPE}.{EPOCH}.{NAME}.{VERSION}.{EXT}.csv; Sample File name : FLXPINMM.CI.1654537809.BAT97.1.csv
+• FLXPI{FLEX_MID}.{TYPE}.{EPOCH}.{NAME}.{VERSION}.csv; Sample File name : FLXPINMM.CI.1654537809.BAT97.1.csv
 
 The below table identifies the parameters of File format.
 
@@ -101,12 +101,14 @@ CI|MERCHANT_ID|MERCHANT_CUSTOMER_ID|MERCHANT_TRANSACTION_ID|STATUS_CODE|STATUS_D
 
 #### Sample Success
 <!-- theme: success -->
+>```
 >FH|||AON1234|
 >BH|5
 >CI|526287175883|bqcaonmb051|TXNBQC02a2398fc671a505445|00|SUCCESS|
 >CI|526287175883|bqcaonmb0091|TXNBQC03a298fc671a5053446|00|SUCCESS|
 >BT|2|2|0
 >FT|1|2|0
+>```
 
 [Download Output file](?path=assets/FLXPONMM.CI.1654537809.BAT97.1_Summary)
 

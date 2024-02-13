@@ -30,7 +30,7 @@
 
 - sections:
   - title: Getting Started
-    link: docs/introduction/introduction.md
+    link: docs/getting-started.md
     sections: 
       - title: Features
         sections:

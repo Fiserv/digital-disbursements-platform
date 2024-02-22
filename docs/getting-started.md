@@ -124,3 +124,13 @@ link: ../api/?type=post&path=/ddp/v1/transactions/{transactionId}
 -->
 
 <!-- type: row-end -->
+
+<!-- type: row -->
+
+<!-- type: card 
+title: Merchant  Services
+description: Get Information about the Merchant Profile.
+link: ../api/?type=post&path=/ddp/v1/merchantInfo
+-->
+
+<!-- type: row-end -->

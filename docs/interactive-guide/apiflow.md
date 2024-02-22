@@ -89,7 +89,7 @@ We have two types of recipients.
 2. Business
 
 This request will create a recipient for card vaulting or payment purposes. The recipient can be either business or consumer depends on the merchant use case.
-Create recipient is always the first step that needs to be taken to for any transactions or calls on the system. In this step we will register the recipient in our system with the unique identifier (merchantCustomerId ) i.e. the merchant unique random number for the customer.
+Create recipient is always the first step that needs to be taken to for any transactions or calls on the system. In this step you will register the recipient in our system with the unique identifier (i.e `merchantCustomerId` .)
 
 <!-- theme: success -->
 > **Special Considerations**

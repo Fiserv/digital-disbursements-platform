@@ -286,7 +286,7 @@ components:
           description: The zip code or postal code component.
           type: string
         country:
-          description: The country name component.  When specified, the value MUST be in ISO 3166-1 "alpha-2" code format; e.g., the United States and Sweden are "US" and "SE", respectively.
+          description: The country name component.  When specified, the value MUST be in ISO 3166-1 "alpha-3" code format; e.g., the United States and Sweden are "USA" and "SWE", respectively.
           type: string
         formatted:
           description: The full mailing address, formatted for display or use with a mailing label.

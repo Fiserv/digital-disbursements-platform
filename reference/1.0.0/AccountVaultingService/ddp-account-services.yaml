@@ -193,7 +193,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ServerError'
 
-  /ddp/v1/recipients/{recipientId}/accounts/{id}:
+  /ddp/v1/recipients/{merchantCustomerID}/accounts/{id}:
     get:
       x-group-name: Recipient Accounts
       x-proxy-name: Get Account
@@ -331,12 +331,12 @@ paths:
         - { $ref: '#/components/parameters/RecipientIdPathVariable'}
 
       requestBody:
-       description: Details required to create New Money Network session for recipient.
-       required: true
-       content:
-         application/json:
-           schema:
-             $ref: '#/components/schemas/SessionRequest'
+        description: Details required to create New Money Network session for recipient.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SessionRequest'
 
 
       responses:
@@ -466,7 +466,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ServerError'
-                
+
 components:
   parameters:
     AuthorizationHeader:
@@ -517,18 +517,18 @@ components:
       schema: {
         type: string,
         default: "Access-Token"
-     }
+      }
       example: Qg5cNPVKdFaT7nUuDz1zcCTWNsXw
     ContentTypeHeader:
-     in: header
-     name: Content-Type
-     description: used to indicate the media type of the resource.
-     required: true
-     schema: {
+      in: header
+      name: Content-Type
+      description: used to indicate the media type of the resource.
+      required: true
+      schema: {
         type: string,
         default: "application/json"
-     }
-     example: application/json
+      }
+      example: application/json
     RecipientIdPathVariable:
       in: path
       name: recipientId
@@ -553,11 +553,11 @@ components:
       schema:
         type: string
       example: vendorId-0987613457398475
-     
+
   schemas:
-##-------------------------------------
-## Response Model
-##-------------------------------------
+    ##-------------------------------------
+    ## Response Model
+    ##-------------------------------------
 
     SessionRequest:
       description: This Response model is for initialize session New Money Network Card
@@ -567,6 +567,9 @@ components:
           $ref: '#/components/schemas/TransactionId'
         source:
           $ref: '#/components/schemas/Source'
+        brand:
+          $ref: '#/components/schemas/Brand'
+
 
     SessionResponse:
       description: This Response model is for initialize session New Money Network Card
@@ -590,11 +593,11 @@ components:
       description: This Request model is for New MN Card information.
       type: object
       required:
-      - UserProfile
-      - PersonProfile
-      - SecurityQuestionAnswers
-      - ConsentGroups
-      - IdCheckRequired
+        - UserProfile
+        - PersonProfile
+        - SecurityQuestionAnswers
+        - ConsentGroups
+        - IdCheckRequired
       properties:
         userProfile:
           $ref: '#/components/schemas/UserProfile'
@@ -612,9 +615,11 @@ components:
           items:
             $ref: '#/components/schemas/ConsentGroups'
         idCheckRequired:
-         $ref: '#/components/schemas/IdCheckRequired'
+          $ref: '#/components/schemas/IdCheckRequired'
         idCheckRequest:
-         $ref: '#/components/schemas/IdCheckRequest'
+          $ref: '#/components/schemas/IdCheckRequest'
+        brand:
+          $ref: '#/components/schemas/Brand'
 
     NewMNCardResponse:
       description: This Response model is for New Money Network Card
@@ -629,9 +634,9 @@ components:
         accountProfile:
           $ref: '#/components/schemas/AccounfProfile'
         idCheckQuestions:
-         $ref: '#/components/schemas/IdCheckQuestionResponce'
+          $ref: '#/components/schemas/IdCheckQuestionResponce'
         idCheckStatus:
-         $ref: '#/components/schemas/IdCheckStatus'
+          $ref: '#/components/schemas/IdCheckStatus'
 
     AccountRequest:
       title: Contains information about Payment Method to vault.
@@ -643,11 +648,12 @@ components:
           $ref: '#/components/schemas/Account'
 
 
+
     AccountResponse:
       title: Account response contains information of all vaulted payment method for recipient
       type: object
       required:
-       - accounts
+        - accounts
       properties:
         accounts:
           type: array
@@ -664,7 +670,7 @@ components:
           $ref: '#/components/schemas/ExpiryDate'
         status:
           $ref: '#/components/schemas/Status'
-          
+
     NonceRequest:
       title: Contains information about enrollment to vault.
       type: object
@@ -673,10 +679,10 @@ components:
       properties:
         accounts:
           $ref: '#/components/schemas/NonceAccount'
-          
-##-------------------------------------
-## Object Model
-##------------------------------------
+
+    ##-------------------------------------
+    ## Object Model
+    ##------------------------------------
 
     ConsentGroups:
       description: Consent Groups.
@@ -795,14 +801,14 @@ components:
       description: User profile for New MN Card.
       type: object
       required:
-       - userName
-       - password
-       - emailAddress
+        - userName
+        - password
+        - emailAddress
       properties:
         userName:
           $ref: '#/components/schemas/UserName'
         password:
-           $ref: '#/components/schemas/Password'
+          $ref: '#/components/schemas/Password'
         emailAddress:
           $ref: '#/components/schemas/Email'
 
@@ -884,7 +890,7 @@ components:
       description: Account information - must be only ONE of the account types.
       type: object
       required:
-      - FundingSourceType
+        - FundingSourceType
       properties:
         source:
           $ref: '#/components/schemas/FundingSourceType'
@@ -895,24 +901,24 @@ components:
         prepaid:
           $ref: '#/components/schemas/Prepaid'
         venmo:
-            $ref: '#/components/schemas/Venmo'
+          $ref: '#/components/schemas/Venmo'
         paypal:
-            $ref: '#/components/schemas/Paypal'
+          $ref: '#/components/schemas/Paypal'
         status:
           $ref: '#/components/schemas/Status'
         token:
-            $ref: '#/components/schemas/ReferenceToken'
-            
+          $ref: '#/components/schemas/ReferenceToken'
+
     NonceAccount:
-     description: Account information to be passed for nonce enrollment.
-     type: object
-     required:
-      - token
-     properties:
-      token:
-            $ref: '#/components/schemas/AccountToken'
-    
-    
+      description: Account information to be passed for nonce enrollment.
+      type: object
+      required:
+        - token
+      properties:
+        token:
+          $ref: '#/components/schemas/AccountToken'
+
+
     Check:
       description: Information about the Check
       type: object
@@ -931,9 +937,9 @@ components:
       description: Information about an ACH account
       type: object
       required:
-      - accountNumber
-      - routingNumber
-      - type
+        - accountNumber
+        - routingNumber
+        - type
       properties:
         accountNumber:
           type: string
@@ -946,7 +952,7 @@ components:
         type:
           $ref: '#/components/schemas/AccountType'
         token:
-            $ref: '#/components/schemas/ReferenceToken'
+          $ref: '#/components/schemas/ReferenceToken'
         nickName:
           type: string
           description: Nick name provided by the recipient for the Card.
@@ -960,13 +966,13 @@ components:
       description: A physical mailing address for this card holder.
       type: object
       required:
-      - type
-      - street
-      - houseNumberOrName
-      - city
-      - stateOrProvince
-      - postalCode
-      - country
+        - type
+        - street
+        - houseNumberOrName
+        - city
+        - stateOrProvince
+        - postalCode
+        - country
       properties:
         type:
           description: Canonical type values of "work", "home", "billing" and "other".
@@ -1021,8 +1027,8 @@ components:
       description: Information on a credit account
       type: object
       required:
-      - cardNumber
-      - expiryDate
+        - cardNumber
+        - expiryDate
       properties:
         cardNumber:
           description: Credit or Debit card number capable of accepting payments. Response will have only last four of this card number.
@@ -1045,7 +1051,7 @@ components:
         expiryDate:
           $ref: '#/components/schemas/ExpiryDate'
         token:
-            $ref: '#/components/schemas/ReferenceToken'
+          $ref: '#/components/schemas/ReferenceToken'
         nickName:
           type: string
           description: Nick name provided by the recipient for the Card.
@@ -1058,7 +1064,7 @@ components:
       description: (Request Only) Email address for the user.
       type: object
       required:
-      - value
+        - value
       properties:
         type:
           description: The "type" sub-attribute is used to provide a classification meaningful to the (human) user.  The user interface should encourage the use of basic values of "work", "home", and "other" and MAY allow additional type values to be used at the discretion of the service client.
@@ -1084,8 +1090,8 @@ components:
       description: Payment card expiry date that is month(MM) and year(YY). Response will have these values for the card
       type: object
       required:
-      - month
-      - year
+        - month
+        - year
       properties:
         month:
           type: string
@@ -1136,7 +1142,7 @@ components:
           type: string
           example: "4226-4982-6438-0010"
         token:
-            $ref: '#/components/schemas/ReferenceToken'
+          $ref: '#/components/schemas/ReferenceToken'
         nickName:
           type: string
           description: Nick name provided by the recipient for the Card.
@@ -1171,8 +1177,8 @@ components:
       description: Surrogate value used to represent a handle to an account without sharing PCI/PII data to look it up.
       type: object
       required:
-      - tokenId
-      - tokenProvider
+        - tokenId
+        - tokenProvider
       properties:
         tokenId:
           description: Actual token value
@@ -1184,13 +1190,13 @@ components:
           $ref: '#/components/schemas/TSPID'
         expiryDate:
           $ref: '#/components/schemas/ExpiryDate'
-    
+
     AccountToken:
       description: Surrogate value used to represent a handle to an account without sharing PCI/PII data to look it up.
       type: object
       required:
-      - tokenId
-      - tokenProvider
+        - tokenId
+        - tokenProvider
       properties:
         tokenId:
           description: Actual token value
@@ -1198,7 +1204,7 @@ components:
           example: "292bb6b886fc4446894f878b7e32bd5e"
         tokenProvider:
           $ref: '#/components/schemas/TokenProvider'
-        
+
 
     Venmo:
       description: Information about a Venmo account.
@@ -1234,10 +1240,10 @@ components:
         paypalPayerId:
           type: string
           description: The encrypted PayPal account number.
-        
-#-------------------------------------
-# Common Models
-#-------------------------------------
+
+    #-------------------------------------
+    # Common Models
+    #-------------------------------------
 
     FirstName:
       description: First Name of the Recipient.
@@ -1300,9 +1306,9 @@ components:
       example: "12345212323"
 
     SessionId:
-       description: Session Id generated by the Money Network Team'
-       type: string
-       example: "2798f857-aa78-40c8-906f-35d88c41feb6"
+      description: Session Id generated by the Money Network Team'
+      type: string
+      example: "2798f857-aa78-40c8-906f-35d88c41feb6"
 
     ConsentName:
       description: eConsent provided by Money Network.
@@ -1398,10 +1404,15 @@ components:
       description: Transaction Identifier for request
       type: string
       example: "TID-ef28cab9-9b43-40ce-bd1a-0b1ea3027f4e"
-    
-#-------------------------------------
-# Error Models
-#-------------------------------------
+
+    Brand:
+      description: card type (US_DEBIT/MONEYNETWORK)
+      type: string
+      example: "US_DEBIT"
+
+    #-------------------------------------
+    # Error Models
+    #-------------------------------------
 
     Error:
       description: (Response Only) Model for error messaging
@@ -1454,9 +1465,9 @@ components:
             - field: "example id"
               message: "exampleId is mandatory"
 
-#-------------------------------------
-# ENUM Models
-#-------------------------------------
+    #-------------------------------------
+    # ENUM Models
+    #-------------------------------------
 
     AccountType:
       title: AccountType
@@ -1479,7 +1490,7 @@ components:
         - CANCELLED
         - ACTIVE
         - INACTIVE
-     
+
     Algorithm:
       title: Algorithm
       description: Algorithm used for encryption.
@@ -1489,7 +1500,7 @@ components:
         - RSA
         - NONE
         - PKCS1PADDING
-      
+
 
     Requestor:
       description: This is to identify request requestor.
@@ -1532,11 +1543,11 @@ components:
         - NETWORKS
         - SINGLE_USE_TOKEN
         - ENROLMENT_VAULT
-#-------------------------------------
-# response Models
-#-------------------------------------
+    #-------------------------------------
+    # response Models
+    #-------------------------------------
     NoContent:
-      description: The request succeeded but there’s really nothing to show.
+      description: The request succeeded but thereï¿½s really nothing to show.
       example: {}
 
     BadRequest:
@@ -1630,30 +1641,30 @@ components:
               default: true
     CompanyRequest:
       value:
-       merchant:
-        merchantCustomerId: 'Company1234'
-       recipient: 
-        recipientType: 'Company'
-        tin: '123456789'
-        doingBusinessAs: 'Company Name'
-        emailAddress: 
-          type: 'work'
-          value: 'company@email.com'
+        merchant:
+          merchantCustomerId: 'Company1234'
+        recipient:
+          recipientType: 'Company'
+          tin: '123456789'
+          doingBusinessAs: 'Company Name'
+          emailAddress:
+            type: 'work'
+            value: 'company@email.com'
+            primary: true
+          phoneNumber:
+            code: 1,
+            value: '123-456-7890'
+            type: 'home'
+            extension: '0000'
+          guest: true,
+          address:
+            type: 'work'
+            street: '100 Universal City Plaza'
+            city: 'Hollywood'
+            stateOrProvince: 'CA'
+            postalCode: '91608'
+            country: 'USA'
+          formatted: '100 Universal City Plaza, Hollywood, CA 91608 US'
           primary: true
-        phoneNumber: 
-          code: 1,
-          value: '123-456-7890'
-          type: 'home'
-          extension: '0000'
-        guest: true,
-        address: 
-          type: 'work'
-          street: '100 Universal City Plaza'
-          city: 'Hollywood'
-          stateOrProvince: 'CA'
-          postalCode: '91608'
-          country: 'USA'
-        formatted: '100 Universal City Plaza, Hollywood, CA 91608 US'
-        primary: true
-       recipientIdentifier: 'SPECIAL_CODE'
-       recipientIdentifierValue: '1234567890'              
+        recipientIdentifier: 'SPECIAL_CODE'
+        recipientIdentifierValue: '1234567890'

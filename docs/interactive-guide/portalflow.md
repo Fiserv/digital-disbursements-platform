@@ -24,7 +24,6 @@ The DDP services are accessed through the public Internet. DDP accepts communica
 | Environment       | Host                           | Base Path |
 | ----------------  | ------------------------------ | --------- |
 | Integration Test  | <https://int.api.firstdata.com>  | /ddp      |
-| Pre-Production    | <https://cat.api.firstdata.com>  | /ddp      |
 | Production        | <https://prod.api.firstdata.com> | /ddp      |
 
 ### Header Description
@@ -99,25 +98,25 @@ postman.setEnvironmentVariable('signature', CryptoJS.enc.Base64.stringify(signat
 
 ### Option 1a: Initiate Single Consumer Payment
 
-Objective Merchant will want to initiate a payment for a single consumer recipient through the merchant portal and send email to recipient for the payment disbursement.
+Merchant will want to initiate a payment for a single consumer recipient through the merchant portal and send email to recipient for the payment disbursement.
 
 [![Try it out](../../../../assets/images/button.png)](../api/?type=post&path=/ddp/v1/payments)
 
 ### Option 1b: Initiate Single Company Payment
 
-Objective Merchant will want to initiate a payment for a single company recipient through the merchant portal and send email to recipient for the payment disbursement.
+Merchant will want to initiate a payment for a single company recipient through the merchant portal and send email to recipient for the payment disbursement.
 
 [![Try it out](../../../../assets/images/button.png)](../api/?type=post&path=/ddp/v1/payments)
 
 ### Option 1c: Initiate Multi Consumer Payment
 
-Objective Merchant will want to initiate a payment for a Multi consumer recipient through the merchant portal and send email to recipient for the payment disbursement.
+Merchant will want to initiate a payment for a Multi consumer recipient through the merchant portal and send email to recipient for the payment disbursement.
 
 [![Try it out](../../../../assets/images/button.png)](../api/?type=post&path=/ddp/v1/payments)
 
 ### Option 1d: Initiate Multi Company Payment
 
-Objective Merchant will want to initiate a payment for a Multi company recipient through the merchant portal and send email to recipient for the payment disbursement.
+Merchant will want to initiate a payment for a Multi company recipient through the merchant portal and send email to recipient for the payment disbursement.
 
 [![Try it out](../../../../assets/images/button.png)](../api/?type=post&path=/ddp/v1/payments)
 

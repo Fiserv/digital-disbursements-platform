@@ -1,0 +1,564 @@
+#-------------------------------------
+# Initial Version
+# Adding attribute "AdditionalEmailAddresses" under recipeint object.
+#-------------------------------------
+openapi: 3.0.0
+info:
+  version: 0.0.3
+  title: Digital Disbursement Platform VISA+ APIs.
+  description: 
+    This Specification document lists of the VISA+ APIs.
+
+servers:
+  - url:  https://qa.api.firstdata.com
+    description: This url is for QA testing.
+  - url:  https://int.api.firstdata.com
+    description: This url is for customer testing.
+  - url: https://prod.api.firstdata.com
+    description: This is production url.
+
+paths:
+  /ddp/v1/payname/confim:
+    post:
+      x-group-name: VISA+ Service
+      x-proxy-name: Resolve payname
+      x-default-example: Merchant Request
+      # x-child-product-name: Merchant Service
+      tags:
+        - Digital Disbursement Platform VISA+ APIs.
+      description: Used for asking the sender to perform additional verification of the recipient before payment on Digital Disbursement Platform.
+      requestBody:
+        description: Details required to resolve the payname.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConfirmPayNameRequest'
+
+      responses:
+        201:
+          description: successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConfirmPayNameResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        500:
+          $ref: '#/components/responses/ServerError'
+      parameters:
+        - $ref: '#/components/parameters/ApiKeyHeader'
+        - $ref: '#/components/parameters/TimestampHeader'
+        - $ref: '#/components/parameters/AuthorizationHeader'
+        - $ref: '#/components/parameters/ClientRequestIdHeader'
+        - $ref: '#/components/parameters/ContentTypeHeader'
+
+  /ddp/v1/payname/resolve:
+    post:
+      x-group-name: VISA+ Service
+      x-proxy-name: Resolve payname
+      x-default-example: Merchant Request
+      # x-child-product-name: Merchant Service
+      tags:
+        - Digital Disbursement Platform VISA+ APIs.
+      description: Used for resolving the Visa+ payname to 16-digit token prior to originating the OCT on Digital Disbursement Platform.
+      requestBody:
+        description: Details required to resolve the payname.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PayNameRequest'
+            
+      responses:
+        201:
+          description: successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PayNameResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        500:
+          $ref: '#/components/responses/ServerError'
+      parameters:
+        - $ref: '#/components/parameters/ApiKeyHeader'
+        - $ref: '#/components/parameters/TimestampHeader'
+        - $ref: '#/components/parameters/AuthorizationHeader'
+        - $ref: '#/components/parameters/ClientRequestIdHeader'
+        - $ref: '#/components/parameters/ContentTypeHeader'
+        
+        
+
+
+
+components:
+  schemas:
+#------------------------------------------
+# Request/ Reponse Model
+#------------------------------------------
+
+    PayNameRequest:
+      description: This Request model is to resolve the payname information.
+      type: object
+      required:
+        - payname
+      properties:
+        payName:
+          $ref: '#/components/schemas/PayName'
+
+    PayNameResponse:
+      description: This Response model is to resolve the payname information.
+      type: object
+      required:
+        - token
+        - consumer
+        - lastName
+        - firstName
+        - middleName
+        - expirationDate
+        - referenceDetails
+      properties:
+        token:
+          $ref: '#/components/schemas/Token'
+        consumer:
+           $ref: '#/components/schemas/Consumer'
+        lastName:
+          $ref: '#/components/schemas/LastName'
+        firstName:
+          $ref: '#/components/schemas/FirstName'
+        middleName:
+          $ref: '#/components/schemas/MiddleName'
+        expirationDate:
+          $ref: '#/components/schemas/ExpirationDate'
+        referenceDetails:
+          $ref: '#/components/schemas/ReferenceDetails'
+    
+    ConfirmPayNameRequest:
+      description: This Response model is to resolve the payname information.
+      type: object
+      required:
+        - payname
+      properties:
+        payname:
+          $ref: '#/components/schemas/PayName'
+        recipientLast4: 
+          $ref: '#/components/schemas/RecipientLast4'
+
+
+    ConfirmPayNameResponse:
+      description: This Response model is to resolve the payname information.
+      type: object
+      required:
+        - consumer
+        - lastName
+        - firstName
+        - middleName
+        - expirationDate
+        - referenceDetails
+      properties:
+        consumer:
+           $ref: '#/components/schemas/ConsumerInfo'
+        confirmResult:
+          $ref: '#/components/schemas/ConfirmResult'
+        referenceDetails:
+          $ref: '#/components/schemas/ReferenceDetails'
+
+#-------------------------
+# Oject Model
+#-------------------------
+
+    ConsumerInfo:
+      description: Consumer Information .
+      type: object
+      required:
+        - firstName
+        - LastName
+        - middleName
+      properties:
+        firstName:
+          $ref: '#/components/schemas/FirstName'
+        middleName:
+          $ref: '#/components/schemas/MiddleName'
+        lastName:
+          $ref: '#/components/schemas/LastName'
+
+        
+    Consumer:
+      description: Consumer details .
+      type: object
+      required:
+        - address
+      properties:
+        address:
+          $ref: '#/components/schemas/Address'
+
+    Address:
+      description: Consumer Address.
+      type: object
+      required:
+        - country
+      properties:
+        country:
+          $ref: '#/components/schemas/Country'
+
+
+    ExpirationDate:
+      description: Exp date of the card.
+      type: object
+      required:
+        - country
+      properties:
+        year:
+          $ref: '#/components/schemas/Year'
+        month:
+          $ref: '#/components/schemas/Month'
+
+    ReferenceDetails:
+      description: Consumer PAN.
+      type: object
+      required:
+        - paymentAccountReference
+      properties:
+        paymentAccountReference:
+          $ref: '#/components/schemas/PaymentAccountReference'
+          
+
+#-------------------------------------
+# Common Models
+#-------------------------------------
+
+    Token:
+      description: Token number of the payment instrument .
+      type: string
+      readOnly: true
+      maxLength: 16
+      example: 1234567890123456
+
+    FirstName:
+      description: First Name of the Consumer.
+      type: string
+      maxLength: 35
+      example: John
+
+    LastName:
+      description: Last Name of the Cunsumer.
+      type: string
+      maxLength: 35
+      example: Smith
+      
+    Year:
+      description: The year that the payment instrument is set to expire.
+      type: string
+      maxLength: 4
+      example: 2025
+      
+    Month:
+      description: The month that the payment instrument is set to expire.
+      type: string
+      maxLength: 2
+      example: "03"
+      
+    Country:
+      description: Country of the consumer. This field contains ISO3166 country code (Alpha-3).
+      type: string
+      maxLength: 3
+      example: USA
+      
+
+    MiddleName:
+      description: Middle Name of the Cunsumer.
+      type: string
+      readOnly: true
+      maxLength: 35
+      example: L
+      
+    PaymentAccountReference:
+      description: This is a unique identifier generated by Visa for a given PAN..
+      type: string
+      readOnly: true
+      maxLength: 30
+      example: V0010013823193779242040932365
+    
+    PayName:
+      description: PayName of a consumer.
+      type: string
+      maxLength: 50
+      example: "+JohnSmith.abc"
+    
+    RecipientLast4:
+      description: Last 4 digits of consumer's phone number.
+      type: string
+      maxLength: 4
+      example: "4321"
+      
+
+#-------------------------------------
+# Error Models
+#-------------------------------------
+
+    Error:
+      description: (Response Only) Model for error messaging
+      type: object
+      properties:
+        code:
+          type: string
+          description: >-
+            Uniquely identifies an error condition. Client applications need to
+            read and handle errors based on this.
+        message:
+          type: string
+          description: A generic description of the error condition.
+        category:
+          type: string
+          description: The resource associated with the error condition.
+        developerInfo:
+          type: object
+          description: >-
+            Information that needs to be understood by the client developers and
+            should not be interpreted for application processing.
+          properties:
+            developerMessage:
+              type: string
+              description: An elaborative description of the error description.
+            moreInfo:
+              type: string
+              description: Link to the error in Developer page.
+            fieldError:
+              description: Detailed information about message format errors.
+              type: array
+              items:
+                properties:
+                  field:
+                    description: The property or attribute associated with the error
+                    type: string
+                  message:
+                    description: Information specific to a property or attribute.
+                    type: string
+      example:
+        code: '40000'
+        message: Example Error
+        category: example
+        developerInfo:
+          developerMessage: Invalid Message format in request payload
+          moreInfo: 'https://www.example.com/errors/40000'
+          fieldError:
+            - field: example id
+              message: exampleId is mandatory
+
+#-------------------------------------
+# ENUM Models
+#-------------------------------------
+ 
+    ConfirmResult:
+      description: Result of Payname validation.
+      type: string
+      readOnly: true
+      enum:
+        - MATCH
+        - NO MATCH
+        - MATCH NOT PERFORMED
+
+
+#------------------------------------------
+# Header Params
+#------------------------------------------
+  parameters:
+    ApiKeyHeader:
+      in: header
+      name: Api-Key
+      description: >-
+        An API key is a string value passed by a client app to the API
+        proxies. The key uniquely identifies the client app.
+      required: true
+      schema: {
+       type: string,
+       default: "Api-Key"
+    }
+      example: Value supplied by Dev Studio
+    TimestampHeader:
+      in: header
+      name: Timestamp
+      description: >-
+        Epoch timestamp in the request initiating system
+      required: true
+      schema: {
+       type: string,
+       default: "Timestamp"
+    }
+      example: Value supplied by Dev Studio
+    AuthorizationHeader:
+      in: header
+      name: Authorization
+      description: >-
+        Authorization information for the request. Format- `HMAC
+        {hmacToken}`
+      required: true
+      schema: {
+       type: string,
+       default: "Authorization"
+    }
+      example: Value supplied by Dev Studio
+    ClientRequestIdHeader:
+      in: header
+      name: Client-Request-Id
+      description: >-
+        Contains a unique ID generated by the client that can be used for
+        enforcing idempotency on POST actions. POSTs are inherently
+        non-idempotent and submitting the exact same request multiple times
+        would create duplicate resources.
+
+        Note:- Omitting this header
+        increases the risk of duplicate transactions.
+      required: true
+      schema: {
+       type: string,
+       default: "Client-Request-Id"
+    }
+      example: Value supplied by Dev Studio
+    ContentTypeHeader:
+      in: header
+      name: Content-Type
+      description: >-
+        used to indicate the media type of the resource.
+      required: true
+      schema: {
+      type: string,
+      default: "application/json"
+    }
+      example: application/json
+#------------------------------------------
+# Error Reponses 
+#------------------------------------------
+  responses:
+    BadRequest:
+      description: Invalid request format/data.
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/Error'}
+          example:
+            {
+              "code": "100001",
+              "message": "Invalid request format/data.",
+              "category": "common",
+              "developerInfo": {
+                "developerMessage": "Invalid request format/data.",
+                "fieldError": [
+                  {
+                    "field": "payname",
+                    "message": "payname is missing."
+                  }
+                ]
+              }
+            }
+    Unauthorized:
+      x-model-version: 1.0
+      description: Invalid requestor or Authorization.
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/Error'}
+          example:
+            {
+              "code": "1001021",
+              "message": "Invalid requestor or Authorization",
+              "developerInfo": {
+                  "developerMessage": "Invalid requestor or Authorization"
+              }
+            }
+    NotFound:
+      x-model-version: 1.0
+      description: The requested resource does not exist.
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/Error'}
+          example:
+            {
+              "code": "404001",
+              "message": "No data found for the request.",
+              "category": "common",
+              "developerInfo": {
+                  "developerMessage": "No data found for the request."
+              }
+            }
+    Conflict:
+      x-model-version: 1.0
+      description: The requeste conflict with existing record.
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/Error'}
+          example:
+            {
+              "code": "409001",
+              "message": "Conflict with existing record.",
+              "category": "common",
+              "developerInfo": {
+                "developerMessage": "Conflict with existing record.",
+                "fieldError": [
+                  {
+                    "field": "merchantCustomerId",
+                    "message": "Merchant Customer Id must be unique."
+                  }
+                ]
+              }
+            }
+    RequestTimeout:
+      x-model-version: 1.0
+      description: The request was timed out due.
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/Error'}
+          example:
+            {
+              "code": "408",
+              "message": "The request was timed out.",
+              "category": "common",
+              "developerInfo": {
+                  "developerMessage": "The request was timed out."
+              }
+            }
+    ServerError:
+      x-model-version: 1.0
+      description: An unexpected internal server error occurred.
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/Error'}
+          example:
+            {
+              "code": "500",
+              "message": "An unexpected internal server error occurred.",
+              "category": "common",
+              "developerInfo": {
+                  "developerMessage": "An unexpected internal server error occurred."
+              }
+            }
+#-------------------------------------
+# Examples
+#-------------------------------------  
+  examples:
+    PaynameRequest:
+      value: {
+              "payname": "+JohnSmith.abc"
+            }
+    PaynameResponse:
+      value: {
+              "token": "1234567890123456",
+              "consumer": {
+                  "address": {
+                      "country": "USA"
+                  }
+              },
+              "lastName": "Smith",
+              "firstName": "John",
+              "middleName": "L",
+              "expirationDate": {
+                  "year": "2025",
+                  "month": "03"
+              },
+              "referenceDetails": {
+                  "paymentAccountReference": "V0010013823193779242040932365"
+              }
+          }            

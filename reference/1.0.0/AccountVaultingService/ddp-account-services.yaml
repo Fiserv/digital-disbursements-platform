@@ -33,7 +33,7 @@ paths:
         - {$ref: '#/components/parameters/TimestampHeader'}
         - {$ref: '#/components/parameters/AuthorizationHeader'}
         - {$ref: '#/components/parameters/ClientRequestIdHeader'}
-        - {$ref: '#/components/parameters/AccessTokenHeader'}
+
         - {$ref: '#/components/parameters/ContentTypeHeader' }
         - {$ref: '#/components/parameters/RecipientIdPathVariable'}
 
@@ -142,7 +142,7 @@ paths:
       x-default-example: DebitOrCreditCard
       tags:
         - Digital Disbursement Platform Accounts Vault Account service APIs
-      summary: Vault account method.
+      summary: Vault Payment method using nonce token.
       description: Recipient on Digital Disbursement can enroll using one time enrollment.
       parameters:
         - {$ref: '#/components/parameters/ApiKeyHeader'}
@@ -167,7 +167,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NonceRequest'
+                $ref: '#/components/schemas/NonceResponse'
         '400':
           description: The request cannot be validated.
           content:
@@ -193,7 +193,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ServerError'
 
-  /ddp/v1/recipients/{merchantCustomerID}/accounts/{id}:
+  /ddp/v1/recipients/{merchantCustomerId}/accounts/{id}:
     get:
       x-group-name: Recipient Accounts
       x-proxy-name: Get Account
@@ -211,6 +211,7 @@ paths:
         - { $ref: '#/components/parameters/ContentTypeHeader' }
         - { $ref: '#/components/parameters/RecipientIdPathVariable' }
         - { $ref: '#/components/parameters/EVTokenIdPathVariable' }
+        - { $ref: '#/components/parameters/MerchantCustomerIdPathVariable' }
 
       responses:
         '200':
@@ -266,6 +267,7 @@ paths:
         - { $ref: '#/components/parameters/ContentTypeHeader' }
         - { $ref: '#/components/parameters/RecipientIdPathVariable'}
         - { $ref: '#/components/parameters/EVTokenIdPathVariable'}
+        - { $ref: '#/components/parameters/MerchantCustomerIdPathVariable' }
 
       requestBody:
         description: Details required to update account for a recipient.
@@ -678,7 +680,35 @@ components:
         - accounts
       properties:
         accounts:
-          $ref: '#/components/schemas/NonceAccount'
+          description: Account information to be passed for nonce enrollment.
+          type: object
+          required:
+            - token
+          properties:
+            token:
+              description: Value to represent payment account details without sharing PCI/PII data. Token can be used only once.
+              type: object
+              properties:
+                tokenId:
+                  type: string
+                  description: Actual token value
+                  example: "292bb6b886fc4446894f878b7e32bd5e"
+                tokenProvider:
+                  type: string
+                  description: Token provider for Single use Token
+                  enum:
+                    - SINGLE_USE_TOKEN
+    NonceResponse:
+      description: Token details for vaulted Payment method using nonce token.
+      type: object
+      required:
+        - accounts
+      properties:
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/TokenAccount'
+
 
     ##-------------------------------------
     ## Object Model
@@ -909,15 +939,21 @@ components:
         token:
           $ref: '#/components/schemas/ReferenceToken'
 
-    NonceAccount:
-      description: Account information to be passed for nonce enrollment.
+    TokenAccount:
+      description:  Vaulted token information.
       type: object
       required:
         - token
       properties:
         token:
-          $ref: '#/components/schemas/AccountToken'
-
+          type: object
+          properties:
+            tokenId:
+              description: Vaulted Token id that can be used for disbursement
+              type: string
+              example: "292bb6b886fc4446894f878b7e32bd5e"
+            tokenProvider:
+              $ref: '#/components/schemas/TokenProvider'
 
     Check:
       description: Information about the Check

@@ -2,13 +2,13 @@
 # Initial Version
 # Added nickname
 # Added Reversal Code for ACH reversal
-# Added Paypal source seperated from Venmo
+# Added PayPal source separated from Venmo
 #-------------------------------------
 openapi: 3.0.0
 info:
   version: 0.0.3
   title: Digital Disbursement Platform Payment APIs
-  description: This API Specification document list required APIs for initializating & disbursed Payments or  canceling payments. Provided list of Payment methods are enabled for merchant.
+  description: This API Specification document list required APIs for initializing & disbursed Payments or  canceling payments. Provided list of Payment methods are enabled for merchant.
 
 servers:
   - url:  https://qa.api.firstdata.com
@@ -26,7 +26,7 @@ paths:
       # x-child-product-name: Payout Service
       tags:
         - Digital Disbursement Platform Payment APIs
-      description: This API supports complete disbursement of fund to an individual of company recipeint. Payment Initialization & Disbursement - Merchants provides the payment, recipeint and Card information for payment initialization & disburement.
+      description: This API supports complete disbursement of fund to an individual of company recipient. Payment Initialization & Disbursement - Merchants provides the payment, recipient and Card information for payment initialization & disbursement.
       parameters:
         - in: header
           name: Api-Key
@@ -160,7 +160,7 @@ paths:
       # x-child-product-name: Payout Service
       tags:
         - Digital Disbursement Platform Payment APIs
-      description: This API supports to cancel the transactions using transaction ID for pending transactions. In case of ACH, cancelation can be done once the payments is disbursed to recipient(i.e - reversal of an original transaction).
+      description: This API supports to cancel the transactions using transaction ID for pending transactions. In case of ACH, cancellation can be done once the payments is disbursed to recipient(i.e - reversal of an original transaction).
       parameters:
         - in: header
           name: Api-Key
@@ -206,7 +206,7 @@ paths:
           example: application/json
         - in: path
           name: transactionId
-          description: when called by merchant value can be 1. Transaction Id genearetd at the time of payment initialization 2. Merchant provided reference Number. when called by recipient, value can be 1. payment Id Id generated at the time of payment initialization
+          description: when called by merchant value can be 1. Transaction Id generated at the time of payment initialization 2. Merchant provided reference Number. when called by recipient, value can be 1. payment Id Id generated at the time of payment initialization
           required: true
           schema: {
             type: string,
@@ -261,7 +261,7 @@ paths:
       # x-child-product-name: Payout Service
       tags:
         - Digital Disbursement Platform Payment APIs
-      description: This API supports to cancel the transactions using transaction ID for pending transactions. In case of ACH, cancelation can be done once the payments is disbursed to recipient(i.e - reversal of an original transaction).
+      description: This API supports to cancel the transactions using transaction ID for pending transactions. In case of ACH, cancellation can be done once the payments is disbursed to recipient(i.e - reversal of an original transaction).
       parameters:
         - in: header
           name: Api-Key
@@ -415,7 +415,7 @@ paths:
           example: application/json
         - in: path
           name: id
-          description: Id genearetd at the time of payment request initialization. This is paymentId.
+          description: Id generated at the time of payment request initialization. This is paymentId.
           required: true
           schema: {
             type: string,
@@ -769,7 +769,7 @@ components:
           type: array
           minItems: 1
           items:
-            $ref: '#/components/schemas/PaymentRespsone'
+            $ref: '#/components/schemas/PaymentResponse'
         transactionStatus:
           $ref: '#/components/schemas/TransactionStatus'
 
@@ -824,7 +824,7 @@ components:
           maxLength: 75
 
     CancelResponse:
-      title: Void respsone object model
+      title: Void response object model
       type: object
       required:
         - TransactionId
@@ -857,7 +857,7 @@ components:
         bankFee:
           $ref: '#/components/schemas/BankFee'
         exchangeRate:
-          description: Display the Currency Conversion Rate for the targetcurrencycode.
+          description: Display the Currency Conversion Rate for the target currency code.
           type: number
           example: 53.3676975
 
@@ -938,7 +938,7 @@ components:
           description: Canonical type values of "work", "home", "billing" and "other".
           type: string
         houseNumberOrName:
-          description: Housse number or name of the address
+          description: House number or name of the address
           type: string
         street:
           description: The full street address component, which may include house number, street name, P.O. box, and multi-line extended street address information.
@@ -953,7 +953,7 @@ components:
           description: The zip code or postal code component.
           type: string
         country:
-          description: The country name component.  When specified, the value MUST be in ISO 3166-1 "alpha-2" code format; e.g., the United States and Sweden are "US" and "SE", respectively.
+          description: The country name component.  When specified, the value MUST be in ISO 3166-1 "alpha-3" code format; e.g., the United States and Sweden are "USA" and "SWE", respectively.
           type: string
         formatted:
           description: The full mailing address, formatted for display or use with a mailing label.
@@ -967,7 +967,7 @@ components:
         city: "Hollywood"
         stateOrProvince: "CA"
         postalCode: "91608"
-        country: "US"
+        country: "USA"
         formatted: "100 Universal City Plaza\nHollywood, CA 91608 US"
         primary: true
 
@@ -1167,10 +1167,8 @@ components:
           $ref: '#/components/schemas/Email'
         phoneNumber:
           $ref: '#/components/schemas/Phone'
-        recipientIdentifier:
-          $ref: '#/components/schemas/RecipientIdentifier'
-        recipientIdentifierValue:
-          $ref: '#/components/schemas/RecipientIdentifierValue'
+        preferredLanguage:
+          $ref: '#/components/schemas/PreferredLanguage'
         status:
           $ref: '#/components/schemas/RecipientStatus'
         reason:
@@ -1188,8 +1186,8 @@ components:
         updatedBy:
           $ref: '#/components/schemas/UpdatedBy'
 
-    PaymentRespsone:
-      description: Details about notfication message.
+    PaymentResponse:
+      description: Details about notification message.
       type: object
       required:
         - merchantCustomerId
@@ -1259,7 +1257,7 @@ components:
           readOnly: true
 
     NVP:
-      title:  Name and Value pair to capture the data elements for custome fileds
+      title:  Name and Value pair to capture the data elements for custom fields
       type: object
       properties:
         key:
@@ -1407,15 +1405,15 @@ components:
       example: de3bc78b-8ebc-4ae0-ba5e-0b5c0ae01e03
 
     Description:
-      description: Decription provided at the time of initialization by the merchant.
+      description: Description provided at the time of initialization by the merchant.
       type: string
-      example: "Recipient details for Isurance XYZ.TEST.com"
+      example: "Recipient details for Insurance XYZ.TEST.com"
       writeOnly: true
       minimum: 0
       maximum: 250
 
     CancelDescription:
-      description: Decription provided at the time of initialization by the merchant.
+      description: Description provided at the time of initialization by the merchant.
       type: string
       example: "Cancel transaction due to wrong amount."
       writeOnly: true
@@ -1430,12 +1428,14 @@ components:
       readOnly: true
 
     PaymentId:
-      description: Unique Identifier provided by disbursement platform at the time of initialization per recepient.
+      description: Unique Identifier provided by disbursement platform at the time of initialization per recipient.
       type: string
       example: "8a34144657d0aa6e0157d3808ed000f2"
       readOnly: true
-
-
+    PreferredLanguage:
+      description: Preferred language for recipient emails and Recipient Portal. Provide if language is other than EN-US. Currently only EN-US is supported.
+      type: string
+      example: EN-US
     #-------------------------------------
     # Common Models
     #-------------------------------------
@@ -1515,23 +1515,6 @@ components:
       maxLength: 11
       example: 345-55-2345
 
-    RecipientIdentifier:
-      description: Recipient's Identification Type.
-      type: string
-      readOnly: false
-      enum:
-        - SPECIAL_CODE
-        - DATE_OF_BIRTH
-        - Last_4_of_SSN
-        - ACCOUNT_NUMBER
-        - PHONE_NUMBER
-
-    RecipientIdentifierValue:
-      type: string
-      maxLength: 30
-      example: 03/12/2011
-      description: Recipient's Identification Data. Identification Data has to be sync with Identification Type for example - Date of Birth MM/DD/YYYY format - 03/12/2000, Member Id - 1234567890, Special Code - TEXT12345.
-
     Reason:
       description: Reason code for the status Change Or Create
       type: string
@@ -1544,7 +1527,7 @@ components:
       readOnly: true
 
     DoingBusinessAs:
-      description: Merchant DBA while adding the recipient deatils
+      description: Merchant DBA while adding the recipient details
       type: string
       maxLength: 75
       example: Fiserv LLC.
@@ -1553,7 +1536,7 @@ components:
       description: comments while adding the Recipient Profile.
       type: string
       maxLength: 250
-      example: Recipinet details for insurance company xyz.com
+      example: Recipient details for insurance company xyz.com
 
     Guest:
       description: To Identify to guest recipients.
@@ -1573,16 +1556,16 @@ components:
       example: 5533323323
 
     RecipientType:
-      description: Merchant should select the Recipient Type while adding the recipient details. Possibile options are are Consumer or  Business.
+      description: Merchant should select the Recipient Type while adding the recipient details. Possible options are are Consumer or  Business.
       type: string
       example: Consumer
 
     ApplyDate:
-      description: Apply date of the Payments.most of the caes applydate will be the current system date.
+      description: Apply date of the Payments.most of the cases apply date will be the current system date.
       type: string
       example: 10/14/2020
     TransactionDate:
-      description: Transaction Date when the trasnaction is completed.
+      description: Transaction Date when the transaction is completed.
       type: string
       example: 10/14/2020
 
@@ -1615,7 +1598,7 @@ components:
 
     PaymentStatus:
       title: Indicates status of Payment associated with transaction.
-      description: Indicates the status of an Payment with respespect of each payment operation. DP - Disbursement Pending, DI - Disbursed, DD- Disbursement Decline, PE- Payment expired,PC - Payment cancelled, IR - In Review.
+      description: Indicates the status of an Payment with respect of each payment operation. DP - Disbursement Pending, DI - Disbursed, DD- Disbursement Decline, PE- Payment expired,PC - Payment cancelled, IR - In Review.
       type: string
       readOnly: true
       enum:
@@ -1628,7 +1611,7 @@ components:
 
 
     FundingSourceType:
-      description: Describes the type of Payments options avaible.
+      description: Describes the type of Payments options available.
       type: string
       readOnly: true
       enum:
@@ -1641,8 +1624,8 @@ components:
         - ECHECK
 
     RecipientStatus:
-      title: Indicateds Recipient Status
-      description: Recipinet status indicated if the recipinet is in good stadning to receive payments.
+      title: Indicates Recipient Status
+      description: Recipient status indicated if the recipient is in good standing to receive payments.
       type: string
       readOnly: true
       enum:
@@ -1653,7 +1636,7 @@ components:
 
     TokenProvider:
       title: Specify the list of token providers
-      description: Fiserv support token providers. Disburseent is using ENROLMENT_VAULT to vault the call and uses token to disbursement payments.
+      description: Fiserv support token providers. Disbursement is using ENROLMENT_VAULT to vault the call and uses token to disbursement payments.
       type: string
       enum:
         - TRANS_ARMOR
@@ -1662,7 +1645,7 @@ components:
         - ENROLMENT_VAULT
 
     TSPID:
-      description: A reference id provided to merchant in the response. This is to identtify source of tokenReferenceId. possible values are define as enum.
+      description: A reference id provided to merchant in the response. This is to identify source of tokenReferenceId. possible values are define as enum.
       type: number
       enum:
         - 400
@@ -1693,7 +1676,7 @@ components:
           $ref: '#/components/schemas/Error'
 
     ServerError:
-      description: An unexpected server error occured.
+      description: An unexpected server error occurred.
       type: object
       properties:
         error:
@@ -1731,8 +1714,7 @@ components:
               "firstName": "Madhan",
               "lastName": "Kumar",
               "recipientType": "Consumer",
-              "recipientIdentifier": "SPECIAL_CODE",
-              "recipientIdentifierValue": "1234",
+
               "phoneNumber": {
                 "code": 1,
                 "value": "704-884-2754",
@@ -1811,8 +1793,7 @@ components:
                 "type": "billing",
                 "extension": "2145"
               },
-              "recipientIdentifier": "SPECIAL_CODE",
-              "recipientIdentifierValue": "1234",
+
               "address": {
                 "type": "work",
                 "street": "1255 Corporate Drive",
@@ -1845,8 +1826,7 @@ components:
                 "type": "billing",
                 "extension": "2145"
               },
-              "recipientIdentifier": "SPECIAL_CODE",
-              "recipientIdentifierValue": "7048842754",
+
               "address": {
                 "type": "work",
                 "street": "1255 Corporate Drive",
@@ -1923,8 +1903,7 @@ components:
                 "type": "billing",
                 "extension": "2145"
               },
-              "recipientIdentifier": "SPECIAL_CODE",
-              "recipientIdentifierValue": "9996663333",
+
               "doingBusinessAs": "Tech computers",
               "guest": false,
               "address": {
@@ -2003,8 +1982,7 @@ components:
                 "type": "billing",
                 "extension": "2145"
               },
-              "recipientIdentifier": "SPECIAL_CODE",
-              "recipientIdentifierValue": "9996663333",
+
               "doingBusinessAs": "Tech computers 1",
               "guest": false,
               "address": {
@@ -2038,8 +2016,7 @@ components:
                 "type": "billing",
                 "extension": "2145"
               },
-              "recipientIdentifier": "SPECIAL_CODE",
-              "recipientIdentifierValue": "9996663333",
+
               "doingBusinessAs": "Tech computers 2",
               "guest": false,
               "address": {
@@ -2211,7 +2188,7 @@ components:
               "merchantCustomerId": "TestConsu22mer1211113"
             },
             "payments": {
-              "paymentType": "Gamming"
+              "paymentType": "Gaming"
             },
             "description": "Sending money to XXXXX",
             "source": "PAYPAL",

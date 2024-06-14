@@ -5,17 +5,9 @@ The Sanctions Hold applies to any cross-border transaction, regardless of the pa
 
 ## Use Case Example(s)
 
-- The merchant must be enabled for cross-border payments.
-- Create a recipient and initiate a payment that includes recipient details found on the sanctions list.
-- Disburse the payment using a DMATCH, then use a border card.
-    - If the Sanctions list matches 'NOT_ENOUGH_INFO', the payment will be cancelled.
-    - If the Sanctions list matches 'MATCH', the payment will proceed to disbursement.
-    - If the Sanctions list matches 'NO_MATCH', the payment will proceed to disbursement
-
-## API Changes
-NA
-<!-- Parameter Details Try Out - link to new request -->
-
-## Troubleshoooting
-NA
-<!--Error Codes, FAQs / Common Issues -->
+- The merchant should have cross-border payment capability enabled.
+- Create a recipient and initiate a payment, ensuring that recipient details are checked against the sanctions list.
+- Disburse the payment using a Debit cross-border card.
+  - If the sanctions list shows a match of 'NOT_ENOUGH_INFO', the payment will be cancelled.
+  - If the sanctions list shows a match of 'MATCH', the payment will proceed to disbursement.
+  - If the sanctions list shows a match of 'NO_MATCH', the payment will proceed to disbursement.

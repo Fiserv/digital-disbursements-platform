@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The Return of Funds is a feature that facilitates a specific requirement for merchants. This requirement states that a merchant's funds, If the payouts processed during that time do not exhaust the full deposited amount, this requirement mandates returning a merchant's funds within 3 days of their deposit.
+The Return of Funds is a feature that facilitates a specific requirement for merchants. This requirement states that a merchant's funds, If the payouts processed during that time do not exhaust the full deposited amount, this requirement mandates returning a merchant's funds.
 
 
 ## Use Case Example(s)
@@ -14,5 +14,3 @@ Through a manual return process via settlement ops by crediting an account back 
 The Merchant is expected to return the funds within 3 calendar days, with the day of deposit considered as Day 1 and the return being due on Day 4.
 
 For example, if funds are deposited on Monday, the expected return day would be Thursday. However, if Thursday is a bank holiday (BH), the funds would be returned on the next banking day. 
-
-

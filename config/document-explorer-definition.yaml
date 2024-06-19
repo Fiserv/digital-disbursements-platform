@@ -46,6 +46,8 @@
           link: docs/documentation/features/sanctionholdreview.md
         - title: Return Of Funds
           link: docs/documentation/features/returnoffunds.md
+        - title: Visa+ (Visa Plus)
+          link: docs/documentation/features/visaplus.md
 #        - title: Tokenization
 #          link: docs/documentation/features/tokenization.md
   - title: Interactive guide

@@ -7,10 +7,10 @@ Data Commerce provides the functionality to execute account validation prior to 
 ## Use Case Example(s)
 
 Validating ACH Transactions:
-    &emsp;A customer initiates an ACH transaction. DDP sends a request to Data Commerce (EWS) with transaction details.
-    &emsp;Data Commerce (EWS) validates the transaction and responds with an approval or denial status.
-    &emsp;If approved, DDP proceeds with further validation and disbursement.
-    &emsp;If denied, the transaction is canceled.
-    &emsp;If a transaction receives an "Inconclusive" status from Data Commerce (EWS), DDP checks the merchant configuration:
-        &emsp;&emsp;- If configured as 'Pass', the transaction proceeds.
-        &emsp;&emsp;- If configured as 'Fail', the transaction is declined.
+- A customer initiates an ACH transaction. DDP sends a request to Data Commerce (EWS) with transaction details.
+- Data Commerce (EWS) validates the transaction and responds with an approval or denial status.
+- If approved, DDP proceeds with further validation and disbursement.
+- If denied, the transaction is canceled.
+- If a transaction receives an "Inconclusive" status from Data Commerce (EWS), DDP checks the merchant configuration:
+  * If configured as 'Pass', the transaction proceeds.
+  * If configured as 'Fail', the transaction is declined.

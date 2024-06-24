@@ -48,6 +48,8 @@
           link: docs/documentation/features/returnoffunds.md
         - title: Visa+ (Visa Plus)
           link: docs/documentation/features/visaplus.md
+        - title: P2P (Person-to-Person)
+          link: docs/documentation/features/p2p.md
 #        - title: Tokenization
 #          link: docs/documentation/features/tokenization.md
   - title: Interactive guide

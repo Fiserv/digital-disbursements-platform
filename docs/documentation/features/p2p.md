@@ -7,10 +7,10 @@ The Person-to-Person (P2P) feature facilitates direct fund transfers between cli
 ## Use Case Example(s)
 
 P2P Payment Process:
-    Step 1: AFT Debit from Sender:
-        When a person initiates a P2P payment, the sender's account is debited through an Automated Funds Transfer (AFT). This step ensures that the funds are available for the transaction.
-    Step 2: OCT Credit to Recipient:
-        Once the sender's account is debited, the recipient receives an Online Credit Transfer (OCT). This credit is reflected in the recipient's account, completing the P2P transaction.
+- Step 1: AFT Debit from Sender:
+  When a person initiates a P2P payment, the sender’s account is debited through an Automated Funds Transfer (AFT). This step ensures that the funds are available for the transaction.
+- Step 2: OCT Credit to Recipient:
+   Once the sender’s account is debited, the recipient receives an Online Credit Transfer (OCT). This credit is reflected in the recipient’s account, completing the P2P transaction.
 
 The DDP does not facilitate the AFT directly; instead, it relies on the merchant to perform the AFT.
 The DDP's role is to forward sender details to VISA and Mastercard (VISA MC) for processing.

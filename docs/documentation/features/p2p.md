@@ -18,3 +18,7 @@ Both the sender and recipient are expected to provide card data within a TransAr
 
 Initially, only USD (United States Dollar) is supported as the transaction currency.
 However, the DDP should eventually support cross-border transactions with non-US issuers.
+
+## API 
+
+[![Try it out](../../../../assets/images/button.png)](../api/?type=post&path=/ddp/v1/payments)

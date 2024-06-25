@@ -1,4 +1,4 @@
-# Data Commerce
+# Data Commerce Bank Account Verification
 
 ## Introduction
 

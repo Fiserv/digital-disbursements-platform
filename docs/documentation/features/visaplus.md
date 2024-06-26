@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The Visa Plus feature empowers clients to activate Visa+ as a payout method on DDP for both Portal and Direct Disbursement merchants. This functionality facilitates the implementation of the Visa+ B2C (Bussiness-to-Consumer) use case, enabling participating payout merchants to provide consumers with the choice to link their Visa+ payname to receive payments seamlessly. tilizing Visa+ instead of Visa provides enhanced security, increased convenience, personalized options, global acceptance, mobile integration, and dedicated customer support, surpassing the standard services offered by Visa.
+The Visa Plus feature empowers clients to activate Visa+ as a payout method on DDP for both Portal and Direct Disbursement merchants. This functionality facilitates the implementation of the Visa+ B2C (Bussiness-to-Consumer) use case, enabling participating payout merchants to provide consumers with the choice to link their Visa+ payname to receive payments seamlessly. Utilizing Visa+ instead of Visa provides enhanced security, increased convenience, personalized options, global acceptance, mobile integration, and dedicated customer support, surpassing the standard services offered by Visa.
 
 ## Use Case Example(s)
 

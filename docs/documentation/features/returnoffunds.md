@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The Return of Funds is a feature that facilitates a specific requirement for merchants. This requirement states that a merchant's funds, If the payouts processed during that time do not exhaust the full deposited amount, this requirement mandates returning a merchant's funds.
+The Return of Funds is a feature that facilitates a specific requirement for merchants. This requirement states that a merchant's funds, if the payouts processed during that time do not exhaust the full deposited amount, the system must reimburse the remaining funds to the merchant.
 
 
 ## Use Case Example(s)

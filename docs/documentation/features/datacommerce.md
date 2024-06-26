@@ -2,15 +2,15 @@
 
 ## Introduction
 
-Data Commerce provides the functionality to execute account validation prior to the execution of any ACH pay-outs. By integrating this with DDP, can perform EWS (Early Warning System) validation, reducing the number of returns and ensure compliance with NACHA guidelines. This functionality is available for both Portal and Direct Disbursement merchants.
+Data Commerce offers the capability to perform account validation before processing any ACH payouts. By incorporating this feature into the DDP, it can conduct EWS (Early Warning System) validation, thereby decreasing the occurrence of returns and ensuring adherence to NACHA guidelines. This functionality is available to both Portal and Direct Disbursement merchants.
 
 ## Use Case Example(s)
 
 Validating ACH Transactions:
-- A customer initiates an ACH transaction. DDP sends a request to Data Commerce (EWS) with transaction details.
-- Data Commerce (EWS) validates the transaction and responds with an approval or denial status.
-- If approved, DDP proceeds with further validation and disbursement.
-- If denied, the transaction is canceled.
-- If a transaction receives an "Inconclusive" status from Data Commerce (EWS), DDP checks the merchant configuration:
-  * If configured as 'Pass', the transaction proceeds.
-  * If configured as 'Fail', the transaction is declined.
+- A customer initiates an ACH transaction. DDP sends a request to Data Commerce (EWS) containing transaction details.
+- Data Commerce (EWS) validates the transaction and responds with either an approval or denial status.
+- Upon approval, DDP proceeds with additional validation and disbursement.
+- In case of denial, the transaction is cancelled.
+- If a transaction receives an "Inconclusive" status from Data Commerce (EWS), DDP reviews the merchant configuration:
+  * For 'Pass' configuration, the transaction proceeds.
+  * For 'Fail' configuration, the transaction is declined.

@@ -2,12 +2,24 @@
 
 ## Introduction
 
-The Visa Plus feature allows clients to enable Visa+ as a payout method on DDP for both Portal and Direct Disbursement merchants. This enables the Visa+ B2C use case, allowing participating payout merchants to offer consumers the option to add their Visa+ payname to receive payments.
+The Visa Plus feature empowers clients to activate Visa+ as a payout method on DDP for both Portal and Direct Disbursement merchants. This functionality facilitates the implementation of the Visa+ B2C (Bussiness-to-Consumer) use case, enabling participating payout merchants to provide consumers with the choice to link their Visa+ payname to receive payments seamlessly. tilizing Visa+ instead of Visa provides enhanced security, increased convenience, personalized options, global acceptance, mobile integration, and dedicated customer support, surpassing the standard services offered by Visa.
 
 ## Use Case Example(s)
 
-The merchant initiates a payment to the recipient. The recipient accepts the payment via the Visa+ payment method by providing their payname. The DDP must confirm the payname with Visa and resolve any discrepancies.
+This use case demonstrates the flow of payment initiation, verification, funds transfer, and settlement within the Visa+ payment ecosystem, ensuring a secure and efficient transaction experience for both merchants and recipients.
 
-Visa provides the 16-digit payment account reference linked to the recipient’s Visa+ payname, along with customer data and an expiration date. The DDP then sends a push funds request to Visa.
+1. *Payment Initiation:*
+   - The merchant commences a payment to the recipient.
+2. *Recipient Acceptance:*
+   - The recipient opts for the Visa+ payment method by providing their payname.
+3. *Verification Process:*
+   - DDP verifies the payname with Visa, addressing any discrepancies as needed.
+4. *Account Details Provision:*
+   - Visa furnishes the recipient's 16-digit payment account reference, customer data, and an expiration date associated with the Visa+ payname.
+5. *Funds Transfer Request:**
+   - DDP forwards a push funds request to Visa for processing.
+6. *Transaction Status Update:*
+   - DDP informs the recipient of the funds transfer status. If successful, the process moves to settlement.
+7. *Settlement Procedure:*
+   - Successful transactions lead to funds settlement between the merchant sponsor and recipient wallets following standard Visa settlement protocols.
 
-The DDP responds with the status of the funds transfer to the recipient. If successful, funds settlement occurs between the merchant sponsor and the recipient wallets through regular Visa settlement.

@@ -2,23 +2,15 @@
 
 ## Introduction
 
-The Person-to-Person (P2P) feature facilitates direct fund transfers between clients within the DDP ecosystem. This functionality is available for both Portal and Direct Disbursement merchants. By enabling P2P transactions, participating users experience faster and more efficient payment processing.
+The Person-to-Person (P2P) feature facilitates direct fund transfers between clients within the DDP ecosystem. Both Portal and Direct Disbursement merchants have access to this convenient functionality. Enabling Person-to-Person (P2P) payments offers advantages such as convenience, speed, cost-effectiveness, accessibility, enhanced user experience, and increased efficiency in fund transfers.
 
 ## Use Case Example(s)
 
-P2P Payment Process:
-- Step 1: AFT Debit from Sender:
-  When a person initiates a P2P payment, the sender’s account is debited through an Automated Funds Transfer (AFT). This step ensures that the funds are available for the transaction.
-- Step 2: OCT Credit to Recipient:
-   Once the sender’s account is debited, the recipient receives an Online Credit Transfer (OCT). This credit is reflected in the recipient’s account, completing the P2P transaction.
+Customer would like to make a payment to a recipient using the P2P method. The customer is required to send the sender details along with the request API payload. The DDP will process the request and route it to the relevant payment channels, such as Visa/Mastercard, to utilize the sender information and disburse the funds accordingly to the recipient.
 
-The DDP does not facilitate the AFT directly; instead, it relies on the merchant to perform the AFT.
-The DDP's role is to forward sender details to VISA and Mastercard (VISA MC) for processing.
-Both the sender and recipient are expected to provide card data within a TransArmor (TA) Token.
-
-Initially, only USD (United States Dollar) is supported as the transaction currency.
-However, the DDP should eventually support cross-border transactions with non-US issuers.
+Initially, the P2P payment process supports transactions in USD only. However, the DDP aims to expand its services to support cross-border transactions with non-US issuers in the future.
 
 ## API 
+An update has been made to the Payment API to incorporate this feature. Please review the API specifications provided below.
 
 [![Try it out](../../../../assets/images/button.png)](../api/?type=post&path=/ddp/v1/payments)

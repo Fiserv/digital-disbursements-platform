@@ -1,4 +1,4 @@
-#  Sanction Hold Review
+# Sanction Hold Review
 
 ## Introduction
 All cross-border transactions will undergo OFAC (Office of Foreign Assets Control) screening. DDP will send the recipient's information to the OFAC system. Based on their rules, OFAC will respond back with a result (pass/fail). If any transaction fails in OFAC, it will be held for further review (Sanction Hold Review). After investigating the failed transaction, the OFAC team will respond with one of three outcomes (NOT_ENOUGH_INFO, MATCH, NO_MATCH).

@@ -12,5 +12,3 @@ DDP will need to create a process to calculate whether the funds deposited by th
 By creating a payout to the debit card provided by the merchant.
 Through a manual return process via settlement ops by crediting an account back to the merchant.
 The Merchant is expected to return the funds within 3 calendar days, with the day of deposit considered as Day 1 and the return being due on Day 4.
-
-For example, if funds are deposited on Monday, the expected return day would be Thursday. However, if Thursday is a bank holiday (BH), the funds would be returned on the next banking day. 

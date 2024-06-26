@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The Person-to-Person (P2P) feature facilitates direct fund transfers between clients within the DDP ecosystem. Both Portal and Direct Disbursement merchants have access to this convenient functionality. Enabling Person-to-Person (P2P) payments offers advantages such as convenience, speed, cost-effectiveness, accessibility, enhanced user experience, and increased efficiency in fund transfers.
+The Person-to-Person (P2P) feature facilitates direct fund transfers between clients within the DDP ecosystem. The Direct Disbursement merchants have access to this convenient functionality. Enabling Person-to-Person (P2P) payments offers advantages such as convenience, speed, cost-effectiveness, accessibility, enhanced user experience, and increased efficiency in fund transfers.
 
 ## Use Case Example(s)
 

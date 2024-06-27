@@ -126,6 +126,12 @@ paths:
               Create and Pay - Token Request:
                 summary: Token Request
                 $ref: '#/components/examples/DisburseToken'
+              Create and Pay - Visa+ Request:
+                summary: Token Request
+                $ref: '#/components/examples/P2PVisaPlusRequest'
+              Create and Pay - P2P Request:
+                summary: Token Request
+                $ref: '#/components/examples/P2PTransArmorTokenRequest'
 
       responses:
         '201':
@@ -661,6 +667,8 @@ components:
       properties:
         amount:
           $ref: '#/components/schemas/Amount'
+        sender:
+          $ref: '#/components/schemas/SenderInfo'
         recipient:
           type: array
           minItems: 1
@@ -671,6 +679,8 @@ components:
           type: string
           example: "b4d44892-5b8d-11ed-9b6a-0242ac120002"
           writeOnly: true
+        transactionPurpose:
+          $ref: '#/components/schemas/TransactionPurpose'
         customFields:
           type: array
           minItems: 0
@@ -1044,7 +1054,62 @@ components:
         paymentStatus:
           $ref: '#/components/schemas/PaymentStatus'
 
+    SenderInfo:
+      description: Conditional, Sender profile and fund source information, Required for Person to Person(P2P) Payments.
+      type: object
+      required:
+        - profile
+        - fundingAccount
 
+      properties:
+        profile:
+          $ref: '#/components/schemas/SenderProfileInfo'
+        fundingAccount:
+          $ref: '#/components/schemas/SourceAccount'
+
+        transactionIdentifier:
+          description: transaction id provided by Visa or Mastercard for pull funds
+          type: string
+          example: '01323464673829290200101'
+    SenderProfileInfo:
+      description: Sender Profile information
+      type: object
+      required:
+        - firstName
+        - lastName
+        - dateOfBirth
+        - address
+      properties:
+        firstName:
+          description: Sender first name
+          type: string
+          example: 'David'
+        lastName:
+          description: Sender last name
+          type: string
+          example: 'Charles'
+        dateOfBirth:
+          description: Sender date of birth in format mm/dd/yyyy
+          type: string
+          example: '12/24/2011'
+        nationality:
+          description: ISO 3 country code for country of nationality
+          type: string
+          example: 'USA'
+        birthCountry:
+          description: ISO 3 country code for country of nationality
+          type: string
+          example: 'USA'
+        occupation:
+          description: occupation of the sender
+          type: string
+          example: 'Software Engineer'
+        emailAddress:
+          $ref: '#/components/schemas/Email'
+        phoneNumber:
+          $ref: '#/components/schemas/Phone'
+        address:
+          $ref: '#/components/schemas/Address'
     RecipientPaymentInfo:
       description: Details about payment type and status associated with the recipient.
       type: object
@@ -1090,6 +1155,8 @@ components:
           $ref: '#/components/schemas/Paypal'
         echeck:
           $ref: '#/components/schemas/ECheck'
+        visaPlus:
+          $ref: '#/components/schemas/VisaPlus'
 
     CreateAndPayRecipientInfo:
       description: Details about recipient.
@@ -1344,7 +1411,43 @@ components:
           type: string
           description: Name of the recipient
           example: "John Smith "
-
+    VisaPlus:
+      description: Visa Plus details, required when recipient source is VISAPLUS
+      type: object
+      required:
+        - payName
+      properties:
+        payName:
+          description: Visa Plus Pay name
+          example: '+JohnSmith.abc'
+          type: string
+        last4Phone:
+          description: Last 4 for phone number used for Visa Plus account
+          example: '3456'
+          type: string
+    SourceAccount:
+      description: Details of funding account used to pull funds
+      type: object
+      required:
+        - accountId
+        - type
+      properties:
+        accountId:
+          description: Account number/Identifier (Bank_account, PAN, TOKEN) used to pull funds, In case accountId is CARD or BANK_ACCOUNT it should be encrypted. Not required when type is CASH
+          type: string
+          example: '4567890123455'
+        type:
+          description: Type of account used to pull funds. <br/> CARD for Credit, Debit, Prepaid Card <br/> BANK_ACCOUNT for Deposit Account <br/> TRANS_ARMOR when accountId has trans armor token <br/> OTHER when source of funds is other than Card/Trans Armor Token, Bank Account or Cash
+          type: string
+          example: 'CARD'
+          enum:
+            - CARD
+            - BANK_ACCOUNT
+            - TRANS_ARMOR
+            - CASH
+            - OTHER
+        routingNumber:
+          description: Conditional, Required when type is BANK_ACCOUNT and Bank account is USA bank account
     SourceAmount:
       description: Information about Source amount which needs to be converted
       type: object
@@ -1622,6 +1725,7 @@ components:
         - VENMO
         - PAYPAL
         - ECHECK
+        - VISAPLUS
 
     RecipientStatus:
       title: Indicates Recipient Status
@@ -1653,6 +1757,24 @@ components:
         - 600
         - 300
         - 111
+    TransactionPurpose:
+      description: Conditional, Purpose of Payment is Required for P2P transactions.
+      type: string
+      enum:
+        - FAMILY_SUPPORT
+        - REGULAR_LABOR_TRANSFERS
+        - TRAVEL_AND_TOURISM
+        - EDUCATION
+        - HOSPITALIZATION_AND_MEDICAL_TREATMENT
+        - EMERGENCY_NEED
+        - SAVINGS
+        - GIFTS
+        - CROWD_LENDING
+        - CRYPTO_CURRENCY
+        - REFUND_ORIGINAL_CARD
+        - REFUND_NEW_CARD
+        - OTHER
+
 
 
     #-------------------------------------
@@ -2297,6 +2419,204 @@ components:
                 "year": "MjM="
               }
             }
+          }
+        ]
+      }
+    P2PVisaPlusRequest:
+      value: {
+        "amount": {
+          "total": 100,
+          "currency": "USD"
+        },
+        "sender": {
+          "profile": {
+            "firstName": "David",
+            "lastName": "Charles",
+            "dateOfBirth": "12/24/2011",
+            "nationality": "USA",
+            "birthCountry": "USA",
+            "occupation": "Software Engineer",
+            "emailAddress": {
+              "value": "bjensen@example.com",
+              "type": "work",
+              "primary": true
+            },
+            "address": {
+              "type": "work",
+              "street": "100 Universal City Plaza",
+              "city": "Hollywood",
+              "stateOrProvince": "CA",
+              "postalCode": "91608",
+              "country": "US",
+              "formatted": "100 Universal City Plaza\nHollywood, CA 91608 US",
+              "primary": true
+            }
+          },
+          "fundingAccount": {
+            "accountId": "4567890123455",
+            "type": "CARD"
+          },
+
+          "transactionIdentifier": "01323464673829290200101"
+        },
+        "recipient": [
+          {
+            "recipientProfileInfo": {
+              "merchantCustomerId": "vendorId-0987613457398475",
+              "dateOfBirth": "11/11/2011",
+              "emailAddress": {
+                "value": "bjensen@example.com",
+                "type": "work",
+                "primary": true
+              },
+              "address": {
+                "type": "work",
+                "street": "100 Universal City Plaza",
+                "city": "Hollywood",
+                "stateOrProvince": "CA",
+                "postalCode": "91608",
+                "country": "US",
+                "formatted": "100 Universal City Plaza\nHollywood, CA 91608 US",
+                "primary": true
+              },
+              "description": "New Recipinet",
+              "ceatedBy": "User1234",
+              "updatedBy": "User1235"
+            },
+            "description": "MERCHNAT_INPUT",
+            "payments": {
+              "paymentType": "wages"
+            },
+            "source": "VISAPLUS",
+            "visaPlus": {
+              "payName": "+JohnSmith.abc"
+            }
+          }
+        ],
+        "merchantTransactionId": "MERCHNAT_INPUT",
+        "batchNumber": "MERCHNAT_INPUT",
+        "applyDate": "04/03/2021",
+        "customFields": [
+          {
+            "key": "payment_number",
+            "value": "string",
+            "valueAsList": [
+              "string"
+            ]
+          },
+          {
+            "key": "string",
+            "value": "string",
+            "valueAsList": [
+              "string"
+            ]
+          }
+        ]
+      }
+    P2PTransArmorTokenRequest:
+      value: {
+        "amount": {
+          "total": 100,
+          "currency": "USD"
+        },
+        "sender": {
+          "profile": {
+            "firstName": "David",
+            "lastName": "Charles",
+            "dateOfBirth": "12/24/2011",
+            "nationality": "USA",
+            "birthCountry": "USA",
+            "occupation": "Software Engineer",
+            "emailAddress": {
+              "value": "bjensen@example.com",
+              "type": "work",
+              "primary": true
+            },
+            "phoneNumber": {
+              "countryCode": "+91",
+              "value": "704-884-2754",
+              "type": "Work",
+              "extension": "2145"
+            },
+            "address": {
+              "type": "work",
+              "street": "100 Universal City Plaza",
+              "city": "Hollywood",
+              "stateOrProvince": "CA",
+              "postalCode": "91608",
+              "country": "US",
+              "formatted": "100 Universal City Plaza\nHollywood, CA 91608 US",
+              "primary": true
+            }
+          },
+          "fundingAccount": {
+            "accountId": "4567890123455",
+            "type": "CARD"
+          },
+
+          "transactionIdentifier": "01323464673829290200101"
+        },
+        "recipient": [
+          {
+            "recipientProfileInfo": {
+              "recipientType": "Consumer",
+              "merchantCustomerId": "vendorId-0987613457398475",
+              "firstName": "First Name",
+              "lastName": "Last Name",
+              "dateOfBirth": "11/11/2011",
+              "emailAddress": {
+                "value": "bjensen@example.com",
+                "type": "work",
+                "primary": true
+              },
+              "phoneNumber": {
+                "countryCode": "+91",
+                "value": "704-884-2754",
+                "type": "Work",
+                "extension": "2145"
+              },
+              "address": {
+                "type": "work",
+                "street": "100 Universal City Plaza",
+                "city": "Hollywood",
+                "stateOrProvince": "CA",
+                "postalCode": "91608",
+                "country": "US",
+                "formatted": "100 Universal City Plaza\nHollywood, CA 91608 US",
+                "primary": true
+              },
+              "description": "New Recipinet",
+              "ceatedBy": "User1234",
+              "updatedBy": "User1235"
+            },
+            "description": "MERCHNAT_INPUT",
+            "source": "TOKEN",
+            "token": {
+              "tokenId": "292bb6b886fc4446894f878b7e32bd5e",
+              "tokenProvider": "TRANS_ARMOR",
+              "expiryDate": {
+                "month": "09",
+                "year": "20"
+              }
+            }
+          }
+        ],
+        "merchantTransactionId": "MERCHNAT_INPUT",
+        "transactionPurpose":"FAMILY_SUPPORT",
+        "customFields": [
+          {
+            "key": "payment_number",
+            "value": "string",
+            "valueAsList": [
+              "string"
+            ]
+          },
+          {
+            "key": "string",
+            "value": "string",
+            "valueAsList": [
+              "string"
+            ]
           }
         ]
       }

@@ -907,7 +907,7 @@ components:
           example: "USD"
 
     ACH:
-      description: Information about an Recipient ACH account
+      description: Information about an Recipient ACH account. Required when source is ACH
       type: object
       required:
         - accountNumber
@@ -982,7 +982,7 @@ components:
         primary: true
 
     Card:
-      description: Information on a Debit account
+      description: Information on a Debit account. Required when source is DEBIT
       type: object
       required:
         - cardNumber
@@ -1185,6 +1185,20 @@ components:
           $ref: '#/components/schemas/PaymentInfo'
         source:
           $ref: '#/components/schemas/FundingSourceType'
+        card:
+          $ref: '#/components/schemas/Card'
+        ach:
+          $ref: '#/components/schemas/ACH'
+        prepaid:
+          $ref: '#/components/schemas/Prepaid'
+        venmo:
+          $ref: '#/components/schemas/Venmo'
+        paypal:
+          $ref: '#/components/schemas/Paypal'
+        echeck:
+          $ref: '#/components/schemas/ECheck'
+        visaPlus:
+          $ref: '#/components/schemas/VisaPlus'
 
 
 
@@ -1339,7 +1353,7 @@ components:
 
 
     Prepaid:
-      description: Prepaid Money Network account information.
+      description: Prepaid Money Network account information. Required when source is PREPAID
       type: object
       properties:
         cardNumber:
@@ -1380,14 +1394,14 @@ components:
         extension: "2145"
 
     Venmo:
-      description: Information about a Venmo account.
+      description: Information about a Venmo account. Required when source is VENMO
       type: object
       properties:
         phone:
           $ref: '#/components/schemas/Phone'
 
     Paypal:
-      description: Information about a Paypal account.
+      description: Information about a Paypal account.  Required when source is PAYPAL
       type: object
       properties:
         phone:
@@ -1399,7 +1413,7 @@ components:
           $ref: '#/components/schemas/Email'
 
     ECheck:
-      description: Information about the eCheck
+      description: Information about the eCheck.  Required when source is ECHECK
       type: object
       required:
         - recipient
@@ -1412,7 +1426,7 @@ components:
           description: Name of the recipient
           example: "John Smith "
     VisaPlus:
-      description: Visa Plus details, required when recipient source is VISAPLUS
+      description: Visa Plus details, Required when source is VISAPLUS
       type: object
       required:
         - payName
@@ -1426,7 +1440,7 @@ components:
           example: '3456'
           type: string
     SourceAccount:
-      description: Details of funding account used to pull funds
+      description: Details of funding account used to pull funds. Required for P2P Payments
       type: object
       required:
         - accountId

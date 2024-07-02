@@ -673,7 +673,7 @@ components:
           type: array
           minItems: 1
           items:
-            $ref: '#/components/schemas/CreateAndPayRecipientInfo'
+            $ref: '#/components/schemas/RecipientInfo'
         merchantTransactionId:
           description: Provided by merchant and must be associated with transaction Id.
           type: string
@@ -1448,6 +1448,8 @@ components:
             - OTHER
         routingNumber:
           description: Conditional, Required when type is BANK_ACCOUNT and Bank account is USA bank account
+          type: string
+          example: 026009593
     SourceAmount:
       description: Information about Source amount which needs to be converted
       type: object

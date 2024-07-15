@@ -7,18 +7,18 @@ All cross-border transactions will undergo Office of Foreign Assets Control (OFA
 
 ## Prerequisites 
  
--The merchant should opt for debit cross-border disbursement.
--Applicable for both API and portal merchants.
--Disburse the payment using a debit cross-border card.
+- The merchant should opt for debit cross-border disbursement.
+- Applicable for both API and portal merchants.
+- Disburse the payment using a debit cross-border card.
 
 
 ## Use Case Example(s)
 
 The merchant initiates the payment, and while doing so, we have the recipient details. We will share these recipient details with the OFAC system incase of crossborder payment. OFAC will respond based on the recipient's information. The following responses can be received from OFAC based on their review.
 
-    - In case the OFAC response is NOT_ENOUGH_INFO, the payment will be canceled(PC).
-    - If the OFAC response is MATCH, the payment will be placed on hold(PH).
-    - When the OFAC response is NO_MATCH, the payment will proceed for disbursement(DI).
+- In case the OFAC response is NOT_ENOUGH_INFO, the payment will be canceled(PC).
+- If the OFAC response is MATCH, the payment will be placed on hold(PH).
+- When the OFAC response is NO_MATCH, the payment will proceed for disbursement(DI).
 	
 
 | Description 	| Transaction Status	   | Payment Status 	|

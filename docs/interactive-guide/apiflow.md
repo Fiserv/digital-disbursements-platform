@@ -293,13 +293,6 @@ This request is the payment call using the VisaPlus payment method to create a d
 [![Try it out](../../../../assets/images/button.png)](../api/?type=post&path=/ddp/v1/payments)
 </details>
 
-<details>
-<summary><b>8. P2P</b></summary>
-
-This request is the payment call using the P2P fund transferred method to do the disbursement payment for a recipient. The key variables here are `merchantTransactionId`, this must be unique for every transaction call , as well as paymentType which should correspond to the payment type associated with your environment for eg. Gaming, Claims, Wages etc.
-
-[![Try it out](../../../../assets/images/button.png)](../api/?type=post&path=/ddp/v1/payments)
-</details>
 
 ### Step 3a:  Cancel a Payment
 

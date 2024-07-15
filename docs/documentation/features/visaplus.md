@@ -6,12 +6,12 @@ The Visa Plus feature enables clients to activate Visa+ as a payout method on th
 
 ## Prerequisites 
  
--The recipient has to create a Payname on the participating Visa wallet.
--The merchant should opt for Visa Plus disbursement.
--Applicable for API and portal merchants.
--The Payname should start with a "+".
--The Payname should have a length of 4 to 50 characters.
--Disburse the payment using a Visa Plus account.
+- The recipient has to create a Payname on the participating Visa wallet.
+- The merchant should opt for Visa Plus disbursement.
+- Applicable for API and portal merchants.
+- The Payname should start with a "+".
+- The Payname should have a length of 4 to 50 characters.
+- Disburse the payment using a Visa Plus account.
 
 Example of a Payname: +testsbx002.gpay.
 Explanation of a Payname: A Payname should start with a "+", followed by alphanumeric characters, a dot ".", and the wallet name.

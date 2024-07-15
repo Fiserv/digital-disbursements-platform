@@ -50,8 +50,8 @@
           link: docs/documentation/features/visaplus.md
         - title: P2P (Person-to-Person)
           link: docs/documentation/features/p2p.md
-        - title: Data Commerce Bank Account Verification
-          link: docs/documentation/features/datacommerce.md  
+        - title: Bank Account Verification
+          link: docs/documentation/features/bankaccountvalidation.md  
 #        - title: Tokenization
 #          link: docs/documentation/features/tokenization.md
   - title: Interactive guide

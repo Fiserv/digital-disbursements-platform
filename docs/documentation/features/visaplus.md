@@ -2,24 +2,36 @@
 
 ## Introduction
 
-The Visa Plus feature empowers clients to activate Visa+ as a payout method on DDP for both Portal and Direct Disbursement merchants. This functionality facilitates the implementation of the Visa+ B2C (Bussiness-to-Consumer) use case, enabling participating payout merchants to provide consumers with the choice to link their Visa+ payname to receive payments seamlessly. Utilizing Visa+ instead of Visa provides enhanced security, increased convenience, personalized options, global acceptance, mobile integration, and dedicated customer support, surpassing the standard services offered by Visa.
+The Visa Plus feature enables clients to activate Visa+ as a payout method on the Digital Disbursement Platform (DDP) for Direct Disbursement merchants. Visa Plus is a new payment method that supports the implementation of the Visa+ Person-to-Person (P2P) use case. The Visa+ Service introduces a new consumer-defined payment-specific "username" (referred to as "payname" in Visa+ Service product documentation) that can be used to identify the payment recipient instead of using sensitive personal data such as a PAN, email address, or phone number. This eliminates the need for the payment recipient to exchange any sensitive personal data when receiving a payment from a third party.
+
+## Prerequisites 
+ 
+-The recipient has to create a Payname on the participating Visa wallet.
+-The merchant should opt for Visa Plus disbursement.
+-Applicable for API and portal merchants.
+-The Payname should start with a "+".
+-The Payname should have a length of 4 to 50 characters.
+-Disburse the payment using a Visa Plus account.
+
+Example of a Payname: +testsbx002.gpay.
+Explanation of a Payname: A Payname should start with a "+", followed by alphanumeric characters, a dot ".", and the wallet name.
+
 
 ## Use Case Example(s)
 
-This use case demonstrates the flow of payment initiation, verification, funds transfer, and settlement within the Visa+ payment ecosystem, ensuring a secure and efficient transaction experience for both merchants and recipients.
+This use case demonstrates the flow of payment initiation, verification, funds transfer, and settlement within the Visa+ payment ecosystem, ensuring a secure and efficient transaction experience for both merchants and recipients. With Visa+, we can receive money but cannot make payments.
 
-1. *Payment Initiation:*
-   - The merchant commences a payment to the recipient.
-2. *Recipient Acceptance:*
-   - The recipient opts for the Visa+ payment method by providing their payname.
-3. *Verification Process:*
-   - DDP verifies the payname with Visa, addressing any discrepancies as needed.
-4. *Account Details Provision:*
-   - Visa furnishes the recipient's 16-digit payment account reference, customer data, and an expiration date associated with the Visa+ payname.
-5. *Funds Transfer Request:**
-   - DDP forwards a push funds request to Visa for processing.
-6. *Transaction Status Update:*
-   - DDP informs the recipient of the funds transfer status. If successful, the process moves to settlement.
-7. *Settlement Procedure:*
-   - Successful transactions lead to funds settlement between the merchant sponsor and recipient wallets following standard Visa settlement protocols.
+![VisaPlus flow image](../../assets/images/VisaPlus.png "VisaPlus flow image")
 
+
+## Error Code
+
+| Error code 	|  Scenario 	| Error message	  	|
+|---------------|--------------------------|--------------------|
+| 400136 |  invalid payname  | Visa Card Verification Failed - Decline |
+
+## API 
+
+An update has been made to the Payment API to incorporate this feature. Please review the API specifications provided below.
+
+[![Try it out](../../../../assets/images/button.png)](../api/?type=post&path=/ddp/v1/payments)

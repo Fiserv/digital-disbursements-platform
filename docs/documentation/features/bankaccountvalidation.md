@@ -17,17 +17,17 @@ A customer initiates an ACH transaction. The Direct Disbursement Platform (DDP) 
 
 Merchant ID (MID) Level Settings determine whether an MID participates in this feature (default: turned off) and specify whether a validation check will be performed on credit ACH payouts only, debit ACH payouts only, or all ACH payouts.
 
-1. ***For credit payouts:*** Perform checks for Ownership, Combined, and Status at the MID level (merchant's choice).
+1. **For credit payouts:** Perform checks for Ownership, Combined, and Status at the MID level (merchant's choice).
 
-2. ***For debit payouts:*** Perform checks for Status only.
+2. **For debit payouts:** Perform checks for Status only.
 
 Early Warning System (EWS) will provide a Pass, Fail or Inconclusive response.
 
-1. ***Pass Response:*** Allow the payout to proceed.
+1. **Pass Response:** Allow the payout to proceed.
 
-2. ***Fail Response:*** Prevent payout to the account and prompt the payee to choose an alternative method.
+2. **Fail Response:** Prevent payout to the account and prompt the payee to choose an alternative method.
 
-3. ***Inconclusive Response:***
+3. **Inconclusive Response:**
 
-   - ***For credit payouts:*** Determine if "Inconclusive" should be treated like a 'Fail' or 'Pass' response (default: 'Pass').
-   - ***For debit payouts:*** Treat "Inconclusive" as a 'Pass' response.
+   - **For credit payouts:** Determine if "Inconclusive" should be treated like a 'Fail' or 'Pass' response (default: 'Pass').
+   - **For debit payouts:** Treat "Inconclusive" as a 'Pass' response.

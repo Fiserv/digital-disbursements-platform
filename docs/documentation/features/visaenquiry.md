@@ -1,4 +1,4 @@
-# ANI (VISA Account Name Inquiry)                            
+# VISA Account Name Inquiry (ANI)                          
 
 ## Introduction
 Account Name Inquiry (ANI) is a feature that allows clients to verify that the recipient's name matches the name on card they are using to disburse funds through a debit card (Visa/Master). In simpler terms, it helps ensure that the name on the card being used for a transaction matches the name of the person who will be receiving the funds.

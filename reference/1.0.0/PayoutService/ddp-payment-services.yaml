@@ -1732,7 +1732,6 @@ components:
     FundingSourceType:
       description: Describes the type of Payments options available.
       type: string
-      readOnly: true
       enum:
         - DEBIT
         - ACH

@@ -29,7 +29,7 @@
 	  "RecipientServices/ddp-recipient-services",	
 	  "TransactionService/ddp-transaction-services",
 	  "MerchantService/ddp-merchant-services", "VisaPlus/visa-plus",
-          "AccountVaultingService/ddp-account-lookup.yaml"
+          "AccountVaultingService/ddp-account-lookup"
 	]
       }
   ],

@@ -11,7 +11,7 @@ DDP needs to create a process to calculate whether deposited funds by the mercha
 
 ## Prerequisites 
 
-- The configuration should be done at the sponsor bank level so that it applies to all merchants onboarded with this bank. We will utilize the 'Bank' table's 'countries_config' column for this configuration as shown below. These additional attributes are part of the same object.
+- The configuration should be done at the sponsor bank level so that it applies to all merchants onboarded with this bank. These additional attributes are part of the same object.
 
 		{"enableReturnOfFunds":true, "returnOfFundsDays":3}
 - This will only be for Direct Disbursement Merchants, does not work with Portal.

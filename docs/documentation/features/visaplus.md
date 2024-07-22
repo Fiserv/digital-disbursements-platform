@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The Visa Plus feature enables clients to activate Visa+ as a payout method on the Digital Disbursement Platform (DDP) for Direct Disbursement merchants. Visa Plus is a new payment method that supports the implementation of the Visa+ Person-to-Person (P2P) use case. The Visa+ Service introduces a new consumer-defined payment-specific "username" (referred to as "payname" in Visa+ Service product documentation) that can be used to identify the payment recipient instead of using sensitive personal data such as a PAN, email address, or phone number. This eliminates the need for the payment recipient to exchange any sensitive personal data when receiving a payment from a third party.
+The Visa Plus feature enables clients to activate Visa+ as a payout method on the Digital Disbursement Platform (DDP) for Direct Disbursement merchants. Visa Plus is a new payment method that supports the implementation of the Visa+ Person-to-Person (P2P) use case. The Visa+ Service introduces a new consumer-defined payment-specific "username" (referred to as "payname" in Visa+ Service product documentation) that can be used to identify the payment recipient instead of using sensitive personal data such as a Primary Account Number (PAN), email address, or phone number. This eliminates the need for the payment recipient to exchange any sensitive personal data when receiving a payment from a third party.
 
 ## Prerequisites 
  

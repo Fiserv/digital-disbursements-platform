@@ -40,15 +40,15 @@
           link: docs/documentation/features/mfa.md
         - title: Payment Options
           link: docs/documentation/features/payment-options.md
-        - title: ANI (VISA Account Name Inquiry)
-          link: docs/documentation/features/visaenquiry.md
+#         - title: ANI (VISA Account Name Inquiry)
+#          link: docs/documentation/features/visaenquiry.md
 #          - title: Sanction Hold Review
 #            link: docs/documentation/features/sanctionholdreview.md
 #         - title: Return Of Funds
 #           link: docs/documentation/features/returnoffunds.md
-        - title: Visa+ (Visa Plus)
+        - title: Visa Plus (Visa+)
           link: docs/documentation/features/visaplus.md
-        - title: P2P (Person-to-Person)
+        - title: Person-to-Person (P2P)
           link: docs/documentation/features/p2p.md
 #         - title: Bank Account Verification
 #           link: docs/documentation/features/bankaccountvalidation.md  

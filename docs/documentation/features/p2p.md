@@ -17,7 +17,7 @@ The customer would like to make a payment to a recipient using the P2P method. T
 
 The following required fields must be included in the sender's request.
 
-| Description|
+| Fields|
 |---------------------|
 | firstName|
 | lastName|

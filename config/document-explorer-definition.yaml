@@ -29,31 +29,28 @@
 ################################################################################
 
 - sections:
-  - title: Getting Started
-    link: docs/getting-started.md
-    sections: 
-      - title: Features
-        sections:
-        - title: Fraud
-          link: docs/documentation/features/fraud.md
-        - title: Multi Factor Authentication
-          link: docs/documentation/features/mfa.md
-        - title: Payment Options
-          link: docs/documentation/features/payment-options.md
-#         - title: ANI (VISA Account Name Inquiry)
-#          link: docs/documentation/features/visaenquiry.md
-#          - title: Sanction Hold Review
-#            link: docs/documentation/features/sanctionholdreview.md
-#         - title: Return Of Funds
-#           link: docs/documentation/features/returnoffunds.md
-        - title: Visa Plus (Visa+)
-          link: docs/documentation/features/visaplus.md
-        - title: Person-to-Person (P2P)
-          link: docs/documentation/features/p2p.md
-#         - title: Bank Account Verification
-#           link: docs/documentation/features/bankaccountvalidation.md  
-#        - title: Tokenization
-#          link: docs/documentation/features/tokenization.md
+  - title: Product Features
+    sections:
+    - title: Fraud
+      link: docs/documentation/features/fraud.md
+    - title: Multi Factor Authentication
+      link: docs/documentation/features/mfa.md
+    - title: Payment Options
+      link: docs/documentation/features/payment-options.md
+#   - title: ANI (VISA Account Name Inquiry)
+#     link: docs/documentation/features/visainquiry.md
+#   - title: Sanction Hold Review
+#     link: docs/documentation/features/sanctionholdreview.md
+#   - title: Return Of Funds
+#     link: docs/documentation/features/returnoffunds.md
+    - title: Visa+ (Visa Plus)
+      link: docs/documentation/features/visaplus.md
+    - title: P2P (Person-to-Person)
+      link: docs/documentation/features/p2p.md
+#   - title: Bank Account Verification
+#     link: docs/documentation/features/bankaccountvalidation.md  
+#   - title: Tokenization
+#     link: docs/documentation/features/tokenization.md
   - title: Interactive guide
     sections:
     - title: API Flow

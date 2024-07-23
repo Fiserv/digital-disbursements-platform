@@ -1,10 +1,10 @@
-# P2P
+# Person-to-Person (P2P)
 
 ## Introduction
 
-The Person-to-Person (P2P) feature facilitates direct fund transfers between merchants and recipients. Direct Disbursement merchants have access to this convenient functionality. Enabling Person-to-Person (P2P) payments offers advantages such as convenience, speed, cost-effectiveness, accessibility, an enhanced user experience, and increased efficiency in fund transfers.
+The Person-to-Person (P2P) feature facilitates direct fund transfers between merchants and recipients. Direct Disbursement merchants have access to this functionality. Enabling Person-to-Person (P2P) payments offers advantages such as convenience, speed, cost-effectiveness, accessibility, enhanced user experience, and increased efficiency in fund transfers.
 
-## Prerequisites 
+## Prerequisites
 
 - Merchants should enable P2P payments.
 - Applicable only for Direct Debit merchants.
@@ -17,20 +17,20 @@ The customer would like to make a payment to a recipient using the P2P method. T
 
 The following required fields must be included in the sender's request.
 
-| Fields 		   	 | 
-|---------------------	 |
-| firstName				 | 
-| lastName				 | 
-| dateOfBirth			 | 
-| nationality			 | 
-| birthCountry			 | 
-| occupation	 		 | 
-| emailAddress 			 | 
-| phoneNumber 			 | 
-| address	 			 | 
-| fundingAccount		 | 
-| transactionIdentifier	 | 
-| transactionPurpose	 | 
+| Description|
+|---------------------|
+| firstName|
+| lastName|
+| dateOfBirth|
+| nationality|
+| birthCountry|
+| occupation|
+| emailAddress|
+| phoneNumber|
+| address|
+| fundingAccount|
+| transactionIdentifier|
+| transactionPurpose|
 
 If you need to obtain the data type, please refer to the API explorer.
 
@@ -42,13 +42,13 @@ Example: A US sender can send money to other countries like Canada, India, etc.
 
 ## Error Code
 
-| Error code |  Scenario 							| Error message		  	|
-|------------|------------------------------------	|--------------------|
-| 400136	 |  Wrong card or card not supported   | BIN Validation Failed  |
-| 400028 	 |  If you provide the wrong payload for the sender   | Invalid request format/data |
+| Error code |  Scenario| Error message|
+|------------|------------------------------------|--------------------|
+| 400136|  Wrong card or card not supported   | BIN Validation Failed  |
+| 400028|  If you provide the wrong payload for the sender   | Invalid request format/data |
 
+## API
 
-## API 
 An update has been made to the Payment API to incorporate this feature. Please review the API specifications provided below.
 
 [![Try it out](../../../../assets/images/button.png)](../api/?type=post&path=/ddp/v1/payments)

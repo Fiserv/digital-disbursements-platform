@@ -11,9 +11,9 @@ The Visa Plus feature enables clients to activate Visa+ as a payout method on th
 - Applicable for API and portal merchants.
 
 <!-- theme: success -->
-> ### Visa+ Payname
+>**What is a Payname?**
 >
->A Payname should start with a "+", followed by  to 50 characters. then a dot ".", and the wallet name.
+>A Payname should start with a "+", followed by 4 to 50 characters. then a dot ".", and the wallet name.
 >
 >**Example:** +testsbx002.gpay
 

@@ -13,7 +13,7 @@ The Person-to-Person (P2P) feature facilitates direct fund transfers between mer
 
 ## Use Case Example(s)
 
-The customer would like to make a payment to a recipient using the P2P method. The customer is required to send the sender's details along with the request API payload. The DDP will process the request and route it to the relevant payment channels, such as Visa/Mastercard, to utilize the sender's information and disburse the funds accordingly to the recipient.
+The customer would like to make a payment to a recipient using the P2P method. The customer is required to send the sender's details along with the request API payload. The DDP will process the request and route it to the relevant payment channels, such as Visa/Mastercard, to utilize the sender's information and disburse the funds accordingly to the recipient. Senders and merchants should be US domestic, while recipients can be either US domestic or cross-border.
 
 The following required fields must be included in the sender's request.
 
@@ -32,13 +32,9 @@ The following required fields must be included in the sender's request.
 | transactionIdentifier|
 | transactionPurpose|
 
-If you need to obtain the data type, please refer to the API explorer.
+Learn more in the API Explorer:
 
 [![Try it out](../../../../assets/images/button.png)](../api/?type=post&path=/ddp/v1/payments)
-
-P2P transactions can be domestic or cross-border. However, the sender and merchant should be domestic, while the recipient can be either domestic or cross-border.
-
-Example: A US sender can send money to other countries like Canada, India, etc.
 
 ## Error Code
 

@@ -1,6 +1,6 @@
 #-------------------------------------
 # Initial Version
-# Adding attribute "AdditionalEmailAddresses" under recipeint object.
+# Adding attribute "AdditionalEmailAddresses" under recipient object.
 #-------------------------------------
 openapi: 3.0.0
 info:
@@ -157,7 +157,7 @@ paths:
 components:
   schemas:
 #------------------------------------------
-# Request/ Reponse Model
+# Request/ Response Model
 #------------------------------------------
     RecipientProfileRequest:
       description: This Request model is for Recipient Profile information
@@ -236,7 +236,7 @@ components:
           $ref: '#/components/schemas/RecipientStatus'
 
     GetRecipientResponse:
-      description: Get RecipientResponse respsone object model
+      description: Get RecipientResponse response object model
       type: object
       required:
        - merchant
@@ -253,7 +253,7 @@ components:
            $ref: '#/components/schemas/PageLink'
 
 #-------------------------
-# Oject Model
+# Object Model
 #-------------------------
     Address:
       description: A physical mailing address for this card holder.
@@ -271,7 +271,7 @@ components:
           description: Canonical type values of "work", "home", "billing" and "other".
           type: string
         houseNumberOrName:
-          description: Housse number or name of the address
+          description: House number or name of the address
           type: string
         street:
           description: The full street address component, which may include house number, street name, P.O. box, and multi-line extended street address information.
@@ -286,7 +286,7 @@ components:
           description: The zip code or postal code component.
           type: string
         country:
-          description: The country name component.  When specified, the value MUST be in ISO 3166-1 "alpha-2" code format; e.g., the United States and Sweden are "US" and "SE", respectively.
+          description: The country name component.  When specified, the value MUST be in ISO 3166-1 "alpha-3" code format; e.g., the United States and Sweden are "USA" and "SWE", respectively.
           type: string
         formatted:
           description: The full mailing address, formatted for display or use with a mailing label.
@@ -461,13 +461,10 @@ components:
       type: object
       required:
        - recipientType
-       - recipientId
        - firstName
        - lastName
        - doingBusinessAs
        - emailAddress
-       - recipientIdentifier
-       - recipientIdentifierValue
        - address
        - guest
       properties:
@@ -475,8 +472,7 @@ components:
           $ref: '#/components/schemas/RecipientType'
         recipientId:
           $ref: '#/components/schemas/RecipientId'
-        merchantCustomerId:
-           $ref: '#/components/schemas/MerchantCustomerId'
+
         firstName:
           $ref: '#/components/schemas/FirstName'
         lastName:
@@ -489,16 +485,10 @@ components:
           $ref: '#/components/schemas/SSN'
         emailAddress:
            $ref: '#/components/schemas/Email'
-        userId:
-           $ref: '#/components/schemas/userId'
-        password:
-           $ref: '#/components/schemas/Password'
+        preferredLanguage:
+          $ref: '#/components/schemas/PreferredLanguage'
         phoneNumber:
           $ref: '#/components/schemas/Phone'
-        recipientIdentifier:
-          $ref: '#/components/schemas/RecipientIdentifier'
-        recipientIdentifierValue:
-          $ref: '#/components/schemas/RecipientIdentifierValue'
         status:
           $ref: '#/components/schemas/RecipientStatus'
         reason:
@@ -507,11 +497,11 @@ components:
           $ref: '#/components/schemas/Guest'
         address:
           $ref: '#/components/schemas/Address'
-        Description:
+        description:
           $ref: '#/components/schemas/Description'
         doingBusinessAs:
           $ref: '#/components/schemas/DBA'
-        ceatedBy:
+        createdBy:
           $ref: '#/components/schemas/CreatedBy'
         updatedBy:
           $ref: '#/components/schemas/UpdatedBy'
@@ -521,7 +511,7 @@ components:
 #-------------------------------------
 
     RecipientId:
-      description: Unique Key to look up the Recipient Profile.
+      description: Unique id generated to identify recipient when Merchant creates a Recipient.
       type: string
       readOnly: true
       maxLength: 75
@@ -540,7 +530,7 @@ components:
       example: Last Name
 
     DBA:
-      description: This is the business name of the recipient. This will come only when the recipient is busniness recipient.
+      description: This is the business name of the recipient. This will come only when the recipient is business recipient.
       type: string
       maxLength: 20
       example: Last Name
@@ -585,7 +575,7 @@ components:
       description: comments while adding the Recipient Profile.
       type: string
       maxLength: 250
-      example: New Recipinet
+      example: New Recipient
 
     Guest:
       description: To Identify to guest recipients.
@@ -611,10 +601,14 @@ components:
       example: 00009876543234567
 
     RecipientType:
-      description: Merchant should select the Recipient Type while adding the recipient details. Possibile options are are Consumer or Business.
+      description: Merchant should select the Recipient Type while adding the recipient details. Possible options are are Consumer or Business.
       type: string
       example: Consumer
 
+    PreferredLanguage:
+      description: Preferred language for recipient emails and Recipient Portal. Provide if language is other than EN-US. Currently only EN-US is supported.
+      type: string
+      example: EN-US
 #-------------------------------------
 # Error Models
 #-------------------------------------
@@ -674,7 +668,7 @@ components:
 
     RecipientStatus:
       title: Status
-      description: Indicates the status of an Auhtrization operation.
+      description: Indicates current status of the Recipient.
       type: string
       readOnly: true
       enum:
@@ -744,7 +738,7 @@ components:
         error:
           $ref: '#/components/schemas/Error'
     ServerError:
-      description: An unexpected server error occured.
+      description: An unexpected server error occurred.
       type: object
       properties:
         error:
@@ -817,7 +811,7 @@ components:
 	  }
       example: application/json
 #------------------------------------------
-# Error Reponses 
+# Error Responses
 #------------------------------------------
   responses:
     BadRequest:
@@ -955,9 +949,7 @@ components:
                   "country": "USA",
                   "formatted": "100 Universal City Plaza, Hollywood, CA 91608 US",
                   "primary": true
-                },
-                "recipientIdentifier": "DATE_OF_BIRTH",
-                "recipientIdentifierValue": "01/01/2000",
+                }
               }
             }
     CompanyRequest:
@@ -990,9 +982,7 @@ components:
                   "country": "USA",
                   "formatted": "100 Universal City Plaza, Hollywood, CA 91608 US",
                   "primary": true
-                },
-                "recipientIdentifier": "SPECIAL_CODE",
-                "recipientIdentifierValue": "1234567890",
+                }
               }
             }            
     FullRequest:
@@ -1029,8 +1019,7 @@ components:
                   "type": "billing",
                   "extension": "2145"
                 },
-                "recipientIdentifier": "DATE_OF_BIRTH",
-                "recipientIdentifierValue": "03/12/2011",
+
                 "status": "ACTIVE",
                 "reason": "CLIENT_INITIATED",
                 "guest": true,
@@ -1045,8 +1034,8 @@ components:
                   "formatted": "100 Universal City Plaza\nHollywood, CA 91608 US",
                   "primary": true
                 },
-                "Description": "New Recipinet",
-                "ceatedBy": "User1234",
+                "Description": "New Recipient",
+                "createdBy": "User1234",
                 "updatedBy": "User1235"
               },
               "customFields": [

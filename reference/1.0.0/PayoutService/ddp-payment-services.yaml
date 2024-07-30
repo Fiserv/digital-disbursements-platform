@@ -1058,11 +1058,11 @@ components:
       description: Conditional, Sender profile and fund source information, Required for Person to Person(P2P) Payments.
       type: object
       required:
-        - profile
+        - profileInfo
         - fundingAccount
 
       properties:
-        profile:
+        profileInfo:
           $ref: '#/components/schemas/SenderProfileInfo'
         fundingAccount:
           $ref: '#/components/schemas/SourceAccount'

@@ -29,7 +29,7 @@
 ################################################################################
 header:
   productName: DigitalDisbursements
-  productionDescription: The Digital Disbursements Platform (DDP) is a cloud-based solution that digitizes the payouts process for both businesses and consumers alike. Through simple API integration, DDP allows merchants to issue single or bulk payouts to consumers and/or businesses in a secure, timely and cost-effective manner. For the recipient, the platform provides access to a variety of payout methods that allows choice of accepting their money when and how they prefer
+  productionDescription: The Digital Disbursements Platform (DDP) is a cloud-based solution that digitizes the payouts process for both businesses and consumers alike. Through simple API integration, DDP allows merchants to issue single or bulk payouts to consumers and/or businesses in a secure, timely and cost-effective manner. For the recipient, the platform provides access to a variety of payout methods that allows choice of accepting their money when and how they prefer.
   whoIsItFor: Who is it for?
   image: 
     link: "/assets/images/Fiserv_Logo.jpg"
@@ -61,7 +61,7 @@ featuredFeatures:
         description: Take a look at our FAQs. 
         link: docs/faq/faq.md
   - title: Recipient benefits
-    description:  Digital Disbursements offers recipients access to a variety of payout methods and the ability to select payment preferences in a variety of languages. Recipients can receive funds instantly day or night.
+    description:  Digital Disbursements offers recipients access to a variety of payout methods and the ability to select payment preferences. Recipients can receive funds instantly day or night.
     relatedDocs:
       - relatedDoc: 
         title: Create a Payment

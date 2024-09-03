@@ -20,7 +20,7 @@ Enhance your fraud program with a simple, cost-effective and customizable digita
 - **Simple** - Pre-integrated into Digital Payouts solution
 - **Economical** - Leverage Carat scale to reduce cost and prevent losses
 
-## Fraud System in DDP
+## Fraud Systems in DDP
 
  There are two types of Fraud Systems we have in DDP
 

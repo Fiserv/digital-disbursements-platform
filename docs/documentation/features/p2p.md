@@ -9,11 +9,11 @@ The Person-to-Person (P2P) feature facilitates direct fund transfers between mer
 - Merchants should enable P2P payments.
 - Applicable only for Direct Debit merchants.
 - P2P requires sender details in the request payload.
-- Generate a TA Token for the card (Visa or Mastercard) for both the sender and recipient using North Backend or Commerce Hub. For more Information, refer to [TA Token](../docs/?path=docs/troubleshooting/tokens.md)
+- Allowed sources of funds for the sender’s account are TA Token, Bank Account, and Card. If using a TA Token, Generate a TA Token for the card (Visa or Mastercard) for both the sender and recipient using North Backend or Commerce Hub. For more Information, refer to [TA Token](../docs/?path=docs/troubleshooting/tokens.md)
 
 ## Use Case Example(s)
 
-The customer would like to make a payment to a recipient using the P2P method. The customer is required to send the sender's details along with the request API payload. The DDP will process the request and route it to the relevant payment channels, such as Visa/Mastercard, to utilize the sender's information and disburse the funds accordingly to the recipient. Senders and merchants should be US domestic, while recipients can be either US domestic or cross-border.
+The customer would like to make a payment to a recipient using the P2P method. The There  is required to send the sender's details along with the request API payload. The DDP will process the request and route it to the relevant payment channels, such as Visa/Mastercard, to utilize the sender's information and disburse the funds accordingly to the recipient. Senders and merchants should be US domestic, while recipients can be either US domestic or cross-border.
 
 The following required fields must be included in the sender's request.
 

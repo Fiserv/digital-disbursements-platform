@@ -47,6 +47,8 @@
       link: docs/documentation/features/visaplus.md
     - title: P2P (Person-to-Person)
       link: docs/documentation/features/p2p.md
+    - title: Cross Currency
+      link: docs/documentation/features/crosscurrency.md
 #   - title: Bank Account Verification
 #     link: docs/documentation/features/bankaccountvalidation.md  
 #   - title: Tokenization

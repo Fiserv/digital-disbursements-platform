@@ -681,6 +681,8 @@ components:
           writeOnly: true
         transactionPurpose:
           $ref: '#/components/schemas/TransactionPurpose'
+        statementDescriptor:
+          $ref: '#/components/schemas/StatementDescriptor'
         customFields:
           type: array
           minItems: 0
@@ -1789,7 +1791,9 @@ components:
         - REFUND_ORIGINAL_CARD
         - REFUND_NEW_CARD
         - OTHER
-
+    StatementDescriptor:
+      description:  The statement descriptor is the value that will be displayed on the recipient's bank or card statement Limited to max 22 characters,
+        The statement descriptor is alphanumeric and can include spaces and some special characters (& * ' , - . _ ~)
 
 
     #-------------------------------------

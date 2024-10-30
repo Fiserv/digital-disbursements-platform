@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The Direct Disbursement Platform (DDP) enables merchants to store a soft descriptor, which will be displayed as their preferred name on the recipient’s bank or card statement. This descriptor is limited to a maximum of 22 characters and can include alphanumeric characters, spaces, and some special characters (&, *, ', , -, ., _, ~). Currently, DDP supports the statement descriptor only for VISA/MASTERCARD. This feature is available for B2B/B2C and P2P/A2A payments, enhancing transparency and recognition for merchants.
+The Direct Disbursement Platform (DDP) enables merchants to store a soft descriptor, which will be displayed as their preferred name on the recipient’s bank or card statement. This descriptor is limited to a maximum of 22 characters and can include alphanumeric characters, spaces, and some special characters (& * ' , - . _ ~). Currently, DDP supports the statement descriptor only for VISA/MASTERCARD. This feature is available for B2B/B2C and P2P/A2A payments, enhancing transparency and recognition for merchants.
 
 ## Prerequisites
 

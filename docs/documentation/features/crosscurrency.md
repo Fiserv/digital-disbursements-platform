@@ -18,11 +18,16 @@ A cross-currency payment involves the entire transaction chain where an account 
 
 MICC-Cross currency transaction:
 
-- The merchant initiates a payment with a currency different from the DFA currency. The recipient receives a notification with the submitted currency and amount.
-- The recipient accesses the payout via the portal. The recipient sees the payment in the submitted currency and amount.
-- The recipient selects a payment method from the available list. The system provides payment methods based on the MICC configuration (currently, MICC merchant users can use VISA/MASTERCARD).
-- When the recipient submits the payment request, the system verifies that the transaction currency is not the DFA currency. If it isn't, the system adjusts the balance using the DFA currency and amount in the Funds activity.
-- The recipient receives a notification with the payment details. If enabled, the merchant receives a webhook with the payment details.
+- When the merchant sends a payment initiation request in a currency other than the DFA currency, the system checks if the configuration to accept such requests is enabled. If enabled, the request is accepted; otherwise, it is declined.
+- If the merchant is enabled for MICC but the provided currency is not within the bank’s allowed currencies, the request is declined.
+- The system checks if the fxEnquiryId is present in the request. If it is, the system retrieves rate details from FX_RATES and checks the expiry time. If the rate has expired, the request is declined.
+- If the fxEnquiryId is not provided by the merchant, the system calls the OpenFX adapter to get the rate details and proceeds.
+- The system performs a BIN check for the provided recipient card to determine the card brand/provider. It then retrieves the rate details for the provider from OpenFX.
+- The system requests the conversion amount from OpenFX. If the amount is not convertible, the request is declined. If successful, the OpenFX response details are captured in the table FX_RATES.
+- The system verifies funds availability with the converted amount. If funds are available, the request proceeds; otherwise, it is declined. Posting to the DFA will always occur in the DFA currency.
+- The payout amount captured in the recipient notifications will be the amount and currency submitted by the merchant.
+- The system creates the Transaction and Payment Transaction records and sends the response, including the FX rate details.
+- The recipient notification is sent in the submitted currency.
 
 ## Error Code
 

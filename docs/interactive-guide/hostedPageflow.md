@@ -1,9 +1,10 @@
 # What is Hosted Pages
-<img title="icon" alt="hosted pages icon" src="https://raw.githubusercontent.com/Fiserv/universal-commerce/develop/assets/images/Picture25.png" width="40" height="30"> 
+
+<img title="icon" alt="hosted pages icon" src="https://raw.githubusercontent.com/Fiserv/universal-commerce/develop/assets/images/Picture25.png" width="40" height="30">
 
 Hosted payment pages is a Fiserv offering for secure card collection via webview or iFrame in order to avoid PCI Compliance exposure. We have a native API (client to server), server to server, and Cross Origin Resource (CORS) APIs to provide our clients a variety of integration options.
 
-The goal of this guide is to describe how to implement and use Hosted Pages. It is not intended to describe all the interactions between App, Mobile Application Server, and Connected Commerce (uCom) Server. 
+The goal of this guide is to describe how to implement and use Hosted Pages. It is not intended to describe all the interactions between App, Mobile Application Server, and Connected Commerce (uCom) Server.
 
 ## Components  
 
@@ -11,7 +12,7 @@ Hosted Pages has 4 main Components, the Mobile Application, the Mobile Applicati
 
 <center><img src="https://github.com/Fiserv/universal-commerce/blob/develop/assets/images/HostedPages%20(1).png?raw=true" alt="HP Diagram" class="center"></center>
 
-1. **Mobile Application (App)** - This could be a native mobile application running on IOS or Android devices. This could also be a web application running on a browser. 
+1. **Mobile Application (App)** - This could be a native mobile application running on IOS or Android devices. This could also be a web application running on a browser.
 
 2. **Mobile Application Server (MAS)** - This is a server which is a communication bridge between the App and Connected Commerce (uCom). It also stores Connected Commerce (uCom) developer account information like app id, app secret, and encryption key securely.
 
@@ -21,25 +22,25 @@ Hosted Pages has 4 main Components, the Mobile Application, the Mobile Applicati
 
 ## Integration Prerequisites
 
-The following parameters are needed to access the Hosted Pages: 
+The following parameters are needed to access the Hosted Pages:
 
 | Parameter| Description|
 |---|---|
-| **Api Key**  | This will be generated for you when you create an Apigee account. This should be saved securely on MAS and shared with App. Api-key is fixed for a merchant.|   
+| **Api Key**  | This will be generated for you when you create an Apigee account. This should be saved securely on MAS and shared with App. Api-key is fixed for a merchant.|
 | **Api Secret**  | This will be generated for you when you create an Apigee account. This should be saved securely on the application server. This should NOT be shared with app. Api-key is fixed for a merchant. |
 | **Redirect Url/MAS Url (Asynchronous)** | All the Hosted pages responses(error/success) will be responded back to JavaScript main return callback only. Responses should be parsed and handled from JavaScript callback. Additionally same responses will be delivered to your MAS URL by Hosted pages via HTTP POST (Ajax Call) asynchronously. This API should be provided by MAS. MAS has to enable CORS for Fiserv origin “int.api.firstdata.com", "cat.api.firstdata.com", and "prod.api.firstdata.com”. This can be used for auditing purposes when a web browser or an app crash accidentally.|
 | **FDCustomerId**  | This must be obtained using other Connected Commerce (uCom) apis. This is optional when you initiate SDK with guest checkout option. |
 | **PageLink (url and relation)** | This is the unique page which is going to display the use case. Url is the address where page is hosted, and Relation is the name of the use case. PageLink can be retrieved run time via the api (ucom/v1/hosted - pages/pages) and can be cached. We prefer that PageLink should be freshly fetched. The page contents are configured offline. |
 
-
 ## Steps to Integrate Hosted Pages
 
-### Architecture Flow 
+### Architecture Flow
 
 <center><img src="https://raw.githubusercontent.com/Fiserv/universal-commerce/develop/assets/images/HostedPages%20(2).png" alt="HP Diagram" class="center"></center>
 
 ### Step 1: Start a New Session  
-App calls MAS to get a token ID, encryption Key and page Link. token ID and encryption Key should not be cached or stored on the app and should be fetched from MAS. The token ID and encryption Key expires after 20 minutes and therefore this step should be done every time user starts the flow. 
+
+App calls MAS to get a token ID, encryption Key and page Link. token ID and encryption Key should not be cached or stored on the app and should be fetched from MAS. The token ID and encryption Key expires after 20 minutes and therefore this step should be done every time user starts the flow.
 
 <center><img src="https://raw.githubusercontent.com/Fiserv/universal-commerce/develop/assets/images/HostedPages%20(3).png" alt="HP Diagram" class="center"></center>
 
@@ -47,23 +48,22 @@ App calls MAS to get a token ID, encryption Key and page Link. token ID and encr
 
 The api between app and MAS is not part of this document. It’s up to the merchant to decide this part of the transaction.
 
-### Step 3: MAS calls Connected Commerce (uCom) to Get Token 
+### Step 3: MAS calls Connected Commerce (uCom) to Get Token
 
 MAS has to call Connected Commerce (uCom) to get a tokenId. MAS should not cache the tokenId. The get Token call will provide the one time session token and public key which needs to be passed to the SDK to launch Hosted Pages.
 
 [Click here for instructions on Creating Security Access Token](../../ConnectedCommerce/api/?type=post&path=/v1/tokens)
 
-### Step 4: MAS calls Connected Commerce (uCom) to get page link 
+### Step 4: MAS calls Connected Commerce (uCom) to get page link
 
 MAS can cache the page link for future reference to ensure better performance. Merchant may have configured multiple pages and therefore this api will return all of them. Each page can be identified by the relation.
 
 **Endpoint URL**
-https://int.api.firstdata.com/ucom/v1/hosted-pages/pages
+<https://int.api.firstdata.com/ucom/v1/hosted-pages/pages>
 
 HTTP Method: GET
 
-**Headers** 
-
+**Headers**
 Content-Type = application/json
 
 Authorization = Bearer {{tokenId}}
@@ -72,8 +72,7 @@ Api-Key = {api-key}
 
 Timestamp = {time UTC in milliseconds}
 
-
-Sample Response: 
+Sample Response:
 
 ```json
 {
@@ -91,29 +90,28 @@ Sample Response:
 
 ### Step 5: Load Hosted Page
 
-There are two ways to load hosted Pages: Webview  or iFrame.To start the hosted page, the app needs the api-key, pageLink, tokenId, fdCustomerId, encryptionKey and redirectUrl. Please ensure that the Mobile app has disabled webview caching and enabled loading javascript in webview. 
+There are two ways to load hosted Pages: Webview  or iFrame.To start the hosted page, the app needs the api-key, pageLink, tokenId, fdCustomerId, encryptionKey and redirectUrl. Please ensure that the Mobile app has disabled webview caching and enabled loading javascript in webview.
 
 <!--
 type: tab
 titles: WebView, iFrame 
 -->
 
-**Mobile Webview Integration Steps**
+#### Mobile Webview Integration Steps
 
 <details>
-<summary>**A) Load the URL in WebView.**</summary>
+<summary><b>A) Load the URL in WebView.</b></summary>
 
-CAT: https://int.api.firstdata.com/ucom/v2/static/v2/mobile/int/ucom-sdk.html 
+CAT: <https://int.api.firstdata.com/ucom/v2/static/v2/mobile/int/ucom-sdk.html>
 
-PRE-PROD: https://cat.api.firstdata.com/ucom/v2/static/v2/mobile/cat/ucomsdk.html 
+PRE-PROD: <https://cat.api.firstdata.com/ucom/v2/static/v2/mobile/cat/ucomsdk.html>
 
-PROD: https://prod.api.firstdata.com/ucom/v2/static/v2/mobile/prod/ucomsdk.html 
-    
+PROD: <https://prod.api.firstdata.com/ucom/v2/static/v2/mobile/prod/ucomsdk.html>
+
 </details>
 
 <details>
-<summary>**B) Call ucomClient.init() javascript method after WebView is loaded with configuration objects.**</summary>
-
+<summary><b>B) Call ucomClient.init() javascript method after WebView is loaded with configuration objects.</b></summary>
 
 ```javascript
 
@@ -129,25 +127,23 @@ ComClient.init({
 });
 
 ```
->Note: Please refer to the **SDK Configuration Property Values** section for additional params.
-    
-</details>
-    
-<details>    
-<summary>**C) Set local redirection listener.**</summary>
 
+>Note: Please refer to the **SDK Configuration Property Values** section for additional params.
+
+</details>
+
+<details>
+<summary><b>C) Set local redirection listener.<b/></summary>
 
 A redirection listener should be set on the webview to catch the event that Hosted Pages has finished its work. Hosted Pages will call this redirection in case of permanent failures and final success(nonce). A permanent failure is if js fails to load or Ajax call fails or tokenId has expired or encryptionKey invalid.
 
 Once Hosted Pages get response from Connected Commerce (uCom) then it will do URL redirect with encoded URI.
 
-**Redirection Listener URL:**
+**Redirection Listener URL:** ucom://finish?response=response-payload-object-string
 
-ucom://finish?response=response-payload-object-string
+>***Note:** Webview redirection listener URL should be decoded before handle it.*
 
-**Note:** Webview redirection listener URL should be decoded before handle it.
-
-**IOS Sample Code Snippets** 
+##### IOS Sample Code Snippets
 
 ```code
 
@@ -226,7 +222,7 @@ tActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
 
 ```
 
-**Android Sample Code Snippets** 
+##### Android Sample Code Snippets**
 
 ```code
 
@@ -306,58 +302,50 @@ protected void onCreate(Bundle savedInstanceState) {
 }
 
 ```
+
 </details>
 <!--
 type: tab
 -->
 
-
-**Website Integration Steps**
+#### Website Integration Steps
 
 <details>
-    
-<summary>**A) Include the Connected Commerce (uCom) SDK library below on head tag of the html page.**</summary>
 
-CAT: https://int.api.firstdata.com/ucom/v2/static/v2/js/ucom-sdk.js  
+<summary><b>A) Include the Connected Commerce (uCom) SDK library below on head tag of the html page.</b></summary>
 
-PRE-PROD: https://cat.api.firstdata.com/ucom/v2/static/v2/js/ucom-sdk.js 
+CAT: <https://int.api.firstdata.com/ucom/v2/static/v2/js/ucom-sdk.js>  
 
-PROD: https://prod.api.firstdata.com/ucom/v2/static/v2/js/ucom-sdk.js 
+PRE-PROD: <https://cat.api.firstdata.com/ucom/v2/static/v2/js/ucom-sdk.js>
 
-</details>    
-    
-<details>     
-<summary>**B) Initialize the SDK with SDK configuration params by calling this ucomSDK.init() method.**</summary>
+PROD: <https://prod.api.firstdata.com/ucom/v2/static/v2/js/ucom-sdk.js>
 
-    a. Pass access token
-    
-    b. Pass API Key 
-    
-    c. Pass fdCustomerId
-    
-    d: Pass page URL
-    
-    e: Pass Mount Id where SDK needs to be mounted on the screen
-    
-    f. Pass EncryptionKey
-    
-    g. Pass RedirectURL 
-    
-</details>   
-    
+</details>
+
 <details>
-    
-<summary>**C) Call uComSDK.start() method to render SDK on mounted element on the page.**</summary>
+<summary><b>B) Initialize the SDK with SDK configuration params by calling this ucomSDK.init() method.</b></summary>
+    1. Pass access token
+    2. Pass API Key
+    3. Pass fdCustomerId
+    4: Pass page URL
+    5: Pass Mount Id where SDK needs to be mounted on the screen
+    6. Pass EncryptionKey
+    7. Pass RedirectURL
+</details>
 
-</details>    
-    
 <details>
-    
-<summary>**D) Call uComSDK.stop() to kill the SDK from the page.**</summary>
+
+<summary><b>C) Call uComSDK.start() method to render SDK on mounted element on the page.</b></summary>
+
+</details>
+
+<details>
+
+<summary><b>D) Call uComSDK.stop() to kill the SDK from the page.</b></summary>
 
 The javascript method should be called after the web content is loaded. Refer to the sample code below:
 
-**Web Sample Code** 
+##### Web Sample Code
 
 ```code
 <html>
@@ -426,19 +414,20 @@ The javascript method should be called after the web content is loaded. Refer to
    </body>
 </html>
 
-```          
+```
+
 </details>
-          
+
 <!-- type: tab-end -->
 
 ---
 
-**SDK Configuration Property Values**
+#### SDK Configuration Property Values
 
-Please refer to the table below for additional SDK configuration properties: 
+Please refer to the table below for additional SDK configuration properties:
 
->Please note that the SDK configurations below are applicable for both Hosted Page implementations: webview and iFrame. 
-                   
+>Please note that the SDK configurations below are applicable for both Hosted Page implementations: webview and iFrame.
+
 | SDK Params     | Required/Optional | Description|
 |----------------|-------------------|----------- |
 | accessToken    | Required       | Session Token Id     |
@@ -451,10 +440,10 @@ Please refer to the table below for additional SDK configuration properties:
 | orgId    | Optional       | Org id should be passed if Threatmetrix should be enabled on Hosted Pages     |
 | sessionId    | Optional       | Session id should be passed if Threatmetrix should be enabled on Hosted Pages     |
 | extraObject    | Optional       | Additional details can be passed to Hosted Pages to generate nonce as part of card detail. Example is below     |
-| debug    | Optional       | Eg: debug: true This attribute should be passed if you develop and integrate it on localhost (http://localhost) and bypass the https error on CAT environment. Note: This attribute should be removed in higher environment.     |
+| debug    | Optional       | Eg: debug: true This attribute should be passed if you develop and integrate it on localhost (<http://localhost>) and bypass the https error on CAT environment. Note: This attribute should be removed in higher environment.     |
 
-**ExtraObject Sample Payload**
-          
+#### ExtraObject Sample Payload
+
 ```json
           
 "billingAddress": {
@@ -469,10 +458,10 @@ Please refer to the table below for additional SDK configuration properties:
 }          
           
 ```
-          
-**Handle POST from Hosted Pages** 
 
->Once Hosted Pages is finished, it will send the result app callback URL and redirectUrl (POST URL). MAS must implement this api to receive the result body. MAS will have to enable CORS on their end to allow access from javascript originating from “int.api.firstdata.com" and "prod.api.firstdata.com”. 
+#### Handle POST from Hosted Pages
+
+>Once Hosted Pages is finished, it will send the result app callback URL and redirectUrl (POST URL). MAS must implement this api to receive the result body. MAS will have to enable CORS on their end to allow access from javascript originating from “int.api.firstdata.com" and "prod.api.firstdata.com”.
 
 <center><img src="https://raw.githubusercontent.com/Fiserv/universal-commerce/develop/assets/images/HostedPages%20(4).png" alt="HP Diagram" class="center"></center>
 
@@ -481,7 +470,7 @@ Please refer to the table below for additional SDK configuration properties:
 Below are possible responses from Hosted Pages that must be handled accordingly. The responses will differ based on the flow used, whether it's a new card, or vaulted card.
 
 <details>
-<summary>**New Card Sample Responses**</summary>
+<summary><b>New Card Sample Responses</b></summary>
 
 >**Success response payload from Connected Commerce (uCom) API**  
 
@@ -503,9 +492,9 @@ Below are possible responses from Hosted Pages that must be handled accordingly.
 
 ```
 
->**Success Response with SDK Error** 
+>**Success Response with SDK Error**
 
-<P>This is the success response with sdk errors payload. Sometimes card will be enrolled successfully but the SDK will fail to post the response into redirect URL due to some reason. In this case SDK will send back with success response with SDK errors. </p> 
+This is the success response with sdk errors payload. Sometimes card will be enrolled successfully but the SDK will fail to post the response into redirect URL due to some reason. In this case SDK will send back with success response with SDK errors.
 
 ```json
 
@@ -536,13 +525,13 @@ Below are possible responses from Hosted Pages that must be handled accordingly.
           
 ```
 
->**Success Response with Threatmetrix Details** 
+>**Success Response with Threatmetrix Details**
 
-This is the enrollment response with TM(Threatmetrix) payload from Connected Commerce (uCom) API. 
-   
+This is the enrollment response with TM(Threatmetrix) payload from Connected Commerce (uCom) API.
+
 <!-- theme: danger -->
->Please note that this only applies if **Threatmetrix** is enabled as part of the hosted pages configurations on the back end.   
-          
+>Please note that this only applies if **Threatmetrix** is enabled as part of the hosted pages configurations on the back end.
+
 ```json
     
 {
@@ -566,10 +555,10 @@ This is the enrollment response with TM(Threatmetrix) payload from Connected Com
     
 ```
 
->**Success with Extra Params Details** 
+>**Success with Extra Params Details**
 
-Merchant has the ability to pass the billing address into SDK. If they inject the billing address into SDK then that information will be part of the response. 
-          
+Merchant has the ability to pass the billing address into SDK. If they inject the billing address into SDK then that information will be part of the response.
+
 ```json
 
 {
@@ -600,7 +589,7 @@ Merchant has the ability to pass the billing address into SDK. If they inject th
 ```
 
 <!-- theme: danger -->
->**Failure response payload from Connected Commerce (uCom) API** 
+>**Failure response payload from Connected Commerce (uCom) API**
 
 ```json
 {
@@ -619,14 +608,16 @@ Merchant has the ability to pass the billing address into SDK. If they inject th
 }
 
 ```
+
 </details>
 
 <details>
-<summary>**Vaulted Card Sample Responses**</summary>
+<summary><b>Vaulted Card Sample Responses</b></summary>
 
 >**Success**  
 
-<p>This is the success response payload from Connected Commerce (uCom) API</p>
+This is the success response payload from Connected Commerce (uCom) API
+
 ```json
 {
     "type": "VAULTED_ACCOUNT",
@@ -639,11 +630,12 @@ Merchant has the ability to pass the billing address into SDK. If they inject th
         "cardType": "VISA",
         "alias": "2345"
     }
-}         
+}
 ```
->**Success Response with SDK Error** 
 
-<p>This is the success response with sdk errors payload. Sometimes card will be enrolled successfully but SDK will fail to post the response into redirect URL due to some reason. In this case SDK will send back with success response with SDK errors.</p>
+>**Success Response with SDK Error**
+
+This is the success response with sdk errors payload. Sometimes card will be enrolled successfully but SDK will fail to post the response into redirect URL due to some reason. In this case SDK will send back with success response with SDK errors.
 
 ```json
 {
@@ -670,14 +662,14 @@ Merchant has the ability to pass the billing address into SDK. If they inject th
 }
 
 ```
-          
->**Success with Threatmetrix Details** 
-    
+
+>**Success with Threatmetrix Details**
+
 This is the enrollment response with TM(Threatmetrix) payload from Connected Commerce (uCom) API.
-    
+
 <!-- theme: danger -->
->Please note that this only applies if **Threatmetrix** is enabled as part of the hosted pages configurations on the back end.         
-          
+>Please note that this only applies if **Threatmetrix** is enabled as part of the hosted pages configurations on the back end.
+
 ```json
 {
     "type": "VAULTED_ACCOUNT",
@@ -694,12 +686,12 @@ This is the enrollment response with TM(Threatmetrix) payload from Connected Com
         "orgId": "8cz43sdv",
         "sessionId": "2fb1a98a-7182-497f-bc2a-79c37e556cb2"
     }   
-```          
-          
->**Success with Extra Params Details** 
+```
+
+>**Success with Extra Params Details**
 
 Merchant has the ability to pass the billing address into SDK. If they inject the billing address into SDK then that information will be part of the response.
-          
+
 ```json
 {
     "type": "VAULTED_ACCOUNT",
@@ -729,8 +721,8 @@ Merchant has the ability to pass the billing address into SDK. If they inject th
 <!-- theme: danger -->
 >**Failure**  
 
-This is the failure response payload from Connected Commerce (uCom) API 
-          
+This is the failure response payload from Connected Commerce (uCom) API
+
 ```json
 
 {
@@ -751,91 +743,92 @@ This is the failure response payload from Connected Commerce (uCom) API
 }
           
 ```
-    
+
 </details>
 ## Events
 
->Please note that this section is applicable for both Hosted Page implementations: webview and iFrame. 
+>Please note that this section is applicable for both Hosted Page implementations: webview and iFrame.
 
-<p>The only way to communicate with Hosted Pages is by listening to an event. Hosted Pages will emit and communicate back if you are subscribed with those events.</p>
-          
+The only way to communicate with Hosted Pages is by listening to an event. Hosted Pages will emit and communicate back if you are subscribed with those events.
+
 ```code
           
 ucomSDK.on(event, handler);   
           
 ```
 
-1. **onReady** 
+1. **onReady**
 
-Triggered when iFrame is fully rendered and can accept user’s inputs. 
-          
-```code
-          
-ucomSDK.on('ready', function () { //Handle ready event
-});
-          
-```
-2. **onChange** 
+    Triggered when iFrame is fully rendered and can accept user’s inputs.
 
-Triggered when form value is changed. The event payload always contains object with form valid status. 
+    ```code
+            
+    ucomSDK.on('ready', function () { //Handle ready event
+    });
+            
+    ```
 
-```code
-          
-ucomSDK.on('change', function () {
-   if (event.formValid) {
-      //Enable pay button
-   } else {
-      //Disable pay button
-   }
-});          
+2. **onChange**
 
-```
-          
-Handler Event Object 
+    Triggered when form value is changed. The event payload always contains object with form valid status.
 
-```code
-{
-   "elementType": "payment",
-   "formValid": false
-}
-          
-```
+    ```code
+            
+    ucomSDK.on('change', function () {
+    if (event.formValid) {
+        //Enable pay button
+    } else {
+        //Disable pay button
+    }
+    });          
 
-3. **onError** 
+    ```
 
-Triggered when the Hosted Pages API has errors. The event payload object contains API error which needs to be handled on app. 
-```code
-          
-ucomSDK.on('error', function (response) { //Handle Error Response
-});
-          
-```
+    Handler Event Object
 
-4. **onSuccess** 
+    ```code
+    {
+    "elementType": "payment",
+    "formValid": false
+    }
+            
+    ```
 
-Triggered when Hosted Pages generates a nonce. The event payload object contains nonce which needs to be handled on app. 
-          
-```code
-          
-ucomSDK.on('success', function (response) { //Handle Nonce 
-});
-          
-```
+3. **onError**
+
+    Triggered when the Hosted Pages API has errors. The event payload object contains API error which needs to be handled on app.
+
+    ```code
+            
+    ucomSDK.on('error', function (response) { //Handle Error Response
+    });
+    ```
+
+4. **onSuccess**
+
+    Triggered when Hosted Pages generates a nonce. The event payload object contains nonce which needs to be handled on app.
+
+    ```code
+            
+    ucomSDK.on('success', function (response) { //Handle Nonce 
+    });
+            
+    ```
+
 ## API Error Status Codes
 
-Below error status code needs to be handled from client side. These API error responses will be communicated back to App JavaScript main callback to handle the errors and show the appropriate error dialog. 
+Below error status code needs to be handled from client side. These API error responses will be communicated back to App JavaScript main callback to handle the errors and show the appropriate error dialog.
 
-**Error Responses Before Screen Renders** 
+### Error Responses Before Screen Renders
 
-Following errors will be thrown before hosted pages screen render 
-
+Following errors will be thrown before hosted pages screen render
 
 | Status Code     | Transaction Status Desc | Comments |
 |----------------|-------------------|----------- |
 | 269904    | Configuration record(s) not found.       | When an invalid page id is passed, then the API will throw this error     |
 | 401    | Unauthorized       | This error will occur when when an invalid access token id is passed.     |
 
-**Example Response Payload** 
+#### Example Response Payload
 
 ```json
 {
@@ -849,6 +842,7 @@ Following errors will be thrown before hosted pages screen render
     }
 }
 ```
+
 ```json
 {
     "response": {
@@ -862,21 +856,19 @@ Following errors will be thrown before hosted pages screen render
 }
           
 ```
-**Error Responses After Form Submission** 
 
-Following errors will be thrown after hosted pages screen render 
+#### Error Responses After Form Submission
 
-
+Following errors will be thrown after hosted pages screen render
 
 | Status Code     | Transaction Status Desc | Comments |
 |----------------|-------------------|----------- |
-| 279912    | Decryption failed.	       | When we pass an invalid or an already used public key into SDK then API will throw this error.     |
+| 279912    | Decryption failed.        | When we pass an invalid or an already used public key into SDK then API will throw this error.     |
 | 269901    | Unable to process your request, please try again later, if problem persist, contact sys admin.       | This error occurs when a communications problem occurs between the frontend and backend.    |
 | 401    | Access Token expired or Unauthorized       | This error will occur when user idle and try to submit the rendered form with expired access token.     |
 
-
 Example response payload:  
-          
+
 ```json
           
 {
@@ -897,8 +889,9 @@ Example response payload:
 }
          
 ```
-Example response payload:            
-          
+
+Example response payload:
+
 ```json
 {
     "response": {
@@ -912,11 +905,13 @@ Example response payload:
 }
           
 ```
-## Native/Web Submit Button 
 
-If needed, Hosted Pages has the ability to submit the form through the mobile app native button or website button from outside the iFrame. Following command will trigger the save action: 
+## Native/Web Submit Button
+
+If needed, Hosted Pages has the ability to submit the form through the mobile app native button or website button from outside the iFrame. Following command will trigger the save action:
 
 ```code
 ucomSDK.triggerSaveAction(); 
 ```
+
 >Please note: this has to be triggered from outside the iFrame or web view.

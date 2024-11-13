@@ -78,6 +78,7 @@ Timestamp = {time UTC in milliseconds}
 Sample Response: 
 
 ```json
+
 {
     "_links": [
         {
@@ -131,6 +132,7 @@ ComClient.init({
 });
 
 ```
+
 >Note: Please refer to the **SDK Configuration Property Values** section for additional params.
     
 </details>
@@ -362,6 +364,7 @@ The javascript method should be called after the web content is loaded. Refer to
 **Web Sample Code** 
 
 ```code
+
 <html>
    <head>
       <!-- uCom SDK -->
@@ -441,19 +444,19 @@ Please refer to the table below for additional SDK configuration properties:
 
 >Please note that the SDK configurations below are applicable for both Hosted Page implementations: webview and iFrame. 
                    
-| SDK Params     | Required/Optional | Description|
-|----------------|-------------------|----------- |
-| accessToken    | Required       | Session Token Id     |
-| apiKey    | Required       | API Key     |
-| fdCustomerId    | Required       | First data Customer Id     |
-| PageURL    | Required       | Page link url of the page     |
-| mountId    | Required       | Mount Id where Hosted Pages should be rendered     |
-| encryptionKey    | Required       | Public key from session token response to encrypt the data     |
-| redirectUrl    | Optional       | MAS URL to capture all the hosted pages response for auditing purpose.     |
-| orgId    | Optional       | Org id should be passed if Threatmetrix should be enabled on Hosted Pages     |
-| sessionId    | Optional       | Session id should be passed if Threatmetrix should be enabled on Hosted Pages     |
-| extraObject    | Optional       | Additional details can be passed to Hosted Pages to generate nonce as part of card detail. Example is below     |
-| debug    | Optional       | Eg: debug: true This attribute should be passed if you develop and integrate it on localhost (http://localhost) and bypass the https error on CAT environment. Note: This attribute should be removed in higher environment.     |
+| SDK Params    | Required/Optional | Description                                                                                                                                                                                                                  |
+|---------------|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| accessToken   | Required          | Session Token Id                                                                                                                                                                                                             |
+| apiKey        | Required          | API Key                                                                                                                                                                                                                      |
+| fdCustomerId  | Required          | First data Customer Id                                                                                                                                                                                                       |
+| PageURL       | Required          | Page link url of the page                                                                                                                                                                                                    |
+| mountId       | Required          | Mount Id where Hosted Pages should be rendered                                                                                                                                                                               |
+| encryptionKey | Required          | Public key from session token response to encrypt the data                                                                                                                                                                   |
+| redirectUrl   | Optional          | MAS URL to capture all the hosted pages response for auditing purpose.                                                                                                                                                       |
+| orgId         | Optional          | Org id should be passed if Threatmetrix should be enabled on Hosted Pages                                                                                                                                                    |
+| sessionId     | Optional          | Session id should be passed if Threatmetrix should be enabled on Hosted Pages                                                                                                                                                |
+| extraObject   | Optional          | Additional details can be passed to Hosted Pages to generate nonce as part of card detail. Example is below                                                                                                                  |
+| debug         | Optional          | Eg: debug: true This attribute should be passed if you develop and integrate it on localhost (http://localhost) and bypass the https error on CAT environment. Note: This attribute should be removed in higher environment. |
 
 **ExtraObject Sample Payload**
           
@@ -488,6 +491,7 @@ Below are possible responses from Hosted Pages that must be handled accordingly.
 >**Success response payload from Connected Commerce (uCom) API**  
 
 ```json
+
 {
    "type":"CREDIT",
    "token":{
@@ -605,6 +609,7 @@ Merchant has the ability to pass the billing address into SDK. If they inject th
 >**Failure response payload from Connected Commerce (uCom) API** 
 
 ```json
+
 {
     "code": "279912",
     "message": "Decryption failed.",
@@ -621,6 +626,7 @@ Merchant has the ability to pass the billing address into SDK. If they inject th
 }
 
 ```
+
 </details>
 
 <details>
@@ -629,7 +635,9 @@ Merchant has the ability to pass the billing address into SDK. If they inject th
 >**Success**  
 
 <p>This is the success response payload from Connected Commerce (uCom) API</p>
+
 ```json
+
 {
     "type": "VAULTED_ACCOUNT",
     "token": {
@@ -641,13 +649,15 @@ Merchant has the ability to pass the billing address into SDK. If they inject th
         "cardType": "VISA",
         "alias": "2345"
     }
-}         
+} 
+
 ```
 >**Success Response with SDK Error** 
 
 <p>This is the success response with sdk errors payload. Sometimes card will be enrolled successfully but SDK will fail to post the response into redirect URL due to some reason. In this case SDK will send back with success response with SDK errors.</p>
 
 ```json
+
 {
     "type": "VAULTED_ACCOUNT",
     "token": {
@@ -681,21 +691,24 @@ This is the enrollment response with TM(Threatmetrix) payload from Connected Com
 >Please note that this only applies if **Threatmetrix** is enabled as part of the hosted pages configurations on the back end.         
           
 ```json
+
 {
-    "type": "VAULTED_ACCOUNT",
-    "token": {
-        "tokenType": "CLAIM_CHECK_NONCE",
-        "tokenProvider": "UCOM",
-        "tokenId": "4f0dd98e-bf56-499c-b562-7936ca20964c"
-    },
-    "credit": {
-        "cardType": "VISA",
-        "alias": "2345"
-    },
-    "userSysDetails": {
-        "orgId": "8cz43sdv",
-        "sessionId": "2fb1a98a-7182-497f-bc2a-79c37e556cb2"
-    }   
+  "type": "VAULTED_ACCOUNT",
+  "token": {
+    "tokenType": "CLAIM_CHECK_NONCE",
+    "tokenProvider": "UCOM",
+    "tokenId": "4f0dd98e-bf56-499c-b562-7936ca20964c"
+  },
+  "credit": {
+    "cardType": "VISA",
+    "alias": "2345"
+  },
+  "userSysDetails": {
+    "orgId": "8cz43sdv",
+    "sessionId": "2fb1a98a-7182-497f-bc2a-79c37e556cb2"
+  }
+}
+
 ```          
           
 >**Success with Extra Params Details** 
@@ -703,6 +716,7 @@ This is the enrollment response with TM(Threatmetrix) payload from Connected Com
 Merchant has the ability to pass the billing address into SDK. If they inject the billing address into SDK then that information will be part of the response.
           
 ```json
+
 {
     "type": "VAULTED_ACCOUNT",
     "token": {
@@ -797,6 +811,7 @@ ucomSDK.on('change', function () {
 Handler Event Object 
 
 ```code
+
 {
    "elementType": "payment",
    "formValid": false
@@ -807,6 +822,7 @@ Handler Event Object
 1. **onError** 
 
 Triggered when the Hosted Pages API has errors. The event payload object contains API error which needs to be handled on app. 
+
 ```code
           
 ucomSDK.on('error', function (response) { //Handle Error Response

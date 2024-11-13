@@ -842,6 +842,7 @@ Following errors will be thrown before hosted pages screen render
 **Example Response Payload** 
 
 ```json
+
 {
     "response": {
         "code": "269904",
@@ -852,8 +853,11 @@ Following errors will be thrown before hosted pages screen render
         }
     }
 }
+
 ```
+
 ```json
+
 {
     "response": {
         "code": 401,
@@ -866,6 +870,7 @@ Following errors will be thrown before hosted pages screen render
 }
           
 ```
+
 **Error Responses After Form Submission** 
 
 Following errors will be thrown after hosted pages screen render 
@@ -901,9 +906,11 @@ Example response payload:
 }
          
 ```
+
 Example response payload:            
           
 ```json
+
 {
     "response": {
         "code": 401,
@@ -922,6 +929,9 @@ Example response payload:
 If needed, Hosted Pages has the ability to submit the form through the mobile app native button or website button from outside the iFrame. Following command will trigger the save action: 
 
 ```code
+
 ucomSDK.triggerSaveAction(); 
+
 ```
+
 >Please note: this has to be triggered from outside the iFrame or web view.

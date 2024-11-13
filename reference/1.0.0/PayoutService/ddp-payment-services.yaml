@@ -133,7 +133,7 @@ paths:
                 summary: Token Request
                 $ref: '#/components/examples/P2PTransArmorTokenRequest'
               Create and Pay - RTP Request:
-                summary: Token Request
+                summary: Disburse payment using RTP supported bank account
                 $ref: '#/components/examples/DisburseRTP'
 
       responses:

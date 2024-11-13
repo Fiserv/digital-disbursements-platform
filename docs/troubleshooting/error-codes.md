@@ -66,8 +66,8 @@ Listed below are the error codes being returned during DDP operations. The codes
 
 ## Payment Decline Codes
 
-| API       | Error code | Scenario                                 | Error message |
-|-----------|------------|------------------------------------------|---------------|
+| API       | Error code | Scenario                                 |
+|-----------|------------|------------------------------------------|
 | /payments | 400201     | D2D payment declined by PaySecure        |
 | /payments | 400202     | ACH payment declined by BluePay          |
 | /payments | 400203     | Prepaid payment declined by MoneyNetwork |

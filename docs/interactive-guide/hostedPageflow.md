@@ -777,7 +777,8 @@ ucomSDK.on('ready', function () { //Handle ready event
 });
           
 ```
-2. **onChange** 
+
+1. **onChange** 
 
 Triggered when form value is changed. The event payload always contains object with form valid status. 
 
@@ -803,7 +804,7 @@ Handler Event Object
           
 ```
 
-3. **onError** 
+1. **onError** 
 
 Triggered when the Hosted Pages API has errors. The event payload object contains API error which needs to be handled on app. 
 ```code
@@ -813,7 +814,7 @@ ucomSDK.on('error', function (response) { //Handle Error Response
           
 ```
 
-4. **onSuccess** 
+1. **onSuccess** 
 
 Triggered when Hosted Pages generates a nonce. The event payload object contains nonce which needs to be handled on app. 
           

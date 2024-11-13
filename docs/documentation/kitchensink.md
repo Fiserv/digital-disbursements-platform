@@ -194,7 +194,7 @@ ___
 Underscores
 ```
 
-# Extended markdown syntax
+## Extended markdown syntax
 
 Developer Studio Markdown extends standard Markdown with inline comment annotations.
 The value inside of the annotations is one or more key-value pairs, and the annotation affects the Markdown block right after it in the document.

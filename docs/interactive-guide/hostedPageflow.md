@@ -823,6 +823,7 @@ ucomSDK.on('success', function (response) { //Handle Nonce
 });
           
 ```
+
 ## API Error Status Codes
 
 Below error status code needs to be handled from client side. These API error responses will be communicated back to App JavaScript main callback to handle the errors and show the appropriate error dialog. 

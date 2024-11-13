@@ -98,7 +98,7 @@ Determine if you want to upload a template or create a single line item and sele
 
 ![Create Single line](../../../../assets/images/createsingleline.png)
 
-#### Add a Recipient:  Single Line Option
+#### Add a Recipient: Single Line Option
 
 #### Step 1
 

@@ -44,7 +44,7 @@
 - Merchants are permitted to retry the same payment up to 5 times
 - Merchants are permitted to retry the same payment with in 24 hours of initial request
 
-![image](idempotency.png)
+![image](assets/images/idempotency.png)
 
 ## Status Checks
 
@@ -53,7 +53,7 @@
 - If payment status is inconclusive, Merchant should retry status check api again
 - Merchants are permitted to retry status check for maximum of 5 times with 5 minutes gap
 
-![image](status_check.png)
+![image](assets/images/status_check.png)
 
 ### Inonclusive Response Examples
 

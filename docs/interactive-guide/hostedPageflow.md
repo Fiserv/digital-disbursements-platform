@@ -10,7 +10,7 @@ The goal of this guide is to describe how to implement and use Hosted Pages. It 
 
 Hosted Pages has 4 main Components, the Mobile Application, the Mobile Application Server, Hosted Page and the Connected Commerce (uCom) Sever/API.  
 
-<center><img src="https://github.com/Fiserv/universal-commerce/blob/develop/assets/images/HostedPages%20(1).png?raw=true" alt="HP Diagram" class="center"></center>
+<center><img src="/assets/images/HostedPages%20(1).png?" alt="HP Diagram" class="center"></center>
 
 1. **Mobile Application (App)** - This could be a native mobile application running on IOS or Android devices. This could also be a web application running on a browser.
 

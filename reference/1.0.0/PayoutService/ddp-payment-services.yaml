@@ -80,7 +80,7 @@ paths:
           example: application/json
 
       requestBody:
-        description: Details required for provision a PAN data.
+        description: Details required for disbursement.
         required: true
         content:
           application/json:
@@ -132,6 +132,9 @@ paths:
               Create and Pay - P2P Request:
                 summary: Token Request
                 $ref: '#/components/examples/P2PTransArmorTokenRequest'
+              Create and Pay - RTP Request:
+                summary: Token Request
+                $ref: '#/components/examples/DisburseRTP'
 
       responses:
         '201':
@@ -909,7 +912,7 @@ components:
           example: "USD"
 
     ACH:
-      description: Information about an Recipient ACH account. Required when source is ACH
+      description: Information about an Recipient ACH account. Required when source is ACH or RTP
       type: object
       required:
         - accountNumber
@@ -1743,6 +1746,7 @@ components:
         - PAYPAL
         - ECHECK
         - VISAPLUS
+        - RTP
 
     RecipientStatus:
       title: Indicates Recipient Status
@@ -2638,5 +2642,32 @@ components:
             ]
           }
         ]
+      }
+    DisburseRTP:
+      value: {
+        "amount": {
+          "total": 50.00,
+          "currency": "USD"
+        },
+        "merchantTransactionId": "2508b1-7490q-9181-313-a19234567",
+        "recipient": [
+          {
+            "recipientProfileInfo": {
+              "merchantCustomerId": "TestCompany001222"
+            },
+            "payments": {
+              "paymentType": "Claims"
+            },
+            "description": "Sending money to TestCompany001222",
+            "source": "RTP",
+            "ach": {
+              "accountNumber": "4444333322221111",
+              "routingNumber": "026009593",
+              "type": "SAVING"
+            }
+
+          }
+        ]
+
       }
 

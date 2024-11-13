@@ -29,7 +29,7 @@
 - Timeouts are inevitable, but they are very infrequent. Usually 99.99 % request will not get any timeout.
 - When a timeout occurs, The client cannot determine if the request reached the server or not.
 
-> To recover from iconclusive responses and avoid the risk of duplicate payments, Merchant should adopt one of two below practices,
+> To recover from inconclusive responses and avoid the risk of duplicate payments, Merchant should adopt one of two below practices,
 
 ## Idempotency
 

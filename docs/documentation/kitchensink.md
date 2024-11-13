@@ -20,10 +20,15 @@ Below is a quick reference of all the Markdown syntax that is supported by Stopl
 ```
 
 # H1
+
 ## H2
+
 ### H3
+
 #### H4
+
 ##### H5
+
 ###### H6
 
 ## Emphasis

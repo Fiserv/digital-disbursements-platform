@@ -1,6 +1,6 @@
 # What is Hosted Pages
 
-<img title="icon" alt="hosted pages icon" src="https://raw.githubusercontent.com/Fiserv/universal-commerce/develop/assets/images/Picture25.png" width="40" height="30">
+<img title="icon" alt="hosted pages icon" src="/assets/images/Picture25.png" width="40" height="30"> 
 
 Hosted payment pages is a Fiserv offering for secure card collection via webview or iFrame in order to avoid PCI Compliance exposure. We have a native API (client to server), server to server, and Cross Origin Resource (CORS) APIs to provide our clients a variety of integration options.
 
@@ -36,13 +36,13 @@ The following parameters are needed to access the Hosted Pages:
 
 ### Architecture Flow
 
-<center><img src="https://raw.githubusercontent.com/Fiserv/universal-commerce/develop/assets/images/HostedPages%20(2).png" alt="HP Diagram" class="center"></center>
+<center><img src="/assets/images/HostedPages%20(2).png" alt="HP Diagram" class="center"></center>
 
 ### Step 1: Start a New Session  
 
 App calls MAS to get a token ID, encryption Key and page Link. token ID and encryption Key should not be cached or stored on the app and should be fetched from MAS. The token ID and encryption Key expires after 20 minutes and therefore this step should be done every time user starts the flow.
 
-<center><img src="https://raw.githubusercontent.com/Fiserv/universal-commerce/develop/assets/images/HostedPages%20(3).png" alt="HP Diagram" class="center"></center>
+<center><img src="/assets/images/HostedPages%20(3).png" alt="HP Diagram" class="center"></center>
 
 ### Step 2: App calls MAS
 
@@ -463,7 +463,7 @@ Please refer to the table below for additional SDK configuration properties:
 
 >Once Hosted Pages is finished, it will send the result app callback URL and redirectUrl (POST URL). MAS must implement this api to receive the result body. MAS will have to enable CORS on their end to allow access from javascript originating from “int.api.firstdata.com" and "prod.api.firstdata.com”.
 
-<center><img src="https://raw.githubusercontent.com/Fiserv/universal-commerce/develop/assets/images/HostedPages%20(4).png" alt="HP Diagram" class="center"></center>
+<center><img src="/assets/images/HostedPages%20(4).png" alt="HP Diagram" class="center"></center>
 
 ## Hosted Pages Response Payloads
 

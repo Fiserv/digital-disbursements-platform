@@ -75,6 +75,7 @@ Timestamp = {time UTC in milliseconds}
 Sample Response:
 
 ```json
+
 {
     "_links": [
         {
@@ -348,6 +349,7 @@ The javascript method should be called after the web content is loaded. Refer to
 ##### Web Sample Code
 
 ```code
+
 <html>
    <head>
       <!-- uCom SDK -->
@@ -475,6 +477,7 @@ Below are possible responses from Hosted Pages that must be handled accordingly.
 >**Success response payload from Connected Commerce (uCom) API**  
 
 ```json
+
 {
    "type":"CREDIT",
    "token":{
@@ -592,6 +595,7 @@ Merchant has the ability to pass the billing address into SDK. If they inject th
 >**Failure response payload from Connected Commerce (uCom) API**
 
 ```json
+
 {
     "code": "279912",
     "message": "Decryption failed.",
@@ -619,6 +623,7 @@ Merchant has the ability to pass the billing address into SDK. If they inject th
 This is the success response payload from Connected Commerce (uCom) API
 
 ```json
+
 {
     "type": "VAULTED_ACCOUNT",
     "token": {
@@ -638,6 +643,7 @@ This is the success response payload from Connected Commerce (uCom) API
 This is the success response with sdk errors payload. Sometimes card will be enrolled successfully but SDK will fail to post the response into redirect URL due to some reason. In this case SDK will send back with success response with SDK errors.
 
 ```json
+
 {
     "type": "VAULTED_ACCOUNT",
     "token": {
@@ -671,6 +677,7 @@ This is the enrollment response with TM(Threatmetrix) payload from Connected Com
 >Please note that this only applies if **Threatmetrix** is enabled as part of the hosted pages configurations on the back end.
 
 ```json
+
 {
     "type": "VAULTED_ACCOUNT",
     "token": {
@@ -685,7 +692,8 @@ This is the enrollment response with TM(Threatmetrix) payload from Connected Com
     "userSysDetails": {
         "orgId": "8cz43sdv",
         "sessionId": "2fb1a98a-7182-497f-bc2a-79c37e556cb2"
-    }   
+    }
+}
 ```
 
 >**Success with Extra Params Details**
@@ -693,6 +701,7 @@ This is the enrollment response with TM(Threatmetrix) payload from Connected Com
 Merchant has the ability to pass the billing address into SDK. If they inject the billing address into SDK then that information will be part of the response.
 
 ```json
+
 {
     "type": "VAULTED_ACCOUNT",
     "token": {
@@ -821,7 +830,7 @@ Below error status code needs to be handled from client side. These API error re
 
 ### Error Responses Before Screen Renders
 
-Following errors will be thrown before hosted pages screen render
+Following errors will be thrown before hosted pages screen render.
 
 | Status Code     | Transaction Status Desc | Comments |
 |----------------|-------------------|----------- |
@@ -831,6 +840,7 @@ Following errors will be thrown before hosted pages screen render
 #### Example Response Payload
 
 ```json
+
 {
     "response": {
         "code": "269904",
@@ -841,9 +851,11 @@ Following errors will be thrown before hosted pages screen render
         }
     }
 }
+
 ```
 
 ```json
+
 {
     "response": {
         "code": 401,
@@ -893,6 +905,7 @@ Example response payload:
 Example response payload:
 
 ```json
+
 {
     "response": {
         "code": 401,
@@ -911,7 +924,9 @@ Example response payload:
 If needed, Hosted Pages has the ability to submit the form through the mobile app native button or website button from outside the iFrame. Following command will trigger the save action:
 
 ```code
+
 ucomSDK.triggerSaveAction(); 
+
 ```
 
 >Please note: this has to be triggered from outside the iFrame or web view.

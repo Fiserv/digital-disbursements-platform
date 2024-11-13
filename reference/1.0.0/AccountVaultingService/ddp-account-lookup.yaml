@@ -117,15 +117,20 @@ components:
       type: object
       required:
         - source
-        - token
       properties:
         source:
           type: string
           description: Account Type
           enum:
             - TOKEN
+            - DEBIT
+            - RTP
         token:
           $ref: '#/components/schemas/ReferenceToken'
+        card:
+          $ref: '#/components/schemas/Card'
+        ach:
+          $ref: '#/components/schemas/Ach'
 
   ##-------------------------------------
   ## Response Model
@@ -218,7 +223,7 @@ components:
           type: string
 
     ReferenceToken:
-      description: Surrogate value used to represent a handle to an account without sharing PCI data to look it up.
+      description: Conditional, required when source is TOKEN. Surrogate value used to represent a handle to an account without sharing PCI data to look it up.
       type: object
       properties:
         tokenId:
@@ -227,6 +232,28 @@ components:
           example: '292bb6b886fc4446894f878b7e32bd5e'
         tokenProvider:
           $ref: '#/components/schemas/TokenProvider'
+    Card:
+      description: Conditional, required when source is DEBIT. PAN details for lookup.
+      type: object
+      properties:
+        cardNumber:
+          type: string
+          description: Encrypted PAN
+          example: '4444333322221111'
+    Ach:
+      description: Conditional, required when source is RTP. contains bank account details.
+      type: object
+      properties:
+        accountNumber:
+          type: string
+          description: Encrypted Bank account number
+          example: '4444333322221111'
+        routingNumber:
+          type: string
+          description: Bank routing number
+          example: '026009593'
+        type:
+          $ref: '#/components/schemas/AccountType'
 
     #-------------------------------------
     # Enum Models
@@ -237,6 +264,13 @@ components:
       description: token provider, should be one of these.
       enum:
         - TRANS_ARMOR
+    AccountType:
+      type: string
+      description: Bank account type.
+      example: SAVINGS
+      enum:
+        - CHECKING
+        - SAVINGS
     DisbursementIndicator:
       description: >
         Specify card can be used for disbursement on DDP platform

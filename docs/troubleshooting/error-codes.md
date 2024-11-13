@@ -66,28 +66,28 @@ Listed below are the error codes being returned during DDP operations. The codes
 
 ## Payment Decline Codes
 
-|API | Error code | Scenario | Error message|
-|--- | -----------|--------- | -------------|
-|/payments  | 400201 | D2D payment declined by PaySecure||
-|/payments  | 400202 | ACH payment declined by BluePay||
-|/payments  | 400203 | Prepaid payment declined by MoneyNetwork||
-|/payments  | 400204 | Venmo payment declined by Paypal Inc||
-|/payments  | 400205 | Reserved for future methods||
-|/payments  | 400206 | Reserved for future methods||
-|/payments  | 400207 | Reserved for future methods||
-|/payments  | 400208 | Reserved for future methods||
-|/payments  | 400209 | Reserved for future methods||
-|/payments  | 400210 | Reserved for future methods||
-|/payments  | 400211 | Reserved for future methods||
-|/payments  | 400212 | Reserved for future methods||
-|/payments  | 400213 | Reserved for future methods||
-|/payments  | 400214 | Reserved for future methods||
-|/payments  | 400215 | Reserved for future methods||
-|/payments  | 400216 | Reserved for future methods||
-|/payments  | 400217 | Reserved for future methods||
-|/payments  | 400218 | Reserved for future methods||
-|/payments  | 400219 | Reserved for future methods||
-|/payments  | 400220 | Reserved for future methods||
+| API       | Error code | Scenario                                 |
+|-----------|------------|------------------------------------------|
+| /payments | 400201     | D2D payment declined by PaySecure        |
+| /payments | 400202     | ACH payment declined by BluePay          |
+| /payments | 400203     | Prepaid payment declined by MoneyNetwork |
+| /payments | 400204     | Venmo payment declined by Paypal Inc     |
+| /payments | 400205     | Reserved for future methods              |
+| /payments | 400206     | Reserved for future methods              |
+| /payments | 400207     | Reserved for future methods              |
+| /payments | 400208     | Reserved for future methods              |
+| /payments | 400209     | Reserved for future methods              |
+| /payments | 400210     | Reserved for future methods              |
+| /payments | 400211     | Reserved for future methods              |
+| /payments | 400212     | Reserved for future methods              |
+| /payments | 400213     | Reserved for future methods              |
+| /payments | 400214     | Reserved for future methods              |
+| /payments | 400215     | Reserved for future methods              |
+| /payments | 400216     | Reserved for future methods              |
+| /payments | 400217     | Reserved for future methods              |
+| /payments | 400218     | Reserved for future methods              |
+| /payments | 400219     | Reserved for future methods              |
+| /payments | 400220     | Reserved for future methods              |
 
 ## Other Codes from Payment Core
 
@@ -130,32 +130,32 @@ Listed below are the error codes being returned during DDP operations. The codes
 
 ## Transaction Services
 
-|API | Error code | Scenario | Error message|
-|--- | -----------|--------- | -------------|
-|/transactions/{transactionId} | 400081 |  | Invalid request format/data.|
-|/transactions/{transactionId} | 400082 |  | Service has a timeout and will be back shortly.|
-|/transactions/{transactionId} | 400083 |  | Missing Parameter|
-|/transactions/{transactionId} | 400084 |  | No data found for the request.|
+| API                           | Error code | Scenario | Error message                                   |
+|-------------------------------|------------|----------|-------------------------------------------------|
+| /transactions/{transactionId} | 400081     |          | Invalid request format/data.                    |
+| /transactions/{transactionId} | 400082     |          | Service has a timeout and will be back shortly. |
+| /transactions/{transactionId} | 400083     |          | Missing Parameter                               |
+| /transactions/{transactionId} | 400084     |          | No data found for the request.                  |
 
 ## Authentication Services
 
-|API | Error code | Scenario | Error message|
-|--- | -----------|--------- | -------------|
-|/otp | 401091 | Invalid request format/data | Invalid or Missing otp|
-|/otp | 400092 | Passing invalid recipient Id | Invalid or missing recipient profile|
-|/otp | 401093 | Invalid request format/data | OTP has been rejected.|
-|/otp | 400091 |  | Invalid request format/data|
-|/otp | 400092 |  | Invalid or missing recipient profile|
-|/otp | 400093 |  | User already exists.|
-|/otp | 400094 |  | User does not  exists.|
-|/otp | 400095 |  | New password cannot be the same as the current password.|
-|/otp | 400096 |  | State of flow id out of scope|
-|/otp | 400097 |  | Invalid or Missing field|
-|/otp | 401098 |  | Authentication failed|
-|/otp | 400099 |  | JWT generation failed|
-|/otp | 4000100 |  | Invalid request format/data|
-|/otp | 400101 |  | The requested resource was not found|
-|/otp | 400061 |  | Invalid request format/data|
+| API  | Error code | Scenario                     | Error message                                            |
+|------|------------|------------------------------|----------------------------------------------------------|
+| /otp | 401091     | Invalid request format/data  | Invalid or Missing otp                                   |
+| /otp | 400092     | Passing invalid recipient Id | Invalid or missing recipient profile                     |
+| /otp | 401093     | Invalid request format/data  | OTP has been rejected.                                   |
+| /otp | 400091     |                              | Invalid request format/data                              |
+| /otp | 400092     |                              | Invalid or missing recipient profile                     |
+| /otp | 400093     |                              | User already exists.                                     |
+| /otp | 400094     |                              | User does not  exists.                                   |
+| /otp | 400095     |                              | New password cannot be the same as the current password. |
+| /otp | 400096     |                              | State of flow id out of scope                            |
+| /otp | 400097     |                              | Invalid or Missing field                                 |
+| /otp | 401098     |                              | Authentication failed                                    |
+| /otp | 400099     |                              | JWT generation failed                                    |
+| /otp | 4000100    |                              | Invalid request format/data                              |
+| /otp | 400101     |                              | The requested resource was not found                     |
+| /otp | 400061     |                              | Invalid request format/data                              |
 
 ## Account Services
 
@@ -169,10 +169,10 @@ Listed below are the error codes being returned during DDP operations. The codes
 
 ## Merchant Services
 
-|API | Error code | Scenario | Error message|
-|--- | -----------|--------- | -------------|
-|/merchants | 400101 | Request format / data is incorrect. | Invalid request format/data|
-|/merchants | 400102 | Merchant ID provided is invalid for DDP |  Invalid merchant id|
+| API        | Error code | Scenario                                | Error message               |
+|------------|------------|-----------------------------------------|-----------------------------|
+| /merchants | 400101     | Request format / data is incorrect.     | Invalid request format/data |
+| /merchants | 400102     | Merchant ID provided is invalid for DDP |  Invalid merchant id        |
 
 ## Recipient Services
 

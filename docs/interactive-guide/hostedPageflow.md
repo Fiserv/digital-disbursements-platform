@@ -1,4 +1,5 @@
 # What is Hosted Pages
+
 <img title="icon" alt="hosted pages icon" src="/assets/images/Picture25.png" width="40" height="30"> 
 
 Hosted payment pages is a Fiserv offering for secure card collection via webview or iFrame in order to avoid PCI Compliance exposure. We have a native API (client to server), server to server, and Cross Origin Resource (CORS) APIs to provide our clients a variety of integration options.
@@ -39,6 +40,7 @@ The following parameters are needed to access the Hosted Pages:
 <center><img src="/assets/images/HostedPages-2.png" alt="HP Diagram" class="center"></center>
 
 ### Step 1: Start a New Session  
+
 App calls MAS to get a token ID, encryption Key and page Link. token ID and encryption Key should not be cached or stored on the app and should be fetched from MAS. The token ID and encryption Key expires after 20 minutes and therefore this step should be done every time user starts the flow. 
 
 <center><img src="/assets/images/HostedPages-3.png" alt="HP Diagram" class="center"></center>
@@ -830,10 +832,10 @@ Below error status code needs to be handled from client side. These API error re
 Following errors will be thrown before hosted pages screen render 
 
 
-| Status Code     | Transaction Status Desc | Comments |
-|----------------|-------------------|----------- |
-| 269904    | Configuration record(s) not found.       | When an invalid page id is passed, then the API will throw this error     |
-| 401    | Unauthorized       | This error will occur when when an invalid access token id is passed.     |
+| Status Code | Transaction Status Desc            | Comments                                                              |
+|-------------|------------------------------------|-----------------------------------------------------------------------|
+| 269904      | Configuration record(s) not found. | When an invalid page id is passed, then the API will throw this error |
+| 401         | Unauthorized                       | This error will occur when when an invalid access token id is passed. |
 
 **Example Response Payload** 
 
@@ -868,11 +870,11 @@ Following errors will be thrown after hosted pages screen render
 
 
 
-| Status Code     | Transaction Status Desc | Comments |
-|----------------|-------------------|----------- |
-| 279912    | Decryption failed.	       | When we pass an invalid or an already used public key into SDK then API will throw this error.     |
-| 269901    | Unable to process your request, please try again later, if problem persist, contact sys admin.       | This error occurs when a communications problem occurs between the frontend and backend.    |
-| 401    | Access Token expired or Unauthorized       | This error will occur when user idle and try to submit the rendered form with expired access token.     |
+| Status Code | Transaction Status Desc                                                                        | Comments                                                                                            |
+|-------------|------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| 279912      | Decryption failed.	                                                                            | When we pass an invalid or an already used public key into SDK then API will throw this error.      |
+| 269901      | Unable to process your request, please try again later, if problem persist, contact sys admin. | This error occurs when a communications problem occurs between the frontend and backend.            |
+| 401         | Access Token expired or Unauthorized                                                           | This error will occur when user idle and try to submit the rendered form with expired access token. |
 
 
 Example response payload:  

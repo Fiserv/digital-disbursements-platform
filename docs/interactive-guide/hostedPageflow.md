@@ -915,6 +915,7 @@ Example response payload:
 }
           
 ```
+
 ## Native/Web Submit Button 
 
 If needed, Hosted Pages has the ability to submit the form through the mobile app native button or website button from outside the iFrame. Following command will trigger the save action: 

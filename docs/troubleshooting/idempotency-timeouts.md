@@ -1,8 +1,7 @@
-# Idempotent Timeout Handling
-
+# Idempotency & Timeout Handling
 > Only applicable to Direct Disbursemnt Merchants
 
-## Conclusive & Inconclusive Responses
+### Conclusive & Inconclusive Responses
  
 - When client makes disburse payment request, the response can be either conclusive or inconclusive
 - A conclusive response, is the one where client is sure of transaction status, Even if its declined. It includes,
@@ -14,7 +13,7 @@
 - `Timeouts`
 - [Refer](?path=docs/troubleshooting/Transaction-payment-status.md) for more info
 
-## Timeouts
+### Timeouts
 
 - Timeouts usually happens, when a (system/program) tired to connect to server, but it didn't receive a response in expected time frame. This could be due to
   - Network issues (or)
@@ -31,7 +30,7 @@
 
 > To recover from inconclusive responses and avoid the risk of duplicate payments, Merchant should adopt one of two below practices,
 
-## Idempotency
+### Idempotency
 
 - With Idempotency, DDP guarantees a single fund transfer per payment, even with duplicate requests
 - In order for a payment to qualify for idempotency, It should have same
@@ -46,7 +45,7 @@
 
 ![image](assets/images/idempotency.png)
 
-## Status Checks
+### Status Checks
 
 - In case of Inconclusive response, Merchant should retrieve current payment status after 5 minutes of initial request
 - If payment status is conclusive, Merchant should take appropriate action
@@ -160,5 +159,5 @@ HTTP 500
 ```
 
 ### Certification
->
+
 > TBA

@@ -73,6 +73,8 @@
       link: docs/troubleshooting/error-codes.md
     - title: Transaction/Payments Status
       link: docs/troubleshooting/Transaction-payment-status.md
+    - title: Idempotency & Timeouts
+      link: docs/troubleshooting/idempotency-timeouts.md
     - title: Webhook Notification Messages
       link: docs/troubleshooting/notification-messages.md
     - title: Email Notification Messages

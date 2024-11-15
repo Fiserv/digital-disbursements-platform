@@ -47,6 +47,10 @@
       link: docs/documentation/features/visaplus.md
     - title: P2P (Person-to-Person)
       link: docs/documentation/features/p2p.md
+    - title: Cross Currency
+      link: docs/documentation/features/crosscurrency.md
+    - title: Soft Descriptor
+      link: docs/documentation/features/softdescriptor.md
 #   - title: Bank Account Verification
 #     link: docs/documentation/features/bankaccountvalidation.md  
 #   - title: Tokenization
@@ -79,6 +83,18 @@
       link: docs/troubleshooting/tokens.md
 #  - title: Contact us
 #    link: https://www.carat.fiserv.com/en-us/contact/?utm_campaign=payouts_content
+  - title: Release Notes
+    sections:
+    - title: June 27th, 2024
+      link: docs/release-notes/2024.6.md
+    - title: February 29th, 2024
+      link: docs/release-notes/2024.3.md
+    - title: July 2023
+      link: docs/release-notes/2023.7.md
+    - title: March 16, 2023
+      link: docs/release-notes/2023.5.md
+    - title: March 3, 2023
+      link: docs/release-notes/2023.md
     
 
 # - sections:

@@ -9,7 +9,7 @@ The Person-to-Person (P2P) feature facilitates direct fund transfers between mer
 - Merchants should enable P2P payments.
 - Applicable only for Direct Debit merchants.
 - P2P requires sender details in the request payload.
-- Generate a TA Token for the card (Visa or Mastercard) for both the sender and recipient using North Backend or Commerce Hub. For more Information, refer to [TA Token](../docs/?path=docs/troubleshooting/tokens.md)
+- Allowed sources of funds for the sender’s account are TA Token, Bank Account, Card and Wallet. If using a TA Token, Generate a TA Token for the card (Visa or Mastercard) for both the sender and recipient using North Backend or Commerce Hub. For more Information, refer to [TA Token](../docs/?path=docs/troubleshooting/tokens.md)
 
 ## Use Case Example(s)
 

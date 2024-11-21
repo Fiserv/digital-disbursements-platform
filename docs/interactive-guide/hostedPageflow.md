@@ -431,7 +431,8 @@ The javascript method should be called after the web content is loaded. Refer to
    </body>
 </html>
 
-```          
+```  
+
 </details>
           
 <!-- type: tab-end -->
@@ -652,6 +653,7 @@ Merchant has the ability to pass the billing address into SDK. If they inject th
 } 
 
 ```
+
 >**Success Response with SDK Error** 
 
 <p>This is the success response with sdk errors payload. Sometimes card will be enrolled successfully but SDK will fail to post the response into redirect URL due to some reason. In this case SDK will send back with success response with SDK errors.</p>

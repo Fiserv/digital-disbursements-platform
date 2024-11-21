@@ -2625,6 +2625,7 @@ components:
           }
         ],
         "merchantTransactionId": "MERCHNAT_INPUT",
+        "statementDescriptor":"Fiserv Payments",
         "transactionPurpose":"FAMILY_SUPPORT",
         "customFields": [
           {
@@ -2650,6 +2651,7 @@ components:
           "currency": "USD"
         },
         "merchantTransactionId": "2508b1-7490q-9181-313-a19234567",
+        "statementDescriptor":"Fiserv Payments",
         "recipient": [
           {
             "recipientProfileInfo": {

@@ -35,17 +35,17 @@ Please remember:   Bulk templates are only able to include action types for a si
 
 Bulk is accessible to clients via Client Line Enterprise to those users who have been assigned the correct entitlements.
 
-#### Step 1   
+#### Step 1
 
 Open the Business Track link.
 
-#### Step 2 
+#### Step 2  
 
 Select the ‘Merchant’ log in option
 
 ![Clx](../../../../assets/images/clx.png)
 
-#### Step 3
+#### Step 3  
 
 Enter your user name and password
 
@@ -53,19 +53,19 @@ Enter your user name and password
 
 If you do not have a user name and password, please contact your account manager or the administrator for your company.
 
-#### Step 4 
+#### Step 4
 
 Enter the security code that was sent to your email.  The email address used is the same email where you received your log in credentials from Business Track.
 
 ![Clx Security](../../../../assets/images/clxsecurity.png)
 
-#### Step 5 
+#### Step 5
 
 Select the ‘Client Line Enterprise’ option under the Administration drop down box.
 
 ![Clx Admin](../../../../assets/images/clxAdmin.png)
 
-#### Step 6  
+#### Step 6
 
 Select the entity for which you will be processing the BULK file.
 
@@ -86,13 +86,13 @@ Select the option “Bulk Upload” from the menu on the left hand side of the s
 This action is used by clients who need to associate recipients to their MID.   Recipients must be associated to the MID prior to the initiation of a payment.  
 **Note:** If you wish to use the BULK method to create recipients, you will need to initiate the process under the Bulk Upload Menu.
 
-#### Step 1 
+#### Step 1  
 
 Select the “New Recipient Bulk Upload” option.
 
 ![New Recipient Bulk](../../../../assets/images/newRecipientBulk.png)
 
-#### Step 2 
+#### Step 2  
 
 Determine if you want to upload a template or create a single line item and select the correct option.
 
@@ -106,21 +106,21 @@ Select the “Add New” Button
 
 ![Add New](../../../../assets/images/addNew.png)
 
-#### Step 2 
+#### Step 2  
 
 Complete all required fields and any optional fields that are needed.
 
 ![bulk load](../../../../assets/images/bulkload.png)
 
-#### Step 3 
+#### Step 3  
 
 Select the “Add Button” if additional line items are needed.
 
 ![Add Button](../../../../assets/images/addButton.png)
 
-#### Step 4
+#### Step 4  
 
-When all line items have been added, select the “Process Transaction” button.   
+When all line items have been added, select the “Process Transaction” button.
 
 >**Note:**  The “Process Transaction” button is not enabled if there are any errors found within the line items that have been entered.
 
@@ -140,13 +140,13 @@ Select the “Bulk Upload” option.
 
 ![Upload Option](../../../../assets/images/uploadopt.png)
 
-#### Step 2
+#### Step 2  
 
 Select the template to be processed and press the “Open” button.
 
 ![Open Button](../../../../assets/images/openButton.png)
 
-#### Step 3
+#### Step 3  
 
 Select the “Process Transaction” button.  Please note:  when the file is uploaded, all line items are automatically displayed on the screen.  The “Process Transaction” button will only appear if there are no errors detected within the displayed line items.
 
@@ -162,7 +162,7 @@ This action is used by clients who need to initiate a payment to a recipient.  R
 
 **Note:** If you wish to use the BULK method to initiate a payment, you will need to initiate the process under the Payments / Initiate Payment menu option in CLX.  
 
-#### Step 1 
+#### Step 1  
 
 Select the “Payment Bulk Upload” option.
 

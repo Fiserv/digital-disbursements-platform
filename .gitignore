@@ -31,3 +31,6 @@ build/
 .vscode/
 
 .DS_Store
+*.DS_Store
+documentation/kitchensink.md
+.markdownlint.json

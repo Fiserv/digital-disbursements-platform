@@ -328,5 +328,5 @@ This request will get the details of an on boarded merchant with no request para
 [![Try it out](../../../../assets/images/button.png)](../api/?type=get&path=/ddp/v1/merchantInfo)
 
 ## See Also
-
+- [Idempotency & Timeout Handling](?path=docs/troubleshooting/Transaction-payment-status.md)
 - [Please refer our FAQ's](?path=docs/faq/faq.md)

@@ -11,7 +11,6 @@
 - `HTTP 5XX` Server Errors
 - `HTTP 2XX`with In Progress Status
 - `Timeouts`
-- [Refer](?path=docs/troubleshooting/Transaction-payment-status.md) for more info
 
 ### Timeouts
 
@@ -25,7 +24,7 @@
   - Between Merchant and DDP
   - Between DDP and Payment Providers (VISA or Master)
   - Payment Provider (VISA or Master) and Issuer Bank
-- Timeouts are inevitable, but they are very infrequent. Usually 99.99 % request will not get any timeout.
+- Timeouts are inevitable, but they are very infrequent.
 - When a timeout occurs, The client cannot determine if the request reached the server or not.
 
 > To recover from inconclusive responses and avoid the risk of duplicate payments, Merchant should adopt one of two below practices,
@@ -53,6 +52,19 @@
 - Merchants are permitted to retry status check for maximum of 5 times with 5 minutes gap
 
 ![image](assets/images/status_check.png)
+
+
+### Merchant Guidelines
+| Transaction Status | Payment Status | Description | Best Practices (Direct Disbursement Merchants) |  Best Practices (Portal Merchants) |
+| ------------------ | -------------- | ----------- | ---------------------------------------------- | ---------------------------------- |
+| `IP` In Process | `IP` In Process | DDP has presented payout request to payment endpoint; however, the outcome is currently unknown.  Merchant will be provided updated information via web hook (push) or DDP's Status Check API (pull), depending upon Merchant's preference | DDP will return a 2XX message.  To avoid the risk of duplicate payments, Merchant should adopt one of two practices:    1) Merchant should wait 5 minutes, then send DDP Status request; DDP will return current status.  Or    2) Merchant should wait 5 minutes; then retry transaction with same (MTID, MCID & Amount).  If DDP identifies the transaction has a duplicate, DDP will return the current status; otherwise, DDP will process the transaction, business as usual.  Merchants are permitted to retry the same transaction up to 5 times.  Recommended that merchant retries at 2 minutes intervals. | Not applicable |
+| `TV` Transaction Cancelled  | `SE` System Error | Subsequent to responding with IP/IP, DDP determines that transaction did not reach payment endpoint. | Merchants can receive notification of a system error via web hook (push); or when calling for a Status Check or retrying a prior request. | Not applicable |
+| `TC` Transaction Completed | `ED` Declined by Payment Endpoint | DDP has successfully processed the transaction to the payment endpoint; but the endpoint has declined the request.  | DDP will return a 4XX message.  Merchant can send a new transaction with the same Recipient account information; however, the same response is likely. | Not applicable |
+| *`HTTP 5XX`* | *`HTTP 5XX`* |  DDP failed to process payment and the outcome is currently unknown.  Merchant will be provided updated information via web hook (push) or DDP's Status Check API (pull), depending upon Merchant's preference | To avoid the risk of duplicate payments, Merchant should adopt one of two practices:    1) Merchant should wait 5 minutes, then send DDP Status request; DDP will return current status.  Or    2) Merchant should wait 5 minutes; then retry transaction with same (MTID, MCID & Amount).  If DDP identifies the transaction has a duplicate, DDP will return the current status; otherwise, DDP will process the transaction, business as usual.  Merchants are permitted to retry the same transaction up to 5 times.  Recommended that merchant retries at 2 minutes intervals. | Not applicable |
+| *`Client Timeout`* | *`Client Timeout`*  | Merchant's request timed out at merchant's application  Reasons may include but not limited to Merchant side network issues Latent responses from DDP ... | To avoid the risk of duplicate payments, Merchant should adopt one of two practices:    1) Merchant should wait 5 minutes, then send DDP Status request; DDP will return current status.  Or    2) Merchant should wait 5 minutes; then retry transaction with same (MTID, MCID & Amount).  If DDP identifies the transaction has a duplicate, DDP will return the current status; otherwise, DDP will process the transaction, business as usual.  Merchants are permitted to retry the same transaction up to 5 times.  Recommended that merchant retries at 2 minutes intervals. | Not applicable |
+
+[Refer Idempotency & Timeout Handling](?path=docs/troubleshooting/Transaction-payment-status.md) for more info
+
 
 
 ### Iconclusive Response Examples 
@@ -157,6 +169,10 @@ HTTP 500
 }
 
 ```
+
+
+
+
 
 ### Certification
 

@@ -6,10 +6,10 @@
 - When client makes disburse payment request, the response can be either conclusive or inconclusive
 - A conclusive response, is the one where client is sure of transaction status, Even if its declined. It includes,
 - `HTTP 4XX` Declined due to error in client input
-- `HTTP 2XX`  Approved (Except IP transaction status)
+- `HTTP 2XX` Approved (Except IP transaction status)
 - An inconclusive response, is the one where client is not sure of transaction status, Even if client gets 2xx response. It includes,
 - `HTTP 5XX` Server Errors
-- `HTTP 2XX`with In Progress Status
+- `HTTP 2XX`with IP transaction status
 - `Timeouts`
 
 ### Timeouts
@@ -67,7 +67,7 @@
 
 
 
-### Iconclusive Response Examples 
+### Inconclusive Response Examples 
 
 ``` json
 // 2XX In Progress for Disburse Payment
@@ -169,8 +169,6 @@ HTTP 500
 }
 
 ```
-
-
 
 
 

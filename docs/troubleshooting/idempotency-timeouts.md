@@ -67,7 +67,7 @@
 
 
 
-### Iconclusive Response Examples 
+### Inconclusive Response Examples 
 
 ``` json
 // 2XX In Progress for Disburse Payment
@@ -169,8 +169,6 @@ HTTP 500
 }
 
 ```
-
-
 
 
 

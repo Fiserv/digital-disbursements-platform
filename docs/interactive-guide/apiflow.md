@@ -327,6 +327,9 @@ This request will get the details of an on boarded merchant with no request para
 
 [![Try it out](../../../../assets/images/button.png)](../api/?type=get&path=/ddp/v1/merchantInfo)
 
+## Step 5: Optional/Idempotency & Timeout Handling
+
+[Idempotency & Timeout Handling](?path=docs/troubleshooting/idempotency-timeouts.md)
+
 ## See Also
-- [Idempotency & Timeout Handling](?path=docs/troubleshooting/idempotency-timeouts.md)
 - [Please refer our FAQ's](?path=docs/faq/faq.md)

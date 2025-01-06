@@ -122,7 +122,7 @@ Select the “Add Button” if additional line items are needed.
 
 When all line items have been added, select the “Process Transaction” button.
 
->**Note:**  The “Process Transaction” button is not enabled if there are any errors found within the line items that have been entered.
+>**Note:**  An asterisk (*) denotes a required field and The “Process Transaction” button is not enabled if there are any errors found within the line items that have been entered.
 
 ![Transaction](../../../../assets/images/processTransaction.png)
 
@@ -133,6 +133,19 @@ Once the confirmation has been displayed, the file will have been included in a 
 ![Confirmation](../../../../assets/images/confirmation.png)
 
 #### Add a Recipient:  Upload File
+
+>**Example Template**
+>*Note: this file should be save in a `.csv` file format prior to uploading.*
+>
+>|Merchant ID*|Guest|Recipient Type*^1^|Merchant Cust ID*|First Name*|Last Name*|Date of Birth|Business Name^2^|Company Name^2^|TIN^2^|Identifier|Last 4 of SSN/Special Code|Email Address*|Phone Number*|Street Address|City|Zip Code|Country|State|Comments|
+>|-----|------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|
+>469277|TRUE|Consumer|453345|John|Smith|10/08/1985||||LAST_4_OF_SSN|4547|testuse@gmail.com|8794561254|2141 Rooe 34|Marlton|8004|USA|PA|Test
+>469277|FALSE|Company|3f33fd3||||Aldi Corp INC|Aldi CORP|457845|SPECIAL_CODE|8844|testuse@gmail.com|8794561254|2141 Rooe 34|Marlton|8004|USA|PA|Test
+>
+>
+>\* \- denotes a mandatory field
+>^1^ - Available options are "Consumer" or "Company"
+>^2^ - These Fields replace "First Name" and "Last Name" as mandatory when recipient type is "Company".
 
 #### Step 1
 

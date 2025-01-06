@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The Person-to-Person (P2P) feature facilitates direct fund transfers between merchants and recipients. Direct Disbursement merchants have access to this functionality. Enabling Person-to-Person (P2P) payments offers advantages such as convenience, speed, cost-effectiveness, accessibility, enhanced user experience, and increased efficiency in fund transfers.
+Peer-to-Peer (P2P) payments refer to transactions where a company facilitates payments between two individuals—a sender and a receiver. This feature allows developers to utilize a single API to implement direct fund transfers between to recipients. By enabling P2P payments, developers can offer benefits such as convenience, speed, cost-effectiveness, accessibility, an enhanced user experience, and increased efficiency in fund transfers.
 
 ## Prerequisites
 
@@ -10,7 +10,7 @@ The Person-to-Person (P2P) feature facilitates direct fund transfers between mer
 - Applicable only for Direct Debit merchants.
 - P2P requires sender details in the request payload.
 - Allowed sources of funds for the sender’s account are TA Token, Bank Account, Card and Wallet.
-  - If using a TA Token, Generate a TA Token for the card (Visa or Mastercard) for both the sender and recipient using North Backend or Commerce Hub. For more Information, refer to [TA Token](../docs/?path=docs/troubleshooting/tokens.md)
+  - If using a TA Token, Generate a TA Token for the card (Visa or Mastercard) for both the sender and recipient using North Backend or Commerce Hub. For more Information, refer to [TA Token](../docs/?path=docs/helpful-links/tokens.md)
   - If using a Card or Bank Account, it should be encrypted using public key. For more Information, refer to [Public Token](../docs/?path=docs/interactive-guide/apiflow.md#step-2a-create-a-public-token)
 
 ## Use Case Example(s)

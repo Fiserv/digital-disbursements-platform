@@ -7,7 +7,7 @@ There are a few things necessary to get started and make your first disbursement
 3. Work with our sales team to finalize a contract.
 4. Finalize and request your personal environment.
 5. Validate your use case and sign off on your personalized environment
-6. Begin Disbursing in lighting speed!
+6. Begin Disbursing in lightening speed!
 
 Below you will find all the necessary information and resources to determine which integration path is right for you and get development of the ground with documentation of all of the digital disbursement's API services. Be sure to visit the [FAQ](?path=docs/faq/faq.md) if you have any questions. If you are ready to begin discussions with our sales or have any other questions, you can always contact us [here](https://www.carat.fiserv.com/en-us/contact/?utm_campaign=payouts_content).
 
@@ -32,7 +32,7 @@ Digital disbursements allows several flexible integration options to make onboar
 <!-- type: card
 title: <div style="text-align:center;width:100%;height:25%"><img src="/assets/images/icons/hosted-pages-icon.png" alt="Hosted pages icon" title="Hosted pages icon" style="width: auto;height: 25%;max-height: 100px;"></div><div style="text-align:center;width:100%"> Hosted Payments Page </div>
 description: Offers the use of a client-branded iframe to manage customer experience, send account information (PCI data) directly to Fiserv, and receive an encrypted token for future use.
-link: ?path=docs/interactive-guide/apiflow.md
+link: ?path=docs/interactive-guide/hp_flow.md
 -->
 
 <!-- type: card

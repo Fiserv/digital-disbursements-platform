@@ -24,7 +24,7 @@ INBOUND FDFG moves files from MERCHANT's mail-box to SFTP '/available/' director
 
 OUTBOUND FDFG moves files from SFTP '/' directory with file-name <OUTBOUND_JOB_ID><FILE_NAME> to MERCHANT mail-box with <OUTBOUND_JOB_ID><FILE_NAME>
 
-Both JOB_IDs should be different; Ex : INBOUD FLXPI<MID>   OUTBOUND FLXPO<MID>
+Both JOB_IDs should be different; Ex : INBOUD `FLXPI<MID>`   OUTBOUND `FLXPO<MID>`
 
 ## Inbound file
 

@@ -22,7 +22,7 @@ Digital disbursements allows several flexible integration options to make onboar
 <!-- type: row -->
 
 <!-- type: card
-    title: <div style="text-align:center;width:100%;height:25%"><img src="https://raw.githubusercontent.com/Fiserv/digital-disbursements/develop/assets/images/icons/Person-and-computer.png" alt="Portal Icon" title="Portal Icon" style="width: auto;height: 25%;max-height: 100px;"></div><div style="text-align:center;width:100%"> Payments Portal </div>
+    title: <div style="text-align:center;width:100%;height:25%"><img src="/assets/images/icons/Person-and-computer.png" alt="Portal Icon" title="Portal Icon" style="width: auto;height: 25%;max-height: 100px;"></div><div style="text-align:center;width:100%"> Payments Portal </div>
     
     Description: Disburse payouts through the most popular channels in a Client-Branded Portal that minimizes cost and maximizes speed to market.
 
@@ -30,13 +30,13 @@ Digital disbursements allows several flexible integration options to make onboar
 -->
 
 <!-- type: card
-title: <div style="text-align:center;width:100%;height:25%"><img src="https://raw.githubusercontent.com/Fiserv/digital-disbursements/develop/assets/images/icons/hosted-pages-icon.png" alt="Hosted pages icon" title="Hosted pages icon" style="width: auto;height: 25%;max-height: 100px;"></div><div style="text-align:center;width:100%"> Hosted Payments Page </div>
+title: <div style="text-align:center;width:100%;height:25%"><img src="/assets/images/icons/hosted-pages-icon.png" alt="Hosted pages icon" title="Hosted pages icon" style="width: auto;height: 25%;max-height: 100px;"></div><div style="text-align:center;width:100%"> Hosted Payments Page </div>
 description: Offers the use of a client-branded iframe to manage customer experience, send account information (PCI data) directly to Fiserv, and receive an encrypted token for future use.
 link: ?path=docs/interactive-guide/apiflow.md
 -->
 
 <!-- type: card
-title: <div style="text-align:center;width:100%;height:25%"><img src="https://raw.githubusercontent.com/Fiserv/digital-disbursements/develop/assets/images/icons/api-connection.png" alt="API icon" title="API icon" style="width: auto;height: 25%;max-height: 100px;"></div><div style="text-align:center;width:100%"> API Only </div>
+title: <div style="text-align:center;width:100%;height:25%"><img src="/assets/images/icons/api-connection.png" alt="API icon" title="API icon" style="width: auto;height: 25%;max-height: 100px;"></div><div style="text-align:center;width:100%"> API Only </div>
 description: With Fiserv's simple, modern APIs you can direct flow to users with the confidence of a secure and fast Payments backend.
 link: ?path=docs/interactive-guide/apiflow.md
 -->
@@ -46,13 +46,13 @@ link: ?path=docs/interactive-guide/apiflow.md
 <!-- type: row -->
 
 <!-- type: card
-title: <div style="text-align:center;width:100%;height:25%"><img src="https://raw.githubusercontent.com/Fiserv/digital-disbursements/develop/assets/images/icons/api-connection.png" alt="API icon" title="API icon" style="width: auto;height: 25%;max-height: 100px;"></div><div style="text-align:center;width:100%"> Batch Processing </div>
+title: <div style="text-align:center;width:100%;height:25%"><img src="/assets/images/icons/api-connection.png" alt="API icon" title="API icon" style="width: auto;height: 25%;max-height: 100px;"></div><div style="text-align:center;width:100%"> Batch Processing </div>
 description: Process a payment file using Fiserv's fast-secure payments solutions to deliver customers fast payments with little upfront development cost.
 link: ?path=docs/interactive-guide/batchflow.md
 -->
 
 <!-- type: card
-title: <div style="text-align:center;width:100%;height:25%"><img src="https://raw.githubusercontent.com/Fiserv/digital-disbursements/develop/assets/images/icons/Bulk-processing.png" alt="Batch icon" title="Batch icon" style="width: auto;height: 25%;max-height: 100px;"></div><div style="text-align:center;width:100%"> Bulk Upload </div>
+title: <div style="text-align:center;width:100%;height:25%"><img src="/assets/images/icons/Bulk-processing.png" alt="Batch icon" title="Batch icon" style="width: auto;height: 25%;max-height: 100px;"></div><div style="text-align:center;width:100%"> Bulk Upload </div>
 description: Create and process payments in bulk using Fiserv's modern ClientLine Portal with no technical knowledge or integration needed.
 link: ?path=docs/interactive-guide/bulkflow.md
 -->

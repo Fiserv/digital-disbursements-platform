@@ -1,8 +1,6 @@
 # Using Markdown in Documentation
 
->Markdown is a text-to-HTML conversion tool for web writers.
-
->Markdown allows you to write using an easy-to-read, easy-to-write plain text format, then convert it to structurally valid XHTML (or HTML).
+Markdown is a text-to-HTML conversion tool for web writers. Markdown allows you to write using an easy-to-read, easy-to-write plain text format, then convert it to structurally valid XHTML (or HTML).
 
 For example, this entire page was created using Markdown!
 
@@ -20,18 +18,24 @@ Below is a quick reference of all the Markdown syntax that is supported by Stopl
 ```
 
 # H1
+
 ## H2
+
 ### H3
+
 #### H4
+
 ##### H5
+
 ###### H6
 
 ## Emphasis
+
 *Italics*
 
 **BOLD**
 
-**_Combined Empasis_**
+***Combined Empasis***
 
  ~~Scratch this.~~
 
@@ -66,6 +70,7 @@ Strikethrough uses two tildes. ~~Scratch this.~~
 
 ...You can have properly indented paragraphs within list items. Notice the blank line above, and the leading spaces (at least one, but we'll use three here to also align the raw Markdown).
 ```
+
 ## Links
 
 Different ways to create links.
@@ -134,11 +139,11 @@ alert(s);
 
 Tables aren't part of the core Markdown spec, but they are part of GFM and *Markdown Here* supports them. They are an easy way of adding tables to your email -- a task that would otherwise require copy-pasting from another application.
 
- Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
+| Tables        |      Are      |  Cool |
+|---------------|:-------------:|------:|
 | col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
+| col 2 is      |   centered    |   $12 |
+| zebra stripes |   are neat    |    $1 |
 
 ```no-highlight
 Colons can be used to align columns.
@@ -153,10 +158,10 @@ Colons can be used to align columns.
 
 The outer pipes (|) are optional, and you don't need to make the raw Markdown line up prettily. You can also use inline Markdown.
 
-Markdown | Less | Pretty
---- | --- | ---
-*Still* | `renders` | **nicely**
-1 | 2 | 3
+| Markdown | Less      | Pretty     |
+|----------|-----------|------------|
+| *Still*  | `renders` | **nicely** |
+| 1        | 2         | 3          |
 
 ```no-highlight
 Markdown | Less | Pretty
@@ -172,7 +177,7 @@ Markdown | Less | Pretty
 
 Quote break.
 
-> This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can *put* **Markdown** into a blockquote. 
+> This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can *put* **Markdown** into a blockquote.
 
 ```no-highlight
 > Blockquotes are very handy in email to emulate reply text.
@@ -204,19 +209,19 @@ ___
 Underscores
 ```
 
-# Extended markdown syntax
+## Extended markdown syntax
 
 Developer Studio Markdown extends standard Markdown with inline comment annotations.
 The value inside of the annotations is one or more key-value pairs, and the annotation affects the Markdown block right after it in the document.
 
-## Image centering
+### Image centering
 
 To center an image annotate `align` wrapped in a comment:
 
 <!-- align: center -->
 ![Image centering](../assets/images/md/align_image.png "Image centering")
 
-## Callouts, themed blockquotes
+### Callouts, themed blockquotes
 
 Callouts are MD blockquotes with optional annotation to indicate intent.
 There are four blockquote themes: the default (no annotation required), success, warning, and danger.
@@ -231,7 +236,7 @@ There are four blockquote themes: the default (no annotation required), success,
 <!-- theme: danger -->
 > Blockquotes in danger theme.
 
-## Cards & rows of cards
+### Cards & rows of cards
 
 A `card` has a border and optional values for a title, a description, and a link.
 To have a number of cards in a row, use `row` & `row-end` annotation before and after card(s) to be in a row.
@@ -254,7 +259,7 @@ link: ?path=docs/about-developer-studio.md
 
 <!-- type: row-end -->
 
-## Tab sets
+### Tab sets
 
 To organize content in tabs, indicate `titles` within the first `tab` annotation, followed by the tab content, and closed by a final `tab-end` annotation.
 > Users of Stoplight Flavored Markdown, need to include additional `title` annotation for each tab.
@@ -264,7 +269,7 @@ To organize content in tabs, indicate `titles` within the first `tab` annotation
 <!-- theme: danger -->
 > Tab containers cannot be nested.
 
-### Example
+#### Example
 
 <!--
 type: tab
@@ -283,7 +288,7 @@ Second tab content...
 
 ---
 
-### Additional tabset example
+#### Additional tabset example
 
 Bellow example of a tabset contains a table and a code block.
 
@@ -294,18 +299,18 @@ titles: additionalDataCommon, JSON Example
 
 The below table identifies the parameters in the `additionalDataCommon` object.
 
-| Variable | Type | Maximum Length | Description |
-| -------- | -- | ------------ | ------------------ |
-| `additionalData` | *object* | N/A | Used to identify specific data based on transaction requirements. |
-| `installments` | *object* | N/A | Used in [installment bill payments](?path=docs/Resources/Guides/Bill-Payments/Installment-Payment.md) |
-| `recurring` | *object* | N/A | Used in [recurring bill payments](?path=docs/Resources/Guides/Bill-Payments/Recurring-Payment.md) |
-| `amountComponents` | *object* | N/A | Used in transactions where additional [amount](?path=docs/Resources/Master-Data/Amount-Components.md) fields such as tax, surcharge, fees are required as part of the request. |
-| `billPaymentType` | *string* | 12 | Indicates the type of [bill payment](#bill-payment-indicator). Required for Charges, Cancel and Capture transactions where a bill payment is being processed. | 
-| `deferredPayments` | *object* | N/A | Used in [defferred bill payments](?path=docs/Resources/Guides/Bill-Payments/Deferred-Payment.md) |
-| `directedRouting` | *object* | N/A | Required in Directed Routing transactions. |
-| `subMerchant` | *object* | N/A | Required in transaction initiated by a [Payment Facilitator](?path=docs/Resources/Guides/Industry-Verticals/Payment-Faciliator.md) to identify the sub-merchant information. |
-| `privateLabel` | *object* | N/A | Used to process [Private Label](?path=docs/Resources/Guides/Payment-Sources/Private-Label.md) payment cards. |
-| `customFields` | *array* | N/A | Used to submit merchant custom fields used in terminal processing such as Key Value Pair. |
+ Variable | Type | Maximum Length | Description |
+ -------- | -- | ------------ | ------------------ |
+ `additionalData` | *object* | N/A | Used to identify specific data based on transaction requirements. |
+ `installments` | *object* | N/A | Used in [installment bill payments](?path=docs/Resources/Guides/Bill-Payments/Installment-Payment.md) |
+ `recurring` | *object* | N/A | Used in [recurring bill payments](?path=docs/Resources/Guides/Bill-Payments/Recurring-Payment.md) |
+ `amountComponents` | *object* | N/A | Used in transactions where additional [amount](?path=docs/Resources/Master-Data/Amount-Components.md) fields such as tax, surcharge, fees are required as part of the request. |
+ `billPaymentType` | *string* | 12 | Indicates the type of [bill payment](#bill-payment-indicator). Required for Charges, Cancel and Capture transactions where a bill payment is being processed. |
+ `deferredPayments` | *object* | N/A | Used in [defferred bill payments](?path=docs/Resources/Guides/Bill-Payments/Deferred-Payment.md) |
+ `directedRouting` | *object* | N/A | Required in Directed Routing transactions. |
+ `subMerchant` | *object* | N/A | Required in transaction initiated by a [Payment Facilitator](?path=docs/Resources/Guides/Industry-Verticals/Payment-Faciliator.md) to identify the sub-merchant information. |
+ `privateLabel` | *object* | N/A | Used to process [Private Label](?path=docs/Resources/Guides/Payment-Sources/Private-Label.md) payment cards. |
+ `customFields` | *array* | N/A | Used to submit merchant custom fields used in terminal processing such as Key Value Pair. |
 
 ---
 

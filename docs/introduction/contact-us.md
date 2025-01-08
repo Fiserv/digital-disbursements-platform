@@ -2,7 +2,7 @@
 
 ## Email
 
-someone@fiserv.com
+<someone@fiserv.com>
 
 ## Phone
 

@@ -12,9 +12,9 @@ The Direct Disbursement Platform (DDP) enables merchants to store a soft descrip
 
 B2B/B2C payments:
 
-- The merchant initiates a payment request including a statementDescriptor. The DDP sends this as statement_descriptor to MasterCard and cardAcceptor.name to VISA.
-- If the statementDescriptor is not included in the initial payment request, the system retrieves the merchant’s configured STATEMENT_DESCRIPTOR and sends it to VISA and MasterCard if configured.
-- If neither the statementDescriptor is present in the payment request nor the STATEMENT_DESCRIPTOR is configured for the merchant, the system defaults to sending the Doing Business As (DBA) name to VISA and MasterCard.
+- The merchant initiates a payment request including a statementDescriptor. The DDP sends this to Visa/MasterCard.
+- If the statementDescriptor is not included in the initial payment request, the system retrieves the merchant’s configured STATEMENT_DESCRIPTOR and sends it to Visa/MasterCard if configured.
+- If neither the statementDescriptor is present in the payment request nor the STATEMENT_DESCRIPTOR is configured for the merchant, the system defaults to sending the Doing Business As (DBA) name to Visa/MasterCard.
 
 P2P/A2A payments:
 

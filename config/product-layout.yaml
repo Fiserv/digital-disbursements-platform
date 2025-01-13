@@ -29,48 +29,46 @@
 ################################################################################
 header:
   productName: DigitalDisbursements
-  productionDescription: Digital Payouts is a cloud-based solution that digitizes the payouts process for both businesses and consumers alike. Through simple API integration, DDP allows merchants to issue single or bulk payouts to consumers and/or businesses in a secure, timely and cost-effective manner. For the recipient, the platform provides access to a variety of payout methods that allows choice of accepting their money when and how they prefer.
+  productionDescription: Technology and consumer demands have accelerated digital payment adoption. With extensive and exclusive payout options, plus built-in security, Digital Disbursements makes it easy to deliver fast and efficient digital payouts to customers how and when they want to get paid - on weekends, holidays and after hours across the U.S. and Europe. Leverage our relationships, scale and expertise to quickly, securely and cost-effectively payout customers when and how they want, globally.
   whoIsItFor: Insurance companies, gig economy, market places, lenders, pawn shops, and more.
   image: 
     link: "/assets/images/Fiserv_Logo.jpg"
     altText: DigitalDisbursements™
-getStarted: /docs/introduction/introduction.md
+getStarted: "/docs/getting-started.md"
 featuredFeatures:
-  - title: Operational Efficiency 
-    description:  Digital Disbursements simplifies operations and reduces resource demand, streamlining your payouts process. Our client portal provides settlement, reconciliation, and reporting for all payout capabilities.
+  - title: Visa+ 
+    description:  The Visa Plus feature enables clients to activate Visa+ as a payout method on the Digital Disbursement Platform (DDP) for Direct Disbursement merchants. The Visa+ Service introduces a new consumer-defined payment-specific "payname" that can be used to identify the payment recipient instead of using sensitive personal data.
     relatedDocs:
       - relatedDoc: 
-        title: Portal Flow
-        description: Learn how to integrate with our recipient portal for a great user Experience and Low integration cost.
-        link: /docs/interactive-guide/portalflow.md
-      - relatedDoc: 
-        title: FAQs
-        description: Take a look at our FAQs. 
-        link: docs/faq/faq.md
+        title: Visa Plus
+        description: Learn how to integrate with our Visa+ capabilities.
+        link: docs/documentation/features/visaplus.md
     relatedAPIs:
       - relatedAPI: 
         title: Create and Pay
         description: Create and send a payment with this single API endpoint.
         type: post        
         path: /ddp/v1/payments&version=1.0.0
-  - title: Built-in Security
-    description:  Digital Disbursements reduces risk and ensures high approval rates with built-in fraud prevention, tokenization, and optimization. You can also leverage functionality that eliminates PCI Burden.
+  - title: Real Time Payments
+    description:  Digital Disbursements uses the Real-Time Payments (RTP) network to send payments in as little as 5 seconds. This feature allows developers to utilize a single API to implement real-time fund transfers via ACH rails.
     relatedDocs:
       - relatedDoc: 
-        title: FAQs
-        description: Take a look at our FAQs. 
-        link: docs/faq/faq.md
-  - title: Recipient benefits
-    description:  Digital Disbursements offers recipients access to a variety of payout methods and the ability to select payment preferences. Recipients can receive funds instantly day or night.
+        title: FAQs #TODO: Update the link
+        description: Take a look at our FAQs. #TODO: Update the link
+        link: docs/faq/faq.md #TODO: Update the link
+    relatedAPIs:
+      - relatedAPI: 
+        title: Disburse a Payment
+        description: Use this API to send payments in as little as 5 seconds!
+        type: patch       
+        path: /ddp/v1/payments/{id}/disburse&version=1.0.0
+  - title: Peer to Peer Payments
+    description:  Peer-to-Peer (P2P) payments refer to transactions where a company facilitates payments between two individuals—a sender and a receiver. This feature allows developers to utilize a single API to implement direct fund transfers between to recipients.
     relatedDocs:
       - relatedDoc: 
-        title: Create a Payment
-        description: Here you will find a list of each available payment method.
-        link: docs/interactive-guide/apiflow.md#step-3-create-a-payment
-      - relatedDoc: 
-        title: FAQs
-        description: Take a look at our FAQs. 
-        link: docs/faq/faq.md
+        title: Peer-to-Peer (P2P) Payments
+        description: Learn how to integrate with our P2P payment capabilities.
+        link: docs/documentation/features/p2p.md
     relatedAPIs:
       - relatedAPI: 
         title: Disburse a Payment

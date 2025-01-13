@@ -57,8 +57,12 @@
 #     link: docs/documentation/features/tokenization.md
   - title: Interactive guide
     sections:
+    - title: Environment Setup
+      link: docs/interactive-guide/environment.md
     - title: API Flow
       link: docs/interactive-guide/apiflow.md
+    - title: API + Hosted Pages Flow
+      link: docs/interactive-guide/hp_flow.md
     - title: Portal Flow
       link: docs/interactive-guide/portalflow.md
     - title: Batch Flow
@@ -70,17 +74,17 @@
     - title: Frequently Asked Questions
       link: docs/faq/faq.md
     - title: Complete Error Code list
-      link: docs/troubleshooting/error-codes.md
+      link: docs/helpful-links/error-codes.md
     - title: Transaction/Payments Status
-      link: docs/troubleshooting/Transaction-payment-status.md
+      link: docs/helpful-links/Transaction-payment-status.md
     - title: Idempotency & Timeouts
-      link: docs/troubleshooting/idempotency-timeouts.md
+      link: docs/helpful-links/idempotency-timeouts.md
     - title: Webhook Notification Messages
-      link: docs/troubleshooting/notification-messages.md
+      link: docs/helpful-links/notification-messages.md
     - title: Email Notification Messages
-      link: docs/troubleshooting/email-templates.md
+      link: docs/helpful-links/email-templates.md
     - title: Tokens Information
-      link: docs/troubleshooting/tokens.md
+      link: docs/helpful-links/tokens.md
 #  - title: Contact us
 #    link: https://www.carat.fiserv.com/en-us/contact/?utm_campaign=payouts_content
   - title: Release Notes

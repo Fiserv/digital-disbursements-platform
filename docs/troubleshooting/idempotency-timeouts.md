@@ -5,14 +5,14 @@
  
 - When client makes disburse payment request, the response can be either conclusive or inconclusive
 - A conclusive response, is the one where client is sure of transaction status, Even if its declined. It includes,
-- `HTTP 4XX` Declined due to error in client input
-- `HTTP 2XX` Approved (Except IP transaction status)
+   - `HTTP 4XX` Declined due to error in client input
+   - `HTTP 2XX` Approved
 - An inconclusive response, is the one where client is not sure of transaction status, Even if client gets 2xx response. It includes,
-- `HTTP 5XX` Server Errors
-- `HTTP 2XX`with IP transaction status
-- `Timeouts`
+   - `Timeouts`
+   - `HTTP 5XX` Server Errors
+   - `HTTP 2XX`with IP transaction status
 
-### Timeouts
+#### Timeouts
 
 - Timeouts usually happens, when a (system/program) tired to connect to server, but it didn't receive a response in expected time frame. This could be due to
   - Network issues (or)
@@ -27,7 +27,23 @@
 - Timeouts are inevitable, but they are very infrequent.
 - When a timeout occurs, The client cannot determine if the request reached the server or not.
 
-> To recover from inconclusive responses and avoid the risk of duplicate payments, Merchant should adopt one of two below practices,
+> To recover from **Timeouts** and avoid the risk of duplicate payments, Merchant should use **Idempotency** or **Status Check** 
+
+#### HTTP 5XX Server Errors
+ - A `HTTP 5XX` Server Error occurs, when a server encounters a unexpected condition that prevents it from handling request properly. 
+ - It means, Payment status is inconclusive at that specific time and may change in future. 
+  
+> To recover from **HTTP 5XX Server Errors** and avoid the risk of duplicate payments, Merchant should use **Idempotency** or **Status Check**
+
+
+#### HTTP 2XX with IP transaction status
+ - A `HTTP 2XX with IP transaction status` means Fiserv received request, but not able to fulfill it at that instant 
+ - Fiserv will make best effort to fulfill the request but request fulfillment is not guaranteed  
+ - It means, Payment status inconclusive at that specific time and may change in future. 
+
+> To handle **HTTP 2XX with IP transaction status** and avoid the risk of duplicate payments, Merchant should use **Status Check** or 
+**Webhooks**
+
 
 ### Idempotency
 
@@ -44,6 +60,9 @@
 
 ![image](assets/images/idempotency.png)
 
+[![Create & Pay API Specification](../../../../assets/images/button.png)](../api/?type=post&path=/ddp/v1/payments)
+
+
 ### Status Checks
 
 - In case of Inconclusive response, Merchant should retrieve current payment status after 5 minutes of initial request
@@ -53,13 +72,21 @@
 
 ![image](assets/images/status_check.png)
 
+[![Status Check API Specification](../../../../assets/images/button.png)](../api/?type=get&path=/ddp/v1/transactions/{transactionId})
+
+
+
+### Webhooks
+ - A webhook is a way for applications to automatically send data to a subscribed service when a specific event occurs. 
+ - Client can subscribe to specific payment events, like disbursement, cancellation, decline ...
+ - In case of errors, Fiserv retries a maximum of 5 times to deliver web-hook event
+
 
 ### Merchant Guidelines
 | Transaction Status | Payment Status | Description | Best Practices (Direct Disbursement Merchants) |  Best Practices (Portal Merchants) |
 | ------------------ | -------------- | ----------- | ---------------------------------------------- | ---------------------------------- |
 | `IP` In Process | `IP` In Process | DDP has presented payout request to payment endpoint; however, the outcome is currently unknown.  Merchant will be provided updated information via web hook (push) or DDP's Status Check API (pull), depending upon Merchant's preference | DDP will return a 2XX message.  To avoid the risk of duplicate payments, Merchant should adopt one of two practices:    1) Merchant should wait 5 minutes, then send DDP Status request; DDP will return current status.  Or    2) Merchant should wait 5 minutes; then retry transaction with same (MTID, MCID & Amount).  If DDP identifies the transaction has a duplicate, DDP will return the current status; otherwise, DDP will process the transaction, business as usual.  Merchants are permitted to retry the same transaction up to 5 times.  Recommended that merchant retries at 2 minutes intervals. | Not applicable |
 | `TV` Transaction Cancelled  | `SE` System Error | Subsequent to responding with IP/IP, DDP determines that transaction did not reach payment endpoint. | Merchants can receive notification of a system error via web hook (push); or when calling for a Status Check or retrying a prior request. | Not applicable |
-| `TC` Transaction Completed | `ED` Declined by Payment Endpoint | DDP has successfully processed the transaction to the payment endpoint; but the endpoint has declined the request.  | DDP will return a 4XX message.  Merchant can send a new transaction with the same Recipient account information; however, the same response is likely. | Not applicable |
 | *`HTTP 5XX`* | *`HTTP 5XX`* |  DDP failed to process payment and the outcome is currently unknown.  Merchant will be provided updated information via web hook (push) or DDP's Status Check API (pull), depending upon Merchant's preference | To avoid the risk of duplicate payments, Merchant should adopt one of two practices:    1) Merchant should wait 5 minutes, then send DDP Status request; DDP will return current status.  Or    2) Merchant should wait 5 minutes; then retry transaction with same (MTID, MCID & Amount).  If DDP identifies the transaction has a duplicate, DDP will return the current status; otherwise, DDP will process the transaction, business as usual.  Merchants are permitted to retry the same transaction up to 5 times.  Recommended that merchant retries at 2 minutes intervals. | Not applicable |
 | *`Client Timeout`* | *`Client Timeout`*  | Merchant's request timed out at merchant's application  Reasons may include but not limited to Merchant side network issues Latent responses from DDP ... | To avoid the risk of duplicate payments, Merchant should adopt one of two practices:    1) Merchant should wait 5 minutes, then send DDP Status request; DDP will return current status.  Or    2) Merchant should wait 5 minutes; then retry transaction with same (MTID, MCID & Amount).  If DDP identifies the transaction has a duplicate, DDP will return the current status; otherwise, DDP will process the transaction, business as usual.  Merchants are permitted to retry the same transaction up to 5 times.  Recommended that merchant retries at 2 minutes intervals. | Not applicable |
 

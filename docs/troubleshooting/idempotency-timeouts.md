@@ -1,4 +1,4 @@
-# Idempotency & Timeout Handling
+## Idempotency & Timeout Handling
 > Only applicable to Direct Disbursemnt Merchants
 
 ### Conclusive & Inconclusive Responses

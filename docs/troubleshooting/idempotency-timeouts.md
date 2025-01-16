@@ -12,7 +12,7 @@
    - `HTTP 5XX` Server Errors
    - `HTTP 2XX`with IP transaction status
 
-#### Timeouts
+### Timeouts
 
 - Timeouts usually happens, when a (system/program) tired to connect to server, but it didn't receive a response in expected time frame. This could be due to
   - Network issues (or)
@@ -29,14 +29,14 @@
 
 > To recover from **Timeouts** and avoid the risk of duplicate payments, Merchant should use **Idempotency** or **Status Check** 
 
-#### HTTP 5XX Server Errors
+### HTTP 5XX Server Errors
  - A `HTTP 5XX` Server Error occurs, when a server encounters a unexpected condition that prevents it from handling request properly. 
  - It means, Payment status is inconclusive at that specific time and may change in future. 
   
 > To recover from **HTTP 5XX Server Errors** and avoid the risk of duplicate payments, Merchant should use **Idempotency** or **Status Check**
 
 
-#### HTTP 2XX with IP transaction status
+### HTTP 2XX with IP transaction status
  - A `HTTP 2XX with IP transaction status` means Fiserv received request, but not able to fulfill it at that instant 
  - Fiserv will make best effort to fulfill the request but request fulfillment is not guaranteed  
  - It means, Payment status inconclusive at that specific time and may change in future. 

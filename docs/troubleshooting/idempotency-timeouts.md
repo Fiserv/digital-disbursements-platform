@@ -28,12 +28,14 @@
   - Payment Provider (VISA or Master) and Issuer Bank
 - Timeouts are inevitable, but they are very infrequent.
 - When a timeout occurs, The client cannot determine if the request reached the server or not.
+  
 > To recover from **Timeouts** and avoid the risk of duplicate payments, Merchant should use **Idempotency** or **Status Check** 
 
 ### HTTP 5XX Server Errors
 
 - A `HTTP 5XX` Server Error occurs, when a server encounters a unexpected condition that prevents it from handling request properly. 
 - It means, Payment status is inconclusive at that specific time and may change in future. 
+  
 > To recover from **HTTP 5XX Server Errors** and avoid the risk of duplicate payments, Merchant should use **Idempotency** or **Status Check**
 
 ### HTTP 2XX with IP transaction status
@@ -41,6 +43,7 @@
 - A `HTTP 2XX with IP transaction status` means Fiserv received request, but not able to fulfill it at that instant 
 - Fiserv will make best effort to fulfill the request but request fulfillment is not guaranteed  
 - It means, Payment status inconclusive at that specific time and may change in future. 
+  
 > To handle **HTTP 2XX with IP transaction status** and avoid the risk of duplicate payments, Merchant should use **Status Check** or 
 **Webhooks**
 
@@ -66,7 +69,7 @@
 - If payment status is conclusive, Merchant should take appropriate action
 - If payment status is inconclusive, Merchant should retry status check api again
 - Merchants are permitted to retry status check for maximum of 5 times with 5 minutes gap
-- 
+  
 ![image](assets/images/status_check.png)
 [![Status Check API Specification](../../../../assets/images/button.png)](../api/?type=get&path=/ddp/v1/transactions/{transactionId})
 

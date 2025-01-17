@@ -13,7 +13,7 @@ This is an example of what the file email template will look like. You can custo
 | Feature Name | Recipient/ Client/ System | Description | Where Applicable? (Portal or Both (Portal+API)) |
 | ------------ | ------------------------- | ----------- | ----------------------------------------------- |
 |REMINDER_NOTIFICATION|Recipient|If set to yes, then a reminder email is sent to all recipients who have a pending payment. |Portal|
-ENABLE_EMAIL_PROFILE_UPDATE|Recipient|Triggered when a change is made to the recipient profile.  This method should always be sent under the CARAT logo.|Portal|
+|ENABLE_EMAIL_PROFILE_UPDATE|Recipient|Triggered when a change is made to the recipient profile.  This method should always be sent under the CARAT logo.|Portal|
 |ENABLE_EMAIL_PROFILE_REGISTERED|Recipient|Triggered when a recipient successfully registers to the platform.   This method should always be sent under the CARAT logo.|Portal|
 |ENABLE_EMAIL_PAYMENT_INITIATED|Recipient|Triggered when a payment is initiated by a client.  This message can utilize the client's logo and accept text changes.|Portal|
 |ENABLE_EMAIL_ACH_SALE_REVERSAL|Recipient|Triggered when the ACH reversal process is successful|Both|

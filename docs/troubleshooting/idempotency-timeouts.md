@@ -30,16 +30,16 @@
 > To recover from **Timeouts** and avoid the risk of duplicate payments, Merchant should use **Idempotency** or **Status Check** 
 
 ### HTTP 5XX Server Errors
- - A `HTTP 5XX` Server Error occurs, when a server encounters a unexpected condition that prevents it from handling request properly. 
- - It means, Payment status is inconclusive at that specific time and may change in future. 
+- A `HTTP 5XX` Server Error occurs, when a server encounters a unexpected condition that prevents it from handling request properly. 
+- It means, Payment status is inconclusive at that specific time and may change in future. 
   
 > To recover from **HTTP 5XX Server Errors** and avoid the risk of duplicate payments, Merchant should use **Idempotency** or **Status Check**
 
 
 ### HTTP 2XX with IP transaction status
- - A `HTTP 2XX with IP transaction status` means Fiserv received request, but not able to fulfill it at that instant 
- - Fiserv will make best effort to fulfill the request but request fulfillment is not guaranteed  
- - It means, Payment status inconclusive at that specific time and may change in future. 
+- A `HTTP 2XX with IP transaction status` means Fiserv received request, but not able to fulfill it at that instant 
+- Fiserv will make best effort to fulfill the request but request fulfillment is not guaranteed  
+- It means, Payment status inconclusive at that specific time and may change in future. 
 
 > To handle **HTTP 2XX with IP transaction status** and avoid the risk of duplicate payments, Merchant should use **Status Check** or 
 **Webhooks**
@@ -75,11 +75,10 @@
 [![Status Check API Specification](../../../../assets/images/button.png)](../api/?type=get&path=/ddp/v1/transactions/{transactionId})
 
 
-
 ### Webhooks
- - A webhook is a way for applications to automatically send data to a subscribed service when a specific event occurs. 
- - Client can subscribe to specific payment events, like disbursement, cancellation, decline ...
- - In case of errors, Fiserv retries a maximum of 5 times to deliver web-hook event
+- A webhook is a way for applications to automatically send data to a subscribed service when a specific event occurs. 
+- Client can subscribe to specific payment events, like disbursement, cancellation, decline ...
+- In case of errors, Fiserv retries a maximum of 5 times to deliver web-hook event
 
 
 ### Merchant Guidelines
